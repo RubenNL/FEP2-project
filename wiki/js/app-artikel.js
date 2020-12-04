@@ -8,10 +8,6 @@ export class appArtikel extends LitElement {
 			_content: {type:String}
 		};
 	}
-	constructor() {
-		super();
-		this.src='';
-	}
 	render() {
 		return html`<h1>${this._title}</h1>
 		<markdown-element markdown="${this._content}"></markdown-element>`
