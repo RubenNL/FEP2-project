@@ -1,0 +1,16 @@
+.header{
+	height:100px;
+	background-color:lightgrey;
+	padding:10px;
+	border-radius:5px;
+}
+.sidebar,
+.content{
+	height:500px;
+	background-color:lightgrey;
+	padding:10px;
+	border-radius:5px;
+}
+.container{
+	margin-top:30px;
+}
