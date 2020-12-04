@@ -15,7 +15,17 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 sidebar">Sidebar</div>
-				<div class="col-md-8 content">Content</div>
+				<div class="col-md-8 content">
+					<h1></h1>
+					<markdown-element></markdown-element>
+					<script type="module">
+						import '@intcreator/markdown-element';
+						fetch('demo.json').then(response=>response.json()).then(response=>{
+							document.querySelector('markdown-element').markdown=response.data;
+							document.querySelector('h1').innerText=response.title;
+						})
+					</script>
+				</div>
 			</div>
 		</div>
 	</body>
