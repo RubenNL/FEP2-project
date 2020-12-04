@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lit-element": "^2.4.0",
-    "es-dev-server": "^1.57.5"
+    "@intcreator/markdown-element": "^0.3.3",
+    "es-dev-server": "^1.57.5",
+    "lit-element": "^2.4.0"
   }
 }
