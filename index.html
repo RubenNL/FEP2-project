@@ -1,4 +1,9 @@
+<h1></h1>
+<markdown-element></markdown-element>
 <script type="module">
 	import '@intcreator/markdown-element';
+	fetch('demo.json').then(response=>response.json()).then(response=>{
+		document.querySelector('markdown-element').markdown=response.data;
+		document.querySelector('h1').innerText=response.title;
+	})
 </script>
-<markdown-element src="./demo.md"></markdown-element>
