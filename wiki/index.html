@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Bootstrap Demo</title>
+		<title>Testpage first run</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-12 header">Header</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 sidebar">Sidebar</div>
-				<div class="col-md-8 content">
-					<app-artikel src="demo.json"></app-artikel>
+				<div  class="col-12">
+				<app-header></app-header>
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-4 sidebar">Sidebar</div>
+			<div class="col-md-8 content">
+				<app-artikel src="demo.json"></app-artikel>
+			</div>
+		</div>
+		</div>
 		<script type="module" src="js/app-artikel.js"></script>
+		<script type="module" src="js/app-header.js"></script>
 	</body>
 </html>
