@@ -31,6 +31,12 @@ export class appSidebar extends LitElement{
 				margin: 10px 0px;
 				font-size: 13px;
 			}
+			#side-nav > li > a{
+				text-decoration: none;
+			}
+			#side-nav > li > a:hover{
+                 text-decoration: underline;
+             }
 		`;
 	}
 
