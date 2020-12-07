@@ -1,0 +1,37 @@
+name: Gource Action
+on:
+  repository_dispatch:
+    types: [activity_push]
+  workflow_dispatch: {}
+
+jobs:       
+  action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Gen index.html
+        run: |
+          mkdir gource
+          cat > ./gource/index.html <<EOL
+            <title>V2B-5</title>
+            <b><a href="gource.mp4">video</a></b><br>
+            <b><a href="https://fep2.herokuapp.com">heroku deploy</a></b><br>
+          EOL
+      - name: Gource-Action
+        uses: NBprojekt/gource-action@v1.0.1
+        with:
+          gource_title: 'V2B-5'
+          gource_dir_depth: 10
+          gource_seconds_per_day: 6
+          gource_resolution: '1080p'
+      - name: Deploy to pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.githubKey }}
+          BRANCH: gh-pages
+          FOLDER: gource
+          CLEAN: true
+          SINGLE_COMMIT: true
