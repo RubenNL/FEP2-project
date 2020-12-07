@@ -8,8 +8,8 @@ export class appSidebar extends LitElement{
 		}
 	}
 
-	connectedCallback() {
-		super.connectedCallback();
+	constructor() {
+		super();
 		this.logo = '';
 		this.links = [];
 	}
@@ -17,20 +17,19 @@ export class appSidebar extends LitElement{
 	static get styles(){
 		// language=css
 		return css`
-			.sidebar{
-				background-color:lightgrey;
-				height:100%;
-				border-radius:5px;
-				padding: 10px;
+			:host{
+				display:block;
+                background-color:lightgrey;
+                border-radius:5px;
+                padding:10px;
+                height:100%;
 			}
 		`;
 	}
 
 	render(){
 		return html`
-			<div class="sidebar">
-				Sidebar
-			</div>
+			Sidebar
 		`;
 	}
 }
