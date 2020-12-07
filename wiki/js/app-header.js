@@ -5,13 +5,15 @@ class AppHeader extends LitElement {
 	render() {
 		//language=HTML
 		return html`
-			<div class="logo_container">
+			<div class="logo-container">
 				<img src="/wiki/images/logo_512px.png" alt="" width=100px height=100px>
 				<div class="logo-title">
 					<h1>Open ICT Wiki</h1>
 					<h2>De wiki voor en door HBO-ICT studenten.</h2></div>					
 				</div>
-			<div class="search_container">
+			<div class="search-container">
+				<h1>Welkom bij de open ICT wiki, [naam]!</h1>
+				<input type="button" value="Uitloggen" >
 				<app-search></app-search>
 			</div>`;
 	}
@@ -29,7 +31,7 @@ class AppHeader extends LitElement {
                 border-radius: 5px;
             }
 
-            .logo_container {
+            .logo-container {
                 display: flex;
             }
 
@@ -38,13 +40,13 @@ class AppHeader extends LitElement {
 			}
 
             .logo-title > h2 {
-                font-size: 14px;
+                font-size: 16px;
 				margin-top: 1px;
             }
 
             .logo-title > h1 {
 				margin-bottom: 1px;
-                font-size: 15px;
+                font-size: 19px;
             }
 			
 			.logo-title{
@@ -53,7 +55,7 @@ class AppHeader extends LitElement {
 				justify-content: center;
 			}
 
-            .search_container {
+            .search-container {
                 background-color: #ff0024;
                 align-items: center;
             }
