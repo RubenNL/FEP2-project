@@ -1,3 +1,6 @@
+html{
+	background-color:#F9F9F9;
+}
 .header{
 	height:100px;
 	background-color:lightgrey;
@@ -6,11 +9,13 @@
 }
 .sidebar,
 .content{
-	/*height:500px;*/
 	background-color:lightgrey;
 	padding:10px;
 	border-radius:5px;
 }
 .container{
 	margin-top:30px;
+}
+h1,h2,h3,h4,h5,p,textarea,input,label,li,a{
+	font-family: 'Roboto', sans-serif;
 }
