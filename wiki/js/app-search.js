@@ -25,7 +25,7 @@ export class AppSearch extends LitElement {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
-:host(:hover) > #links {
+input:focus + #links, :host(:hover) > #links {
     display: block;
 }`
 	}
@@ -33,20 +33,18 @@ export class AppSearch extends LitElement {
 		return html`
 			<input @input="${this._onchange}">
 			<div id="links">
-			${this._suggestions.length>0?this._suggestions.map(suggestion=>html`<a href="#" @click="${this._openArticle(suggestion.id)}">${suggestion.text}</a><br>`):html`no results found`}
+			${this._suggestions.length>0?this._suggestions.map(suggestion=>html`<a href="#" @click="${this._openArticle(suggestion.id)}">${suggestion.title}</a><br>`):html`no results found`}
 			</div>
 		`;
 	}
 	_onchange(e) {
-		this._value=this.shadowRoot.querySelector('input')._value;
-		new Promise((resolve,reject)=>{//TODO met een fetch.
-			resolve([
-				{text:'test',id:'demo'},
-				{text:'java',id:123}
-			])
-		}).then(items=>{
-			this._suggestions=items;
-		});
+		this._value=e.target.value;
+		const query=this._value;
+		fetch(`/api/search/${query}`)
+			.then(response=>response.json())
+			.then(items=>{
+				this._suggestions=items;
+			});
 	}
 	_openArticle(id) {
 		return ()=>{
