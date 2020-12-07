@@ -1,3 +1,6 @@
+*{
+	font-family: Liber, serif;
+}
 .sidebar,
 .content{
 	/*height:500px;*/
