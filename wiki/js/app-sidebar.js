@@ -9,7 +9,6 @@ export class appSidebar extends LitElement{
 
 	constructor() {
 		super();
-		this.logo = '';
 		this.links = [
 			{'text': 'Google', 'href': 'https://www.google.com/'},
 			{'text': 'Reddit', 'href': 'https://www.reddit.com/'},
