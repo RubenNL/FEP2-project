@@ -2,11 +2,20 @@ import {css, LitElement, html} from 'lit-element';
 import '@intcreator/markdown-element';
 
 export class appInlog extends LitElement {
-    static get properties() {
-        return {};
+    render() {
+        //language=HTML
+        return html`
+            <form id="inlogform">
+                <input aria-labelledby="name" type="text" name="username" id="name"
+                       placeholder="Voer uw gebruikersnaam in."/>
+                <input aria-labelledby="password" type="password" name="password" id="password"
+                       placeholder="Voer uw wachtwoord in."/>
+                <input type="button" value="Login!" name="login" id="login-button">
+            </form>
+            </div>`
     }
 
-    static get Styles() {
+    static get styles() {
         //language=CSS
         return css`
             :host {
@@ -31,18 +40,6 @@ export class appInlog extends LitElement {
             }`
     }
 
-    render() {
-        //language=HTML
-        return html`
-            <form id="inlogform">
-                <input aria-labelledby="name" type="text" name="username" id="name"
-                       placeholder="Voer uw gebruikersnaam in."/>
-                <input aria-labelledby="password" type="password" name="password" id="password"
-                       placeholder="Voer uw wachtwoord in."/>
-                <input type="button" value="Login!" name="login" id="login-button">
-            </form>
-            </div>`
-    }
 
 }
 
