@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "es-dev-server --host 0.0.0.0 --app-index wiki/index.html --node-resolve --watch --port $PORT & node server.js",
-    "local": "es-dev-server --host 0.0.0.0 --app-index wiki/index.html --node-resolve --watch & node server.js"
+    "start": "es-dev-server --host 0.0.0.0 --app-index wiki/index.html --node-resolve --watch --port $PORT & ",
+    "local": "concurrently --kill-others \"es-dev-server --host 0.0.0.0 --app-index wiki/index.html --node-resolve --watch\" \"node server.js\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@intcreator/markdown-element": "^0.3.3",
-    "es-dev-server": "^1.57.5",
+    "concurrently": "^5.3.0",
+    "es-dev-server": "^2.0.2",
     "koa-proxies": "^0.11.0",
     "lit-element": "^2.4.0"
   }
