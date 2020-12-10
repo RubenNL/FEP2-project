@@ -18,7 +18,7 @@ class AppHeader extends LitElement {
 			</div>
 			<div class="search-container">
 				<input type="button" value="Registreren">
-				<h1>Welkom!</h1>
+				<h1>Zoeken:</h1>
 				<input type="button" value="Inloggen">
 				<app-search></app-search>
 			</div>`;
@@ -74,7 +74,7 @@ class AppHeader extends LitElement {
             }
 
             .search-container > input {
-				margin-bottom: 2px;
+				margin: 7px;
                 background: #0066c4;
                 color: #ffffff;
                 cursor: pointer;
@@ -83,13 +83,13 @@ class AppHeader extends LitElement {
                 width: 100px;
                 transition: all 0.5s;
                 border-radius: 3px;
-                align-self: start;
+                align-self: end;
                 grid-column: 1 / 2;
             }
 
             .search-container > app-search {
                 grid-column: 3 / 4;
-                height: 30px;
+				align-self: start;
             }
 
             @media only screen and (max-width: 470px) {
