@@ -67,8 +67,8 @@ http.createServer((req,res)=>{
 			case 'login':
 				(async () => {
 					const jane = await User.findByPk(json.username);
-					if(jane==null) res.end('user does not exist!');
-					else res.end(checkPassword(jane.hash,json.password)?'ja':'nee')
+					if(jane==null) res.end('User does not exist!');
+					else res.end(checkPassword(jane.hash,json.password)?'Ingelogd':'Wachtwoord incorrect!')
 				})();
 				break;
 			default:
