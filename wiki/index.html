@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="nl">
-	<head>
-		<title>OpenICT Wiki</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="icon" type="image/png" href="/wiki/images/logo_512px_textless.png">
-		<style>
+<head>
+    <title>OpenICT Wiki</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="/wiki/images/logo_512px_textless.png">
+    <style>
 
-		</style>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	</head>
-	<body>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-12">
-					<app-header></app-header>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-2">
-					<app-sidebar></app-sidebar>
-				</div>
-				<div class="col-md-10">
-					<app-artikel src="homePageArticle.json"></app-artikel>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <app-header></app-header>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-md-10">
+            <app-artikel src="homePageArticle.json"></app-artikel>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 footer">
+            <app-footer></app-footer>
+        </div>
+    </div>
+</div>
+</div>
 
-				<div class="col-md-12 footer">
-					<app-footer></app-footer></div>
-			</div>
-		</div>
-		<script type="module" src="js/app-artikel.js"></script>
-		<script type="module" src="js/app-header.js"></script>
-		<script type="module" src="js/app-sidebar.js"></script>
-		<script type="module" src="js/app-search.js"></script>
-		<script type="module" src="js/app-footer.js"></script>
-	</body>
+<script type="module" src="js/app-artikel.js"></script>
+<script type="module" src="js/app-header.js"></script>
+<script type="module" src="js/app-sidebar.js"></script>
+<script type="module" src="js/app-search.js"></script>
+<script type="module" src="js/app-footer.js"></script>
+</body>
 </html>
