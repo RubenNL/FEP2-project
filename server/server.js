@@ -39,12 +39,13 @@ http.createServer((req,res)=>{
 		} catch(e) {
 			isJson=false;
 		}
-		res.setHeader('Content-Type', 'application/json');
 		const queryParts=req.url.split('/');
 		queryParts.shift();
+		if(queryParts[0]=="api") queryParts.shift();
 		console.log(queryParts);
 		switch(queryParts.shift()) {
 			case 'search':
+				res.setHeader('Content-Type', 'application/json');
 				query=queryParts.join('/');
 				if(!query) res.end('[]');
 				if(query.length<1) return;
@@ -60,13 +61,14 @@ http.createServer((req,res)=>{
 						username: json.username,
 						hash: hash(json.password)
 					});
-					res.end(jane.toJSON());
+					res.end(JSON.stringify(jane.toJSON()));
 				})();
 				break;
 			case 'login':
 				(async () => {
 					const jane = await User.findByPk(json.username);
-					res.end(checkPassword(jane.hash,json.password)?'ja':'nee')
+					if(jane==null) res.end('user does not exist!');
+					else res.end(checkPassword(jane.hash,json.password)?'ja':'nee')
 				})();
 				break;
 			default:

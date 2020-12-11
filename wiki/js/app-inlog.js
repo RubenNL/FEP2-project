@@ -2,19 +2,44 @@ import {css, LitElement, html} from 'lit-element';
 import '@intcreator/markdown-element';
 
 export class appInlog extends LitElement {
+    static get properties() {
+        return {
+            _username: {type:String},
+            _password: {type:String},
+        }
+    }
+    constructor() {
+        super();
+        this._username='';
+        this._password='';
+    }
     render() {
         //language=HTML
         return html`
-            <form id="inlogform">
+            <div id="inlogform">
                 <input aria-labelledby="name" type="text" name="username" id="name"
-                       placeholder="Voer uw gebruikersnaam in."/>
+                       placeholder="Voer uw gebruikersnaam in." value="${this._username}" @input="${this._changeUsername}"/>
                 <input aria-labelledby="password" type="password" name="password" id="password"
-                       placeholder="Voer uw wachtwoord in."/>
-                <input type="button" value="Login!" name="login" id="login-button">
-            </form>
-            </div>`
+                       placeholder="Voer uw wachtwoord in." value="${this._password}" @input="${this._changePassword}"/>
+                <button @click="${this._onclick}">login</button>
+            </div>
+            `
     }
-
+    _changeUsername(e) {
+        this._username=e.target.value;
+    }
+    _changePassword(e) {
+        this._password=e.target.value;
+    }
+    _onclick() {
+        fetch('/api/login',{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({username:this._username,password:this._password})
+        }).then(response=>response.text()).then(response=>alert(response));
+    }
     static get styles() {
         //language=CSS
         return css`
@@ -29,7 +54,7 @@ export class appInlog extends LitElement {
                 text-align: center;
             }
 
-            #inlogform > input {
+            #inlogform > input, #inlogform > button {
                 text-align: center;
                 margin-top: 30px;
                 width: 80%;
@@ -39,8 +64,6 @@ export class appInlog extends LitElement {
                 border: 1px solid #ccc;
             }`
     }
-
-
 }
 
 customElements.define('app-inlog', appInlog)
