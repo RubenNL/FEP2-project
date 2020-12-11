@@ -55,10 +55,10 @@ export class appFooter extends LitElement {
 
     render() {
         return html`  
-            <a href="${this._githubLink}"><img src="${this._githubImage.src}" alt="githubImage"  width="50" height ="50" class="align-content-center"/></a>
-            <a href="${this._avansLink}">Avans</a>
-            <a href="${this._huLink}">Hogeschool Utrecht</a>
-            <a href="${this._hboiLink}">HBO-I</a>
+            <a href="${this._githubLink.src}"><img src="${this._githubImage.src}" alt="githubImage"  width="50" height ="50" class="align-content-center"/></a>
+            <a href="${this._avansLink.src}">Avans</a>
+            <a href="${this._huLink.src}">Hogeschool Utrecht</a>
+            <a href="${this._hboiLink.src}">HBO-I</a>
             <p>${this._copyrightText}</p>
        `;
     }
