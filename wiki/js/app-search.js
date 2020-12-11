@@ -47,9 +47,7 @@ input:focus + #links, :host(:hover) > #links {
 			});
 	}
 	_openArticle(id) {
-		return ()=>{
-			document.querySelector('app-artikel').src=`${id}.json`;//TODO mischien met event?
-		};
+		return ()=>document.querySelector('app-content').src=`${id}.json`;//TODO mischien met event?
 	}
 }
 customElements.define('app-search', AppSearch);
