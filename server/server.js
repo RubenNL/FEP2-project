@@ -4,12 +4,11 @@ const http=require('http')
 const { Sequelize, Model, DataTypes } = require('sequelize');
 const sequelize = new Sequelize(process.env.DATABASE_URL?process.env.DATABASE_URL:'sqlite::memory:');
 
-class User extends Model {}
-User.init({
+const User=sequelize.define("users",{
 	username: {primaryKey: true, type:DataTypes.STRING},
 	hash: DataTypes.STRING
-}, { sequelize, modelName: 'user' });
-
+});
+User.sync({ force: true });
 let files=fs.readdirSync('wiki/articles');
 let logins={}
 files=files.map(file=>{
@@ -43,7 +42,7 @@ http.createServer((req,res)=>{
 		res.setHeader('Content-Type', 'application/json');
 		const queryParts=req.url.split('/');
 		queryParts.shift();
-		queryParts.shift();
+		console.log(queryParts);
 		switch(queryParts.shift()) {
 			case 'search':
 				query=queryParts.join('/');
@@ -65,7 +64,10 @@ http.createServer((req,res)=>{
 				})();
 				break;
 			case 'login':
-				res.end(checkPassword(logins[json.username],json.password)?'ja':'nee')
+				(async () => {
+					const jane = await User.findByPk(json.username);
+					res.end(checkPassword(jane.hash,json.password)?'ja':'nee')
+				})();
 				break;
 			default:
 				res.end('no action found!')
