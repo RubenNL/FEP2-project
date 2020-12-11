@@ -47,7 +47,10 @@ input:focus + #links, :host(:hover) > #links {
 			});
 	}
 	_openArticle(id) {
-		return ()=>document.querySelector('app-content').src=`${id}.json`;//TODO mischien met event?
+		return ()=>{
+			document.querySelector('app-content').state="article"
+			document.querySelector('app-content').page=`${id}.json`;
+		}
 	}
 }
 customElements.define('app-search', AppSearch);
