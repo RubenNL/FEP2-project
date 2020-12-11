@@ -9,17 +9,21 @@ class AppHeader extends LitElement {
 	}
 	render() {
 		//language=HTML
-		return html`
-			<div class="logo-container">
-				<a href="/wiki/index.html"><img src="/wiki/images/logo_512px.png" alt="" width=100px height=100px></a>
+		return html`				
+			<a href="#" @click="${()=>{
+				document.querySelector('app-content').state="article"
+				document.querySelector('app-content').page="homePageArticle.json"
+			}}">
+				<img src="/wiki/images/logo_512px.png" alt="" width=100px height=100px>
 				<div class="logo-title">
 					<h1>Open ICT - Billy 2.0</h1>
-					<h2>De wiki voor en door HBO-ICT studenten.</h2></div>
-			</div>
+					<h2>De wiki voor en door HBO-ICT studenten.</h2>
+				</div>
+			</a>
 			<div class="search-container">
 				<input type="button" value="Registreren">
 				<h1>Zoeken:</h1>
-				<input type="button" value="Inloggen">
+				<input type="button" value="Inloggen" @click="${()=>document.querySelector('app-content').state="login"}">
 				<app-search></app-search>
 			</div>`;
 	}
@@ -37,8 +41,10 @@ class AppHeader extends LitElement {
                 border-radius: 5px;
             }
 
-            .logo-container {
+            a {
                 display: flex;
+				color: inherit; /* blue colors for links too */
+				text-decoration: inherit; /* no underline */
             }
 
             .logo-title > * {
