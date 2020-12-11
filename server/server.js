@@ -1,24 +1,14 @@
 var bcrypt = require('bcrypt');
 const fs=require('fs')
 const http=require('http')
-const { DbClient } = require('pg');
+const { Sequelize, Model, DataTypes } = require('sequelize');
+const sequelize = new Sequelize(process.env.DATABASE_URL?process.env.DATABASE_URL:'sqlite::memory:');
 
-const dbClient= new DbClient({
-	connectionString: process.env.DATABASE_URL,
-	ssl: {
-		rejectUnauthorized: false
-	}
-});
-
-client.connect();
-
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-	if (err) throw err;
-	for (let row of res.rows) {
-		console.log(JSON.stringify(row));
-	}
-	client.end();
-});
+class User extends Model {}
+User.init({
+	username: {primaryKey: true, type:DataTypes.STRING},
+	hash: DataTypes.STRING
+}, { sequelize, modelName: 'user' });
 
 let files=fs.readdirSync('wiki/articles');
 let logins={}
@@ -53,6 +43,7 @@ http.createServer((req,res)=>{
 		res.setHeader('Content-Type', 'application/json');
 		const queryParts=req.url.split('/');
 		queryParts.shift();
+		queryParts.shift();
 		switch(queryParts.shift()) {
 			case 'search':
 				query=queryParts.join('/');
@@ -65,8 +56,13 @@ http.createServer((req,res)=>{
 				res.end(JSON.stringify(response));
 				break;
 			case 'register':
-				logins[json.username]=hash(json.password)
-				res.end('ok')
+				(async () => {
+					const jane = await User.create({
+						username: json.username,
+						hash: hash(json.password)
+					});
+					res.end(jane.toJSON());
+				})();
 				break;
 			case 'login':
 				res.end(checkPassword(logins[json.username],json.password)?'ja':'nee')
