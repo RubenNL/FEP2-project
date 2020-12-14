@@ -40,7 +40,7 @@ input:focus + #links, :host(:hover) > #links {
 	_onchange(e) {
 		this._value=e.target.value;
 		const query=this._value;
-		fetch(`/api/search/${query}`)
+		fetch(`/api/search?${query}`)
 			.then(response=>response.json())
 			.then(items=>{
 				this._suggestions=items;
@@ -49,7 +49,7 @@ input:focus + #links, :host(:hover) > #links {
 	_openArticle(id) {
 		return ()=>{
 			document.querySelector('app-content').state="article"
-			document.querySelector('app-content').page=`${id}.json`;
+			document.querySelector('app-content').page=id;
 		}
 	}
 }

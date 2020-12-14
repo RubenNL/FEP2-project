@@ -12,7 +12,7 @@ export class AppContent extends LitElement {
 	constructor() {
 		super();
 		this.state="article";
-		this.page="homePageArticle.json";
+		this.page=1;
 	}
 	static get styles() {
 		//language=CSS
