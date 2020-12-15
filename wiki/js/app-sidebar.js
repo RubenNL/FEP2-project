@@ -3,17 +3,21 @@ import { LitElement,html,css} from 'lit-element';
 export class appSidebar extends LitElement{
 	static get properties(){
 		return {
-			links : {type:Array}
+			hoofd_cats : {type:Array}
 		}
 	}
 
 	constructor() {
 		super();
-		this.links = [
-			{'text': 'Google', 'href': 'https://www.google.com/'},
-			{'text': 'Reddit', 'href': 'https://www.reddit.com/'},
-			{'text': 'Youtube', 'href': 'https://www.youtube.com/'}
+		this.hoofd_cats = [
+			{'text': 'Profile', 'sub_cats': [{'text': 'Profiel Instellingen'}, {'text': 'Bookmarks'}, {'text': 'andere onzin'}]},
+			{'text': 'Analyseren', 'sub_cats': [{'text': 'Gebruiksinteractie'}, {'text': 'Organisatie'}, {'text': 'Software'}]},
+			{'text': 'Adviseren', 'sub_cats': [{'text': 'Technische informatica'}, {'text': 'Software Development'}, {'text': 'Artificial Intelligence'}]},
+			{'text': 'Ontwerpen', 'sub_cats': [{'text': 'Profiel Instellingen'}, {'text': 'Bookmarks'}, {'text': 'andere onzin'}]},
+			{'text': 'Realiseren', 'sub_cats': [{'text': 'Profiel Instellingen'}, {'text': 'Bookmarks'}, {'text': 'andere onzin'}]},
+			{'text': 'Realiseren', 'sub_cats': [{'text': 'Profiel Instellingen'}, {'text': 'Bookmarks'}, {'text': 'andere onzin'}]}
 		];
+		
 		this.classList.add('bg-container');
 	}
 
@@ -23,20 +27,31 @@ export class appSidebar extends LitElement{
 			:host{
 				min-height:300px;
 			}
-			#side-nav{
+			#side-nav-head{
 				list-style-type:none;
 				padding-left:0px;
+				background-color: #c0c0c0;
 			}
-            #side-nav > li{
+            #side-nav-head> li{
+				margin: 10px 0px;
+				font-size: 13px;
+
+			}
+			#side-nav-head > li > a{
+				text-decoration: none;
+			}
+			#side-nav-head > li > a:hover{
+                 text-decoration: underline;
+             }
+			#side-nav-sub{
+				list-style-type:none;
+				padding-left:0px;
+				background-color: #dddddd;
+			}
+			#side-nav-sub> li{
 				margin: 10px 0px;
 				font-size: 13px;
 			}
-			#side-nav > li > a{
-				text-decoration: none;
-			}
-			#side-nav > li > a:hover{
-                 text-decoration: underline;
-             }
 		`;
 	}
 
@@ -44,9 +59,10 @@ export class appSidebar extends LitElement{
 		return html`
 			<link rel="stylesheet" href="css/style.css">
 			<h2>Menu</h2>
-			<ul id="side-nav">
-			${this.links.map((link) => html`
-				<li><a href="${link.href}">${link.text}</a></li>
+			<ul id="side-nav-head">
+			${this.hoofd_cats.map((hoofdcat) => html`
+				<li>${hoofdcat.text}</li>
+				<ul id="side-nav-sub">${hoofdcat.sub_cats.map(sub => html`<li>${sub.text}</li>`)}</ul>
 			`)}
 			</ul>
 		`;
