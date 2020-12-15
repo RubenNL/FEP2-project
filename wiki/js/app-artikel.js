@@ -13,7 +13,7 @@ export class appArtikel extends LitElement {
 		<markdown-element markdown="${this._content}"></markdown-element>`
 	}
 	set src(val) {
-		fetch(`articles/${val}`).then(response => response.json()).then(response => {
+		fetch(`/api/getArticle/${val}`).then(response => response.json()).then(response => {
 			this._content = response.data;
 			this._title = response.title;
 		})
