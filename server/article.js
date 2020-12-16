@@ -14,10 +14,11 @@ search=query=>new Promise((resolve,reject)=>{
 		resolve([])
 		return;
 	}
+	const isSqlite=Article.sequelize.options.dialect=="sqlite";
 	resolve(Article.findAll({
 		where: {
 			title: {
-				[Op.iLike]: `%${query}%`
+				[isSqlite?Op.substring:Op.iLike]: isSqlite?`${query}`:`%${query}%`
 			}
 		}
 	}));
