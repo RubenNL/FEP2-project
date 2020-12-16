@@ -45,8 +45,6 @@ export class appInlog extends LitElement {
         return css`
             :host {
                 margin: auto;
-                width: 200vh;
-                height: 60vh;
                 display: flex;
 				align-content: left;
             }
