@@ -14,7 +14,7 @@ class AppHeader extends LitElement {
 				document.querySelector('app-content').state="article"
 				document.querySelector('app-content').page="homePageArticle.json"
 			}}">
-				<img src="images/logo_512px.png" alt="" width=100px height=100px>
+				<img src="/images/logo_512px.png" alt="" width=100px height=100px>
 				<div class="logo-title">
 					<h1>Open ICT - Billy 2.0</h1>
 					<h2>De wiki voor en door HBO-ICT studenten.</h2>

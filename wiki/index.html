@@ -5,9 +5,9 @@
 		if(window.location.protocol=='http:' && !window.location.port) window.location.protocol='https:' //port om te testen of de heroku wordt geladen. bij heroku is de port leeg.
 	</script>
     <title>OpenICT Wiki</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="images/logo_512px_textless.png">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/images/logo_512px_textless.png">
     <style>
 
     </style>
@@ -44,15 +44,17 @@
 	router.setRoutes([
 		{path: '/register', component: 'app-register'},
 		{path: '/login', component: 'app-inlog'},
-		{path: '/article', component: 'app-content'}
+		{path: '/article/:article', component: 'app-artikel'},
+		{path: '/', redirect: '/article/1'}
 
 	]);
 
 </script>
-<script type="module" src="js/app-content.js"></script>
-<script type="module" src="js/app-header.js"></script>
-<script type="module" src="js/app-sidebar.js"></script>
-<script type="module" src="js/app-search.js"></script>
-<script type="module" src="js/app-footer.js"></script>
+<script type="module" src="/js/app-artikel.js"></script>
+<script type="module" src="/js/app-inlog.js"></script>
+<script type="module" src="/js/app-header.js"></script>
+<script type="module" src="/js/app-sidebar.js"></script>
+<script type="module" src="/js/app-search.js"></script>
+<script type="module" src="/js/app-footer.js"></script>
 </body>
 </html>
