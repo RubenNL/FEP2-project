@@ -27,10 +27,16 @@ export class AppSearch extends LitElement {
 }
 input:focus + #links, :host(:hover) > #links {
     display: block;
+}
+h1 {
+	margin-bottom: 1px;
+	font-size: 19px;
 }`
+
 	}
 	render() {
 		return html`
+			<h1>Zoeken:</h1>
 			<input @input="${this._onchange}">
 			<div id="links">
 			${this._suggestions.length>0?this._suggestions.map(suggestion=>html`<a router-link href="/article/${suggestion.id}">${suggestion.title}</a><br>`):html`no results found`}

@@ -19,7 +19,6 @@ class AppHeader extends LitElement {
 			</a>
 			<div class="search-container">
 				<a router-link href="/register" class="button">Register</a>
-				<h1>Zoeken:</h1>
 				<a router-link href="/login" class="button">Inloggen</a>
 				<app-search></app-search>
 			</div>`;
@@ -76,16 +75,10 @@ class AppHeader extends LitElement {
             .search-container {
                 display: grid;
                 align-items: center;
-                grid-template-rows: 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
             }
 
-            .search-container > h1 {
-                grid-column: 2 / 4;
-                font-size: 19px;
-                align-items: center;
-            }
-
-            .search-container > input {
+            .search-container > a {
 				margin: 7px;
                 background: #0066c4;
                 color: #ffffff;
@@ -96,12 +89,16 @@ class AppHeader extends LitElement {
                 transition: all 0.5s;
                 border-radius: 3px;
                 align-self: end;
-                grid-column: 1 / 2;
+                grid-column: 1;
+				text-align: center;
             }
 
             .search-container > app-search {
-                grid-column: 3 / 4;
+				grid-row: 1/span 2;
+                grid-column: 2;
 				align-self: start;
+				font-size: 19px;
+                align-items: center;
             }
 
             @media only screen and (max-width: 470px) {
