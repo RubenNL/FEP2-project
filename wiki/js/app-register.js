@@ -67,19 +67,26 @@ export class appRegister extends LitElement {
 			</div>`
     }
 
-    _change(e) {
-        this._data[e.target.name] = e.target.value;
-    }
 
+    _change(e) {
+        this._data[e.target.name]=e.target.value;
+    }
     _onclick() {
         console.log(this._data);
-        fetch('/api/register', {
-            method: 'POST',
+        fetch('/api/register',{
+            method:'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this._data)
-        }).then(response => response.text()).then(response => alert(response));
+        }).then(response=>response.json()).then(response=>{
+            if(response.err) {
+                alert(response.err);
+                return;
+            }
+            alert('Account aangemaakt, log nu in.')
+            window.location.pathname="/login"
+        });
     }
 }
 
