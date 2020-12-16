@@ -6,6 +6,7 @@ export class appInlog extends LitElement {
         return {
             _username: {type:String},
             _password: {type:String},
+            location: Object
         }
     }
     constructor() {
@@ -25,6 +26,13 @@ export class appInlog extends LitElement {
             </div>
             `
     }
+
+    onBeforeEnter(location, commands, router){
+        console.log(location)
+        console.log(commands)
+        console.log(router)
+    }
+
     _changeUsername(e) {
         this._username=e.target.value;
     }
