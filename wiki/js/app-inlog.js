@@ -39,25 +39,39 @@ export class appInlog extends LitElement {
         return css`
             :host {
                 margin: auto;
-                width: 50vh;
-                height: 50vh;
+                width: 200vh;
+                height: 60vh;
                 display: flex;
+				align-content: left;
             }
 
             #inlogform {
-                text-align: center;
+                text-align: left;
+				align-items: left;
             }
 
-            #inlogform > input, #inlogform > button {
-                text-align: center;
-                margin-top: 30px;
-                width: 80%;
-                display: inline-block;
+            #inlogform > input {
+                text-align: left;
+                margin-top: 10px;
+				margin-bottom: 10px;
+                width: 400px;
+                display: block;
                 border-radius: 4px;
-                padding: 10px;
+                padding: 20px;
                 border: 1px solid #ccc;
-            }`
+            }
+			#inlogform > button {
+				text-align: center;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				width: 440px;
+				display: block;
+				border-radius: 4px;
+				padding: 20px;
+				border: 1px solid #ccc;
+			}`
     }
+
 }
 
 customElements.define('app-inlog', appInlog)
