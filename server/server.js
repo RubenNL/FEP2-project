@@ -12,7 +12,7 @@ const User=sequelize.define("users",{
 	blocked: {
 		type: DataTypes.BOOLEAN,
 		defaultValue: false
-	}	
+	}
 });
 User.sync({ force: true });
 const Article=sequelize.define("articles",{

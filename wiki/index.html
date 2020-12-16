@@ -41,6 +41,7 @@
 
 	const outlet = document.querySelector('main');
 	const router = new Router(outlet);
+	window.router=router;
 	router.setRoutes([
 		{
 			path: '/register',
@@ -71,5 +72,6 @@
 <script type="module" src="/js/app-sidebar.js"></script>
 <script type="module" src="/js/app-search.js"></script>
 <script type="module" src="/js/app-footer.js"></script>
+<script src="/js/sendAuthenticated.js"></script>
 </body>
 </html>

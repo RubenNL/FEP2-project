@@ -32,7 +32,13 @@ export class appInlog extends LitElement {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this._data)
-        }).then(response=>response.text()).then(response=>alert(response));
+        }).then(response=>response.json()).then(response=>{
+            if(response.err) alert(response.err)
+            else {
+                window.localStorage.setItem('JWT',response.key);
+                window.location.pathname='/';
+            }
+        });
     }
     static get styles() {
         //language=CSS

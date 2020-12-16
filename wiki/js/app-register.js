@@ -3,7 +3,8 @@ import {css, LitElement, html} from 'lit-element';
 export class appRegister extends LitElement {
 	static get properties() {
 		return {
-			_data: {type:Object}
+			_data: {type:Object},
+			location: {type:Object}
 		}
 	}
 	constructor() {
@@ -32,7 +33,14 @@ export class appRegister extends LitElement {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(this._data)
-		}).then(response=>response.text()).then(response=>alert(response));
+		}).then(response=>response.json()).then(response=>{
+			if(response.err) {
+				alert(response.err);
+				return;
+			}
+			alert('Account aangemaakt, log nu in.')
+			window.location.pathname="/login"
+		});
 	}
 }
 customElements.define('app-register', appRegister)
