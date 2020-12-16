@@ -6,6 +6,7 @@ export class appInlog extends LitElement {
         return {
             _username: {type:String},
             _password: {type:String},
+            location: Object
         }
     }
     constructor() {

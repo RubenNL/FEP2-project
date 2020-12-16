@@ -25,7 +25,7 @@
             <app-sidebar></app-sidebar>
         </div>
         <div class="col-md-10">
-            <app-content></app-content>
+            <main></main>
         </div>
     </div>
     <div class="row">
@@ -36,6 +36,19 @@
 </div>
 </div>
 
+<script type="module">
+	import {Router} from '@vaadin/router';
+
+	const outlet = document.querySelector('main');
+	const router = new Router(outlet);
+	router.setRoutes([
+		{path: '/register', component: 'app-register'},
+		{path: '/login', component: 'app-inlog'},
+		{path: '/article', component: 'app-content'}
+
+	]);
+
+</script>
 <script type="module" src="js/app-content.js"></script>
 <script type="module" src="js/app-header.js"></script>
 <script type="module" src="js/app-sidebar.js"></script>
