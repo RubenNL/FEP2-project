@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+	<script>
+		if(window.location.protocol=='http:' && !window.location.port) window.location.protocol='https:' //port om te testen of de heroku wordt geladen. bij heroku is de port leeg.
+	</script>
     <title>OpenICT Wiki</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
