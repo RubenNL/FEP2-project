@@ -18,9 +18,9 @@ class AppHeader extends LitElement {
 				</div>
 			</a>
 			<div class="search-container">
-				<input type="button" value="Registreren">
+				<a router-link href="/register" class="button">Register</a>
 				<h1>Zoeken:</h1>
-				<input type="button" value="Inloggen" @click="${()=>document.querySelector('app-content').state="login"}">
+				<a router-link href="/login" class="button">Inloggen</a>
 				<app-search></app-search>
 			</div>`;
 	}
@@ -43,7 +43,16 @@ class AppHeader extends LitElement {
 				color: inherit; /* blue colors for links too */
 				text-decoration: inherit; /* no underline */
             }
-
+			.button {
+				display: flex;
+				color: inherit; /* blue colors for links too */
+				text-decoration: inherit; /* no underline */
+				display: inline-block; padding: 1px 5px 2px;
+				background: ButtonFace; color: ButtonText;
+				border-style: solid; border-width: 2px;
+				border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+				border-radius: 5px;
+			}
             .logo-title > * {
                 text-align: left;
             }
