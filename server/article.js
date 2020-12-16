@@ -17,7 +17,7 @@ search=query=>new Promise((resolve,reject)=>{
 	resolve(Article.findAll({
 		where: {
 			title: {
-				[Op.iLike]: `%${query}%`
+				[Op.substring]: `${query}`
 			}
 		}
 	}));
