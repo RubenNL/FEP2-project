@@ -8,18 +8,18 @@ body{
     height:100%;
 }
 
-.container-fluid{
-    display:flex;
-    flex-direction:column;
-    height:100%;
-}
-.container-fluid .row:nth-child(2){
-    flex:1 0 auto;
-}
+/*.container-fluid{*/
+/*    display:flex;*/
+/*    flex-direction:column;*/
+/*    height:100%;*/
+/*}*/
+/*.container-fluid .row:nth-child(2){*/
+/*    flex:1 0 auto;*/
+/*}*/
 
-.container-fluid .row:nth-last-child(1){
-    flex-shrink: 0;
-}
+/*.container-fluid .row:nth-last-child(1){*/
+/*    flex-shrink: 0;*/
+/*}*/
 
 .bg-container{
 	display:block;
