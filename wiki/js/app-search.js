@@ -33,7 +33,7 @@ input:focus + #links, :host(:hover) > #links {
 		return html`
 			<input @input="${this._onchange}">
 			<div id="links">
-			${this._suggestions.length>0?this._suggestions.map(suggestion=>html`<a href="#" @click="${this._openArticle(suggestion.id)}">${suggestion.title}</a><br>`):html`no results found`}
+			${this._suggestions.length>0?this._suggestions.map(suggestion=>html`<a router-link href="/article/${suggestion.id}">${suggestion.title}</a><br>`):html`no results found`}
 			</div>
 		`;
 	}

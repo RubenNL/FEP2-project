@@ -9,11 +9,8 @@ class AppHeader extends LitElement {
 	}
 	render() {
 		//language=HTML
-		return html`				
-			<a href="#" @click="${()=>{
-				document.querySelector('app-content').state="article"
-				document.querySelector('app-content').page="homePageArticle.json"
-			}}">
+		return html`
+			<a router-link href="/">
 				<img src="/images/logo_512px.png" alt="" width=100px height=100px>
 				<div class="logo-title">
 					<h1>Open ICT - Billy 2.0</h1>
