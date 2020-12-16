@@ -52,6 +52,11 @@
 			component: 'app-inlog',
 			action: ()=>import('/js/app-inlog.js')
 		},
+        {
+            path: '/register',
+            component: 'app-register',
+            action: ()=>import('/js/app-register.js')
+        },
 		{
 			path: '/article/:article',
 			component: 'app-artikel',
@@ -62,8 +67,6 @@
 	]);
 
 </script>
-<script type="module" src="/js/app-artikel.js"></script>
-<script type="module" src="/js/app-inlog.js"></script>
 <script type="module" src="/js/app-header.js"></script>
 <script type="module" src="/js/app-sidebar.js"></script>
 <script type="module" src="/js/app-search.js"></script>

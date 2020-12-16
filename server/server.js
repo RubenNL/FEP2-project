@@ -4,8 +4,15 @@ const fs=require('fs')
 
 const sequelize = new Sequelize(process.env.DATABASE_URL?process.env.DATABASE_URL:'sqlite::memory:');
 const User=sequelize.define("users",{
-	username: {primaryKey: true, type:DataTypes.STRING},
-	hash: DataTypes.STRING
+	email: {primaryKey: true, type:DataTypes.STRING},
+	hash: DataTypes.STRING,
+	fullName: DataTypes.STRING,
+	functie: DataTypes.STRING,
+	orgName: DataTypes.STRING,
+	blocked: {
+		type: DataTypes.BOOLEAN,
+		defaultValue: false
+	}	
 });
 User.sync({ force: true });
 const Article=sequelize.define("articles",{

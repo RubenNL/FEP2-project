@@ -11,24 +11,27 @@ function checkPassword(hash,password) {
 }
 
 register=data=>{
-	return User.create({
-		username: data.username,
-		hash: hash(data.password)
-	}).then(jane=>jane.toJSON());
-};
-login=data=>{
-	return User.findByPk(data.username).then(jane=>{
-		if(jane==null) return {err:'User does not exist!'};
-		else return checkPassword(jane.hash,data.password)?{key:jwt.sign({ username: jane.username }, secret)}:{err:'Wachtwoord incorrect!'}
+	data.hash=hash(data.password)
+	delete data.password;
+	return User.create(data).then(jane=>jane.toJSON()).catch(err=>{
+		console.log(err);
+		return {err:"failed to create user"}
 	})
 };
+login=data=>{
+	return User.findOne({where:{email:data.email}}).then(jane=>{
+		if(jane==null) return {err:'User does not exist!'};
+		else return checkPassword(jane.hash,data.password)?{key:jwt.sign({ email: jane.email }, secret)}:{err:'Wachtwoord incorrect!'}
+	})
+};
+getUser=email=>User.findByPk(email)
 getUsername=key=>{
 	return new Promise((resolve,reject)=>{
 		jwt.verify(key,secret,(err,decoded)=>{
 			if(err) resolve({err:err})
-			resolve(decoded.username)
+			resolve(decoded.email)
 		})
-	})
+	}).then(getUser).then(user=>user.email)
 }
 module.exports=sequelize=>{
 	User=sequelize.models.users;

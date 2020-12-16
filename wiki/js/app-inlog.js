@@ -4,48 +4,34 @@ import '@intcreator/markdown-element';
 export class appInlog extends LitElement {
     static get properties() {
         return {
-            _username: {type:String},
-            _password: {type:String},
-            location: Object
+            _data: {type:Object}
         }
     }
     constructor() {
         super();
-        this._username='';
-        this._password='';
+        this._data={};
     }
     render() {
         //language=HTML
         return html`
             <div id="inlogform">
-                <input aria-labelledby="name" type="text" name="username" id="name"
-                       placeholder="Voer uw gebruikersnaam in." value="${this._username}" @input="${this._changeUsername}"/>
-                <input aria-labelledby="password" type="password" name="password" id="password"
-                       placeholder="Voer uw wachtwoord in." value="${this._password}" @input="${this._changePassword}"/>
+                <input aria-labelledby="name" type="text" name="email" id="name" placeholder="Voer uw email in." @input="${this._change}"/>
+                <input aria-labelledby="password" type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}"/>
                 <button @click="${this._onclick}">login</button>
             </div>
             `
     }
-
-    onBeforeEnter(location, commands, router){
-        console.log(location)
-        console.log(commands)
-        console.log(router)
+    _change(e) {
+        this._data[e.target.name]=e.target.value;
     }
 
-    _changeUsername(e) {
-        this._username=e.target.value;
-    }
-    _changePassword(e) {
-        this._password=e.target.value;
-    }
     _onclick() {
         fetch('/api/login',{
             method:'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({username:this._username,password:this._password})
+            body: JSON.stringify(this._data)
         }).then(response=>response.text()).then(response=>alert(response));
     }
     static get styles() {
