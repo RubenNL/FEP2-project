@@ -22,6 +22,7 @@ export class appSidebar extends LitElement{
 		return css`
 			:host{
 				min-height:300px;
+				margin-top:10px;
 			}
 			#side-nav{
 				list-style-type:none;
