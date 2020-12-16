@@ -84,13 +84,12 @@ class AppHeader extends LitElement {
                 color: #ffffff;
                 cursor: pointer;
                 border: 0;
-				height: 30px;
-                width: 100px;
                 transition: all 0.5s;
                 border-radius: 3px;
                 align-self: end;
                 grid-column: 1;
 				text-align: center;
+                padding: 5px 20px;
             }
 
             .search-container > app-search {
