@@ -42,9 +42,21 @@
 	const outlet = document.querySelector('main');
 	const router = new Router(outlet);
 	router.setRoutes([
-		{path: '/register', component: 'app-register'},
-		{path: '/login', component: 'app-inlog'},
-		{path: '/article/:article', component: 'app-artikel'},
+		{
+			path: '/register',
+			component: 'app-register',
+			action: ()=>import('/js/app-register.js')
+		},
+		{
+			path: '/login',
+			component: 'app-login',
+			action: ()=>import('/js/app-login.js')
+		},
+		{
+			path: '/article/:article',
+			component: 'app-artikel',
+			action: ()=>import('/js/app-artikel.js')
+		},
 		{path: '/', redirect: '/article/1'}
 
 	]);

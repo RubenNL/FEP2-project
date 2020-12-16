@@ -9,27 +9,18 @@ export class appArtikel extends LitElement {
 			location: Object
 		};
 	}
+	constructor() {
+		super();
+		this._content='';
+		this._title='';
+	}
 	render() {
 		return html`<h1>${this._title}</h1>
 		<markdown-element markdown="${this._content}"></markdown-element>`
 	}
 
 	onBeforeEnter(location, commands, router){
-		console.log(location)
-		console.log(commands)
-		console.log(router)
-	}
-
-	onAfterEnter(location, commands, router){
-		console.log(location)
-		console.log(commands)
-		console.log(router)
-	}
-
-	onBeforeLeave(location, commands, router){
-		console.log(location)
-		console.log(commands)
-		console.log(router)
+		this.src=location.params.article
 	}
 
 	set src(val) {
