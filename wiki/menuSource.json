@@ -1,0 +1,74 @@
+[
+  {
+    "headcatagory": "Categorie 1",
+    "subcatagories": [
+      {
+        "title": "Subcategorie 1"
+      },
+      {
+        "title": "Subcategorie 2"
+      },
+      {
+        "title": "Subcategorie 3"
+      }
+    ]
+  },
+  {
+    "headcatagory": "Categorie 2",
+    "subcatagories": [
+      {
+        "title": "Subcategorie 1"
+      },
+      {
+        "title": "Subcategorie 2"
+      },
+      {
+        "title": "Subcategorie 3"
+      }
+    ]
+  }
+ ,
+
+  {
+    "headcatagory": "Categorie 3",
+    "subcatagories": [
+      {
+        "title": "Subcategorie 1"
+      },
+      {
+        "title": "Subcategorie 2"
+      },
+      {
+        "title": "Subcategorie 3"
+      }
+    ]
+  },
+  {
+    "headcatagory": "Categorie 4",
+    "subcatagories": [
+      {
+        "title": "Subcategorie 1"
+      },
+      {
+        "title": "Subcategorie 2"
+      },
+      {
+        "title": "Subcategorie 3"
+      }
+    ]
+  },
+  {
+    "headcatagory": "Categorie 5",
+    "subcatagories": [
+      {
+        "title": "Subcategorie 1"
+      },
+      {
+        "title": "Subcategorie 2"
+      },
+      {
+        "title": "Subcategorie 3"
+      }
+    ]
+  }
+]
