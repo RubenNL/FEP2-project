@@ -10,7 +10,7 @@ export class appSidebar extends LitElement {
     constructor() {
         super();
         this._categories = [];
-        fetch(`./menuSource.json`).then(response => response.json()).then(response => {
+        fetch(`/api/getCategories`).then(response => response.json()).then(response => {
             this._categories = response
             console.log(response)
         })

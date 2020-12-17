@@ -11,7 +11,6 @@ module.exports=sequelize=>{
 			defaultValue: false
 		}
 	});
-	User.sync({ force: true });
 	const Article=sequelize.define("articles",{
 		id: {
 			primaryKey: true,
@@ -21,5 +20,16 @@ module.exports=sequelize=>{
 		title: DataTypes.STRING,
 		data: DataTypes.STRING(32768)
 	});
-	Article.sync({ force: true });
+	const Category=sequelize.define("categories",{
+		id: {
+			primaryKey: true,
+			type:DataTypes.INTEGER,
+			autoIncrement:true
+		},
+		name: DataTypes.STRING,
+		headcatagory: DataTypes.STRING
+	});
+	Category.hasMany(Article);
+	Article.belongsTo(Category);
+	sequelize.sync({force:true})
 }
