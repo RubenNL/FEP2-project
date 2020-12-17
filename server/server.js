@@ -1,31 +1,38 @@
 const http=require('http')
 const { Sequelize } = require('sequelize');
-const fs=require('fs')
 
 const sequelize = new Sequelize(process.env.DATABASE_URL?process.env.DATABASE_URL:'sqlite::memory:');
-require('./tables.js')(sequelize)
-const {register,login,getUserFromJWT} = require('./loginsignup.js')(sequelize)
-const {getArticle,saveArticle,search} = require('./article.js')(sequelize)
-setTimeout(()=>JSON.parse(fs.readFileSync('initialArticles.json','utf8')).forEach(saveArticle),1000)
+let selector;
+require('./tables.js')(sequelize).then(()=>{
+	const {getCategories} = require('./category.js')(sequelize);
+	const {register,login,getUserFromJWT} = require('./loginsignup.js')(sequelize)
+	const {getArticle,saveArticle,search,getArticlesByCategory} = require('./article.js')(sequelize)
 
-selector=(queryParts,json,req)=>{
-	switch(queryParts.shift()) {
-		case 'search':
-			return search(req.url.split('?')[1])
-		case 'register':
-			return register(json)
-		case 'login':
-			return login(json)
-		case 'getUser':
-			return getUserFromJWT(req.headers.authorization.split(' ')[1]);
-		case 'getArticle':
-			return getArticle(queryParts.join('/'))
-		case 'saveArticle':
-			return saveArticle(json);
-		default:
-			return Promise.resolve('no action found!')
+	selector=(queryParts,json,req)=>{
+		switch(queryParts.shift()) {
+			case 'search':
+				return search(req.url.split('?')[1])
+			case 'register':
+				return register(json)
+			case 'login':
+				return login(json)
+			case 'getUser':
+				return getUserFromJWT(req.headers.authorization.split(' ')[1]);
+			case 'getArticle':
+				return getArticle(queryParts.join('/'))
+			case 'saveArticle':
+				return saveArticle(json);
+			case 'getCategories':
+				return getCategories();
+			case 'getArticlesByCategory':
+				return getArticlesByCategory(queryParts.shift());
+			default:
+				return Promise.resolve('no action found!')
+		}
 	}
-}
+
+})
+
 
 http.createServer((req,res)=>{
 	res.endJson=data=>{

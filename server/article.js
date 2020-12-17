@@ -1,10 +1,7 @@
 const {Op}=require('sequelize');
 let Article;
 getArticle=id=>Article.findByPk(id)
-saveArticle=json=>Article.create({
-	data:json.data,
-	title:json.title
-})
+saveArticle=json=>Article.create(json)
 search=query=>new Promise((resolve,reject)=>{
 	if(!query) {
 		resolve([])
@@ -23,7 +20,14 @@ search=query=>new Promise((resolve,reject)=>{
 		}
 	}));
 })
+getArticlesByCategory=categoryId=>Article.findAll({
+	where: {
+		categoryId: categoryId
+	},
+	attributes: ['id','title']
+})
 module.exports=sequelize=>{
 	Article=sequelize.models.articles;
-	return {getArticle,saveArticle,search}
+	JSON.parse(require('fs').readFileSync('initialArticles.json','utf8')).forEach(saveArticle)
+	return {getArticle,saveArticle,search,getArticlesByCategory}
 } 
