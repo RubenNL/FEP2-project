@@ -1,73 +1,103 @@
 [
   {
-    "headcatagory": "Categorie 1",
+    "headcatagory": "Gebruikersinteractie",
     "subcatagories": [
       {
-        "title": "Subcategorie 1"
+        "title": "Analyseren"
       },
       {
-        "title": "Subcategorie 2"
+        "title": "Adviseren"
       },
       {
-        "title": "Subcategorie 3"
+        "title": "Ontwerpen"
+      },
+      {
+        "title": "Realiseren"
+      },
+      {
+        "title": "Manage & Control"
       }
     ]
   },
   {
-    "headcatagory": "Categorie 2",
+    "headcatagory": "Organisatie processen",
     "subcatagories": [
       {
-        "title": "Subcategorie 1"
+        "title": "Analyseren"
       },
       {
-        "title": "Subcategorie 2"
+        "title": "Adviseren"
       },
       {
-        "title": "Subcategorie 3"
+        "title": "Ontwerpen"
+      },
+      {
+        "title": "Realiseren"
+      },
+      {
+        "title": "Manage & Control"
       }
     ]
   }
  ,
 
   {
-    "headcatagory": "Categorie 3",
+    "headcatagory": "Infrastructuur",
     "subcatagories": [
       {
-        "title": "Subcategorie 1"
+        "title": "Analyseren"
       },
       {
-        "title": "Subcategorie 2"
+        "title": "Adviseren"
       },
       {
-        "title": "Subcategorie 3"
+        "title": "Ontwerpen"
+      },
+      {
+        "title": "Realiseren"
+      },
+      {
+        "title": "Manage & Control"
       }
     ]
   },
   {
-    "headcatagory": "Categorie 4",
+    "headcatagory": "Software",
     "subcatagories": [
       {
-        "title": "Subcategorie 1"
+        "title": "Analyseren"
       },
       {
-        "title": "Subcategorie 2"
+        "title": "Adviseren"
       },
       {
-        "title": "Subcategorie 3"
+        "title": "Ontwerpen"
+      },
+      {
+        "title": "Realiseren"
+      },
+      {
+        "title": "Manage & Control"
       }
     ]
   },
   {
-    "headcatagory": "Categorie 5",
+    "headcatagory": "Hardware interfacing",
     "subcatagories": [
       {
-        "title": "Subcategorie 1"
+        "title": "Analyseren"
       },
       {
-        "title": "Subcategorie 2"
+        "title": "Adviseren"
       },
       {
-        "title": "Subcategorie 3"
+        "title": "Ontwerpen"
+      },
+      {
+        "title": "Realiseren"
+      },
+      {
+        "title": "Manage & Control"
       }
     ]
   }
