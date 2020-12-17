@@ -1,71 +1,83 @@
-import { LitElement,html,css} from 'lit-element';
+import {LitElement, html, css} from 'lit-element';
 
-export class appSidebar extends LitElement{
-	static get properties(){
-		return {
-			hoofd_cats : {type:Array}
-		}
-	}
+export class appSidebar extends LitElement {
+    static get properties() {
+        return {
+            _categories: {type: Array}
+        }
+    }
 
-	constructor() {
-		super();
-		this.hoofd_cats = [
-			{'text': 'Profile', 'sub_cats': [{'text': 'Profiel Instellingen'}, {'text': 'Bookmarks'}, {'text': 'andere onzin'}]},
-			{'text': 'Analyseren', 'sub_cats': [{'text': 'Gebruiksinteractie'}, {'text': 'Organisatie'}, {'text': 'Software'}]},
-			{'text': 'Adviseren', 'sub_cats': [{'text': 'Technische informatica'}, {'text': 'Software Development'}, {'text': 'Artificial Intelligence'}]},
-			{'text': 'Ontwerpen', 'sub_cats': [{'text': 'Profiel Instellingen'}, {'text': 'Bookmarks'}, {'text': 'andere onzin'}]},
-			{'text': 'Realiseren', 'sub_cats': [{'text': 'Profiel Instellingen'}, {'text': 'Bookmarks'}, {'text': 'andere onzin'}]},
-			{'text': 'Realiseren', 'sub_cats': [{'text': 'Profiel Instellingen'}, {'text': 'Bookmarks'}, {'text': 'andere onzin'}]}
-		];
-		
-		this.classList.add('bg-container');
-	}
+    constructor() {
+        super();
+        this._categories = [];
+        fetch(`./menuSource.json`).then(response => response.json()).then(response => {
+            this._categories = response
+            console.log(response)
+        })
+        this.classList.add('bg-container');
+    }
 
-	static get styles(){
-		// language=css
-		return css`
-			:host{
-				min-height:300px;
-			}
-			#side-nav-head{
-				list-style-type:none;
-				padding-left:0px;
-				background-color: #c0c0c0;
-			}
-            #side-nav-head> li{
-				margin: 10px 0px;
-				font-size: 13px;
+    static get styles() {
+        // language=css
+        return css`
+            :host {
+                min-height: 300px;
+                color: #383838;
+            }
+            
+            #side-nav {
+                list-style-type: none;
+                padding-left: 0px;
+                color: #383838;
+            }
 
-			}
-			#side-nav-head > li > a{
-				text-decoration: none;
-			}
-			#side-nav-head > li > a:hover{
-                 text-decoration: underline;
-             }
-			#side-nav-sub{
-				list-style-type:none;
-				padding-left:0px;
-				background-color: #dddddd;
-			}
-			#side-nav-sub> li{
-				margin: 10px 0px;
-				font-size: 13px;
-			}
-		`;
-	}
+            #side-nav-sub > a{
+                text-decoration: none;
+                color: #383838;
+                padding-bottom: 10px;
+            }
+            
 
-	render(){
-		return html`
-			<link rel="stylesheet" href="css/style.css">
-			<h2>Menu</h2>
-			<ul id="side-nav-head">
-			${this.hoofd_cats.map((hoofdcat) => html`
-				<li>${hoofdcat.text}</li>
-				<ul id="side-nav-sub">${hoofdcat.sub_cats.map(sub => html`<li>${sub.text}</li>`)}</ul>
-			`)}
-			</ul>
-		`;
-	}
+            #side-nav-sub {
+                padding-left: 40px;
+            } 
+            .head-item{
+                margin: 10px 0px;
+                font-size: 20px;
+                font-weight: bold;
+            }
+            .sub-item > *{
+                text-decoration: none;
+                list-style-type: square;
+                font-size: 16px;
+                color: #383838;
+            }
+            .sub-item{
+                margin-bottom: 5px;
+                height: 20px;
+            }
+            
+            .sub-item :hover{
+                color: whitesmoke;
+                background-color: darkgray;
+            }
+        `;
+    }
+
+    render() {
+        return html`
+            <link rel="stylesheet" href="css/style.css">
+            <h2>Menu</h2>
+            <ul id="side-nav">
+                ${this._categories.map((hoofdcat) => html`
+                    <li class="head-item">${hoofdcat.headcatagory}</li>
+                    <ul class="side-nav-sub">${hoofdcat.subcatagories.map(sub => html`
+                       <li class="sub-item"><a href=${sub.title}>${sub.title}</a></li>`)}
+                    </ul>
+                `)}
+            </ul>
+        `;
+    }
 }
+
 customElements.define('app-sidebar', appSidebar);
