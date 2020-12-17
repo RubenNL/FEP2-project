@@ -7,7 +7,5 @@ function sendAuthenticated(url,data) {
 		},
 		method:data?'POST':'GET',
 		body: JSON.stringify(data)
-	})
-		.then(response=>response.text())
-		.then(response=>alert(response));
+	}).then(response=>response.json());
 }

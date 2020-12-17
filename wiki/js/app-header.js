@@ -18,8 +18,9 @@ class AppHeader extends LitElement {
 				</div>
 			</a>
 			<div class="search-container">
-				<a router-link href="/register" class="button">Register</a>
-				<a router-link href="/login" class="button">Inloggen</a>
+				${window.localStorage.getItem('user')?
+					html`<span id="greet">Welkom ${JSON.parse(window.localStorage.getItem('user')).fullName.split(' ')[0]}!</span><button class="button" id="logout" @click="${()=>{window.localStorage.clear(); window.location.reload()}}">logout</button>`:
+					html`<a router-link href="/register" class="button">Register</a><a router-link href="/login" class="button">Inloggen</a>`}
 				<app-search></app-search>
 			</div>`;
 	}
@@ -71,14 +72,20 @@ class AppHeader extends LitElement {
                 flex-direction: column;
                 justify-content: center;
             }
-
+			#greet {
+				grid-row: 1;
+				grid-column: 1;
+			}
+			#logout {
+				grid-row: 2;
+			}
             .search-container {
                 display: grid;
                 align-items: center;
-                grid-template-rows: 1fr 1fr;
+				grid-template-rows: min-content min-content auto;
             }
 
-            .search-container > a {
+            .search-container > .button {
 				margin: 7px;
                 background: #0066c4;
                 color: #ffffff;
@@ -93,7 +100,7 @@ class AppHeader extends LitElement {
             }
 
             .search-container > app-search {
-				grid-row: 1/span 2;
+				grid-row: 1/span 3;
                 grid-column: 2;
 				align-self: start;
 				font-size: 19px;
