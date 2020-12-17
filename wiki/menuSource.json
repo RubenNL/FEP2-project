@@ -3,19 +3,24 @@
     "headcatagory": "Gebruikersinteractie",
     "subcatagories": [
       {
-        "title": "Analyseren"
+        "title": "Analyseren",
+        "id": 1
       },
       {
-        "title": "Adviseren"
+        "title": "Adviseren",
+        "id": 2
       },
       {
-        "title": "Ontwerpen"
+        "title": "Ontwerpen",
+        "id": 3
       },
       {
-        "title": "Realiseren"
+        "title": "Realiseren",
+        "id": 4
       },
       {
-        "title": "Manage & Control"
+        "title": "Manage & Control",
+        "id": 5
       }
     ]
   },
@@ -23,19 +28,24 @@
     "headcatagory": "Organisatie processen",
     "subcatagories": [
       {
-        "title": "Analyseren"
+        "title": "Analyseren",
+        "id": 6
       },
       {
-        "title": "Adviseren"
+        "title": "Adviseren",
+        "id": 7
       },
       {
-        "title": "Ontwerpen"
+        "title": "Ontwerpen",
+        "id": 8
       },
       {
-        "title": "Realiseren"
+        "title": "Realiseren",
+        "id": 9
       },
       {
-        "title": "Manage & Control"
+        "title": "Manage & Control",
+        "id": 10
       }
     ]
   }
@@ -45,19 +55,24 @@
     "headcatagory": "Infrastructuur",
     "subcatagories": [
       {
-        "title": "Analyseren"
+        "title": "Analyseren",
+        "id": 11
       },
       {
-        "title": "Adviseren"
+        "title": "Adviseren",
+        "id": 12
       },
       {
-        "title": "Ontwerpen"
+        "title": "Ontwerpen",
+        "id": 13
       },
       {
-        "title": "Realiseren"
+        "title": "Realiseren",
+        "id": 14
       },
       {
-        "title": "Manage & Control"
+        "title": "Manage & Control",
+        "id": 15
       }
     ]
   },
@@ -65,19 +80,24 @@
     "headcatagory": "Software",
     "subcatagories": [
       {
-        "title": "Analyseren"
+        "title": "Analyseren",
+        "id": 16
       },
       {
-        "title": "Adviseren"
+        "title": "Adviseren",
+        "id": 17
       },
       {
-        "title": "Ontwerpen"
+        "title": "Ontwerpen",
+        "id": 18
       },
       {
-        "title": "Realiseren"
+        "title": "Realiseren",
+        "id": 19
       },
       {
-        "title": "Manage & Control"
+        "title": "Manage & Control",
+        "id": 20
       }
     ]
   },
@@ -85,19 +105,24 @@
     "headcatagory": "Hardware interfacing",
     "subcatagories": [
       {
-        "title": "Analyseren"
+        "title": "Analyseren",
+        "id": 21
       },
       {
-        "title": "Adviseren"
+        "title": "Adviseren",
+        "id": 22
       },
       {
-        "title": "Ontwerpen"
+        "title": "Ontwerpen",
+        "id": 23
       },
       {
-        "title": "Realiseren"
+        "title": "Realiseren",
+        "id": 24
       },
       {
-        "title": "Manage & Control"
+        "title": "Manage & Control",
+        "id": 25
       }
     ]
   }
