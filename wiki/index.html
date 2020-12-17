@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+	<script>
+		if(window.location.protocol=='http:' && !window.location.port) window.location.protocol='https:' //port om te testen of de heroku wordt geladen. bij heroku is de port leeg.
+	</script>
     <title>OpenICT Wiki</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="/wiki/images/logo_512px_textless.png">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png" href="/images/logo_512px_textless.png">
     <style>
 
     </style>
@@ -22,21 +25,53 @@
             <app-sidebar></app-sidebar>
         </div>
         <div class="col-md-10">
-            <app-artikel src="homePageArticle.json"></app-artikel>
+            <main></main>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 footer">
+        <div class="col-md-12">
             <app-footer></app-footer>
         </div>
     </div>
 </div>
 </div>
 
-<script type="module" src="js/app-artikel.js"></script>
-<script type="module" src="js/app-header.js"></script>
-<script type="module" src="js/app-sidebar.js"></script>
-<script type="module" src="js/app-search.js"></script>
-<script type="module" src="js/app-footer.js"></script>
+<script type="module">
+	import {Router} from '@vaadin/router';
+
+	const outlet = document.querySelector('main');
+	const router = new Router(outlet);
+	window.router=router;
+	router.setRoutes([
+		{
+			path: '/register',
+			component: 'app-register',
+			action: ()=>import('/js/app-register.js')
+		},
+		{
+			path: '/login',
+			component: 'app-inlog',
+			action: ()=>import('/js/app-inlog.js')
+		},
+        {
+            path: '/register',
+            component: 'app-register',
+            action: ()=>import('/js/app-register.js')
+        },
+		{
+			path: '/article/:article',
+			component: 'app-artikel',
+			action: ()=>import('/js/app-artikel.js')
+		},
+		{path: '/', redirect: '/article/1'}
+
+	]);
+
+</script>
+<script type="module" src="/js/app-header.js"></script>
+<script type="module" src="/js/app-sidebar.js"></script>
+<script type="module" src="/js/app-search.js"></script>
+<script type="module" src="/js/app-footer.js"></script>
+<script src="/js/sendAuthenticated.js"></script>
 </body>
 </html>

@@ -27,20 +27,26 @@ export class AppSearch extends LitElement {
 }
 input:focus + #links, :host(:hover) > #links {
     display: block;
+}
+h1 {
+	margin-bottom: 1px;
+	font-size: 19px;
 }`
+
 	}
 	render() {
 		return html`
+			<h1>Zoeken:</h1>
 			<input @input="${this._onchange}">
 			<div id="links">
-			${this._suggestions.length>0?this._suggestions.map(suggestion=>html`<a href="#" @click="${this._openArticle(suggestion.id)}">${suggestion.title}</a><br>`):html`no results found`}
+			${this._suggestions.length>0?this._suggestions.map(suggestion=>html`<a router-link href="/article/${suggestion.id}">${suggestion.title}</a><br>`):html`no results found`}
 			</div>
 		`;
 	}
 	_onchange(e) {
 		this._value=e.target.value;
 		const query=this._value;
-		fetch(`/api/search/${query}`)
+		fetch(`/api/search?${query}`)
 			.then(response=>response.json())
 			.then(items=>{
 				this._suggestions=items;
@@ -48,8 +54,9 @@ input:focus + #links, :host(:hover) > #links {
 	}
 	_openArticle(id) {
 		return ()=>{
-			document.querySelector('app-artikel').src=`${id}.json`;//TODO mischien met event?
-		};
+			document.querySelector('app-content').state="article"
+			document.querySelector('app-content').page=id;
+		}
 	}
 }
 customElements.define('app-search', AppSearch);

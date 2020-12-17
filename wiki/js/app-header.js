@@ -10,16 +10,16 @@ class AppHeader extends LitElement {
 	render() {
 		//language=HTML
 		return html`
-			<div class="logo-container">
-				<a href="/wiki/index.html"><img src="/wiki/images/logo_512px.png" alt="" width=100px height=100px></a>
+			<a router-link href="/">
+				<img src="/images/logo_512px.png" alt="" width=100px height=100px>
 				<div class="logo-title">
 					<h1>Open ICT - Billy 2.0</h1>
-					<h2>De wiki voor en door HBO-ICT studenten.</h2></div>
-			</div>
+					<h2>De wiki voor en door HBO-ICT studenten.</h2>
+				</div>
+			</a>
 			<div class="search-container">
-				<input type="button" value="Registreren">
-				<h1>Zoeken:</h1>
-				<input type="button" value="Inloggen">
+				<a router-link href="/register" class="button">Register</a>
+				<a router-link href="/login" class="button">Inloggen</a>
 				<app-search></app-search>
 			</div>`;
 	}
@@ -37,10 +37,21 @@ class AppHeader extends LitElement {
                 border-radius: 5px;
             }
 
-            .logo-container {
+            a {
                 display: flex;
+				color: inherit; /* blue colors for links too */
+				text-decoration: inherit; /* no underline */
             }
-
+			.button {
+				display: flex;
+				color: inherit; /* blue colors for links too */
+				text-decoration: inherit; /* no underline */
+				display: inline-block; padding: 1px 5px 2px;
+				background: ButtonFace; color: ButtonText;
+				border-style: solid; border-width: 2px;
+				border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+				border-radius: 5px;
+			}
             .logo-title > * {
                 text-align: left;
             }
@@ -64,32 +75,29 @@ class AppHeader extends LitElement {
             .search-container {
                 display: grid;
                 align-items: center;
-                grid-template-rows: 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
             }
 
-            .search-container > h1 {
-                grid-column: 2 / 4;
-                font-size: 19px;
-                align-items: center;
-            }
-
-            .search-container > input {
+            .search-container > a {
 				margin: 7px;
                 background: #0066c4;
                 color: #ffffff;
                 cursor: pointer;
                 border: 0;
-				height: 30px;
-                width: 100px;
                 transition: all 0.5s;
                 border-radius: 3px;
                 align-self: end;
-                grid-column: 1 / 2;
+                grid-column: 1;
+				text-align: center;
+                padding: 5px 20px;
             }
 
             .search-container > app-search {
-                grid-column: 3 / 4;
+				grid-row: 1/span 2;
+                grid-column: 2;
 				align-self: start;
+				font-size: 19px;
+                align-items: center;
             }
 
             @media only screen and (max-width: 470px) {

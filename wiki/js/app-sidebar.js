@@ -16,7 +16,7 @@ export class appSidebar extends LitElement {
         })
         this.classList.add('bg-container');
     }
-
+  
     static get styles() {
         // language=css
         return css`
