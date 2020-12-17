@@ -7,10 +7,6 @@ require('./tables.js')(sequelize)
 const {getCategories} = require('./category.js')(sequelize);
 const {register,login,getUserFromJWT} = require('./loginsignup.js')(sequelize)
 const {getArticle,saveArticle,search,getArticlesByCategory} = require('./article.js')(sequelize)
-setTimeout(()=>{
-	JSON.parse(fs.readFileSync('initialArticles.json','utf8')).forEach(saveArticle)
-	JSON.parse(fs.readFileSync('menuSource.json','utf8')).forEach(menuItem=>{})
-},1000)
 
 selector=(queryParts,json,req)=>{
 	switch(queryParts.shift()) {

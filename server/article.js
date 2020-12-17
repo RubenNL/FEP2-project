@@ -28,5 +28,6 @@ getArticlesByCategory=categoryId=>Article.findAll({
 })
 module.exports=sequelize=>{
 	Article=sequelize.models.articles;
+	JSON.parse(require('fs').readFileSync('initialArticles.json','utf8')).forEach(saveArticle)
 	return {getArticle,saveArticle,search,getArticlesByCategory}
 } 
