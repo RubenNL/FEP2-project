@@ -4,7 +4,7 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize(process.env.DATABASE_URL?process.env.DATABASE_URL:'sqlite::memory:');
 let selector;
 require('./tables.js')(sequelize).then(()=>{
-	const {getCategories} = require('./category.js')(sequelize);
+	const {addCategory,getCategories,getCategory} = require('./category.js')(sequelize);
 	const {register,login,getUserFromJWT} = require('./loginsignup.js')(sequelize)
 	const {getArticle,saveArticle,search,getArticlesByCategory} = require('./article.js')(sequelize)
 
@@ -22,6 +22,8 @@ require('./tables.js')(sequelize).then(()=>{
 				return getArticle(queryParts.join('/'))
 			case 'saveArticle':
 				return saveArticle(json);
+			case 'getCategory':
+				return getCategory(queryParts.shift());
 			case 'getCategories':
 				return getCategories();
 			case 'getArticlesByCategory':

@@ -14,10 +14,13 @@ getCategories=()=>{
 		return Object.values(categories)
 	})
 }
+getCategory=id=>{
+	return Category.findByPk(id);
+}
 module.exports=sequelize=>{
 	Category=sequelize.models.categories;
 	JSON.parse(require('fs').readFileSync('menuSource.json','utf8')).forEach(menuItem=>{
 		menuItem.subcatagories.forEach(sub=>addCategory(menuItem.headcatagory,sub.title,sub.id))
 	})
-	return {addCategory,getCategories}
+	return {addCategory,getCategories,getCategory}
 }
