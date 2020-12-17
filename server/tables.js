@@ -31,5 +31,5 @@ module.exports=sequelize=>{
 	});
 	Category.hasMany(Article);
 	Article.belongsTo(Category);
-	sequelize.sync({force:true})
+	return sequelize.sync({force:true})
 }
