@@ -66,7 +66,7 @@ export class appSidebar extends LitElement {
 
     render() {
         return html`
-            <link rel="stylesheet" href="css/style.css">
+            <link rel="stylesheet" href="/css/style.css">
             <h2>Menu</h2>
             <ul id="side-nav">
                 ${this._categories.map((hoofdcat) => html`
