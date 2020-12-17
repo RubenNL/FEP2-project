@@ -36,7 +36,7 @@ export class appInlog extends LitElement {
             if(response.err) alert(response.err)
             else {
                 window.localStorage.setItem('JWT',response.key);
-                window.location.pathname='/';
+				sendAuthenticated('/api/getUser').then(user=>window.localStorage.setItem('user',JSON.stringify(user))).then(()=>window.location.pathname='/');
             }
         });
     }

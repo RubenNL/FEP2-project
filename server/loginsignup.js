@@ -24,15 +24,15 @@ login=data=>{
 	})
 };
 getUser=email=>User.findByPk(email)
-getUsername=key=>{
+getUserFromJWT=key=>{
 	return new Promise((resolve,reject)=>{
 		jwt.verify(key,secret,(err,decoded)=>{
-			if(err) resolve({err:err})
+			if(err) reject({err:err})
 			resolve(decoded.email)
 		})
-	}).then(getUser).then(user=>user.email)
+	}).then(getUser).then(user=>user.toJSON())
 }
 module.exports=sequelize=>{
 	User=sequelize.models.users;
-	return {register,login,getUsername}
+	return {register,login,getUserFromJWT}
 }

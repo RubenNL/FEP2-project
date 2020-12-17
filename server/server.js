@@ -1,34 +1,31 @@
 const http=require('http')
-const { Sequelize, Model, DataTypes } = require('sequelize');
+const { Sequelize } = require('sequelize');
 const fs=require('fs')
 
 const sequelize = new Sequelize(process.env.DATABASE_URL?process.env.DATABASE_URL:'sqlite::memory:');
-const User=sequelize.define("users",{
-	email: {primaryKey: true, type:DataTypes.STRING},
-	hash: DataTypes.STRING,
-	fullName: DataTypes.STRING,
-	functie: DataTypes.STRING,
-	orgName: DataTypes.STRING,
-	blocked: {
-		type: DataTypes.BOOLEAN,
-		defaultValue: false
-	}
-});
-User.sync({ force: true });
-const Article=sequelize.define("articles",{
-	id: {
-		primaryKey: true,
-		type:DataTypes.INTEGER,
-		autoIncrement:true
-	},
-	title: DataTypes.STRING,
-	data: DataTypes.STRING(32768)
-});
-Article.sync({ force: true });
-
-const {register,login,getUsername} = require('./loginsignup.js')(sequelize)
+require('./tables.js')(sequelize)
+const {register,login,getUserFromJWT} = require('./loginsignup.js')(sequelize)
 const {getArticle,saveArticle,search} = require('./article.js')(sequelize)
 setTimeout(()=>JSON.parse(fs.readFileSync('initialArticles.json','utf8')).forEach(saveArticle),1000)
+
+selector=(queryParts,json,req)=>{
+	switch(queryParts.shift()) {
+		case 'search':
+			return search(req.url.split('?')[1])
+		case 'register':
+			return register(json)
+		case 'login':
+			return login(json)
+		case 'getUser':
+			return getUserFromJWT(req.headers.authorization.split(' ')[1]);
+		case 'getArticle':
+			return getArticle(queryParts.join('/'))
+		case 'saveArticle':
+			return saveArticle(json);
+		default:
+			return Promise.resolve('no action found!')
+	}
+}
 
 http.createServer((req,res)=>{
 	res.endJson=data=>{
@@ -49,29 +46,9 @@ http.createServer((req,res)=>{
 		const queryParts=req.url.split('?')[0].split('/');
 		queryParts.shift();
 		if(queryParts[0]=="api") queryParts.shift();
-		console.log(queryParts);
-		switch(queryParts.shift()) {
-			case 'search':
-				search(req.url.split('?')[1]).then(res.endJson);
-				break;
-			case 'register':
-				register(json).then(res.endJson);
-				break;
-			case 'login':
-				login(json).then(res.endJson);
-				break;
-			case 'getUsername':
-				getUsername(req.headers.authorization.split(' ')[1]).then(res.endJson);
-				break;
-			case 'getArticle':
-				getArticle(queryParts.join('/')).then(res.endJson);
-				break;
-			case 'saveArticle':
-				saveArticle(json).then(res.endJson);
-				break;
-			default:
-				res.end('no action found!')
-				return;
-		}
+		selector(queryParts,json,req).then(res.endJson).catch(err=>{
+			console.log(err);
+			res.endJson(err);
+		})
 	})
 }).listen(7999)

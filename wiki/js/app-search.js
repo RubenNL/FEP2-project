@@ -29,7 +29,7 @@ input:focus + #links, :host(:hover) > #links {
     display: block;
 }
 h1 {
-	margin-bottom: 1px;
+	margin: 1px;
 	font-size: 19px;
 }`
 

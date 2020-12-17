@@ -70,7 +70,10 @@ export class appRegister extends LitElement {
         this._data[e.target.name]=e.target.value;
     }
     _onclick() {
-        console.log(this._data);
+        if(Object.values(this._data).filter(item=>item.length>0).length<5) {
+            alert('niet alles ingevuld!')
+            return;
+        }
         fetch('/api/register',{
             method:'POST',
             headers: {
