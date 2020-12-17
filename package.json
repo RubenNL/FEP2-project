@@ -22,5 +22,8 @@
     "pg": "^8.5.1",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0"
+  },
+  "vaadin": {
+    "disableUsageStatistics": true
   }
 }
