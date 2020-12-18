@@ -15,12 +15,27 @@ export class appArtikel extends LitElement {
 		this._title='';
 	}
 	render() {
-		return html`<h1>${this._title}</h1>
+		//language=HTML
+		return html`
+		<a href="/creator/${this.src}">✏️</a>
+		<h1>${this._title}</h1>
 		<markdown-element markdown="${this._content}"></markdown-element>`
 	}
 
 	onBeforeEnter(location, commands, router){
 		this.src=location.params.article
+	}
+
+	static get styles(){
+		//language=CSS
+		return css`:host > a {
+            margin: auto;
+            display: flex;
+            float: right;
+			padding-right: 100px;
+			font-size: 30px;
+        }
+`
 	}
 
 	set src(val) {
