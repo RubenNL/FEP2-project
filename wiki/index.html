@@ -5,12 +5,8 @@
 		if(window.location.protocol=='http:' && !window.location.port) window.location.protocol='https:' //port om te testen of de heroku wordt geladen. bij heroku is de port leeg.
 	</script>
     <title>OpenICT Wiki</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" type="image/png" href="/images/logo_512px_textless.png">
-    <style>
-
-    </style>
+	<link rel="preload" href="/node_modules/@intcreator/markdown-element/markdown-element.js" as="script" crossorigin>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -77,5 +73,7 @@
 <script type="module" src="/js/app-search.js"></script>
 <script type="module" src="/js/app-footer.js"></script>
 <script src="/js/sendAuthenticated.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
 </body>
 </html>
