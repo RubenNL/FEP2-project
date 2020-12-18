@@ -4,6 +4,7 @@ export class appArtikel extends LitElement {
 	static get properties() {
 		return {
 			src: {type:String},
+			_src: {type:String},
 			_title: {type:String},
 			_content: {type:String},
 			location: Object
@@ -15,7 +16,10 @@ export class appArtikel extends LitElement {
 		this._title='';
 	}
 	render() {
-		return html`<h1>${this._title}</h1>
+		//language=HTML
+		return html`
+		<a href="/creator/${this.src}" title="Edit article">✏️</a>
+		<h1>${this._title}</h1>
 		<markdown-element markdown="${this._content}"></markdown-element>`
 	}
 
@@ -23,11 +27,28 @@ export class appArtikel extends LitElement {
 		this.src=location.params.article
 	}
 
+	static get styles(){
+		//language=CSS
+		return css`:host > a {
+            margin: auto;
+            display: flex;
+            float: right;
+			margin-right: 100px;
+			font-size: 30px;
+            text-decoration: inherit;
+        }
+`
+	}
+
 	set src(val) {
+		this._src=val;
 		fetch(`/api/getArticle/${val}`).then(response => response.json()).then(response => {
 			this._content = response.data;
 			this._title = response.title;
 		})
+	}
+	get src() {
+		return this._src;
 	}
 }
 customElements.define('app-artikel', appArtikel)
