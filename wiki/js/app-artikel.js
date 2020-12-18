@@ -4,6 +4,7 @@ export class appArtikel extends LitElement {
 	static get properties() {
 		return {
 			src: {type:String},
+			_src: {type:String},
 			_title: {type:String},
 			_content: {type:String},
 			location: Object
@@ -32,17 +33,21 @@ export class appArtikel extends LitElement {
             margin: auto;
             display: flex;
             float: right;
-			padding-right: 100px;
+			margin-right: 100px;
 			font-size: 30px;
         }
 `
 	}
 
 	set src(val) {
+		this._src=val;
 		fetch(`/api/getArticle/${val}`).then(response => response.json()).then(response => {
 			this._content = response.data;
 			this._title = response.title;
 		})
+	}
+	get src() {
+		return this._src;
 	}
 }
 customElements.define('app-artikel', appArtikel)
