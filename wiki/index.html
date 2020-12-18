@@ -63,8 +63,12 @@
 			component: 'app-artikel',
 			action: ()=>import('/js/app-artikel.js')
 		},
-		{path: '/', redirect: '/article/1'}
-
+		{path: '/', redirect: '/article/1'},
+        {
+            path: '/category/:categoryID',
+            component: 'app-category-page',
+            action: ()=>import('/js/app-category-page.js')
+        }
 	]);
 
 </script>
