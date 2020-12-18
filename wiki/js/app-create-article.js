@@ -55,7 +55,7 @@ export class appCreateArticle extends LitElement {
             "categoryId":this.shadowRoot.querySelector('#sub-category').value
         }
         console.log(data)
-        sendAuthenticated('/api/saveArticle',data)
+        sendAuthenticated('/api/saveArticle',data).then(data=>window.location.pathname=`/article/${data.id}`)
     }
 }
 
