@@ -35,6 +35,7 @@ export class appArtikel extends LitElement {
             float: right;
 			margin-right: 100px;
 			font-size: 30px;
+            text-decoration: inherit;
         }
 `
 	}
