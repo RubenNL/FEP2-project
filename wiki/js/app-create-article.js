@@ -33,9 +33,9 @@ export class appCreateArticle extends LitElement {
         <select name="sub-category" id="sub-category">
             ${this._chosenCategory.subcatagories.map((subcatagorie) => html`<option value="${subcatagorie.id}">${subcatagorie.title}</option>`)}
         </select>
-        <input aria-labelledby="titel" type="text" placeholder="Titel.....">
+        <input aria-labelledby="titel" type="text" id="title" placeholder="Titel.....">
             <lrn-markdown-editor></lrn-markdown-editor>
-            <button @click="_sendArticle()">Bevestigen</button>`
+            <button @click="${this._sendArticle}">Bevestigen</button>`
     }
 
     _onHeadCategoryChange(event) {
@@ -49,11 +49,13 @@ export class appCreateArticle extends LitElement {
     }
 
     _sendArticle(){
-        sendAuthenticated('/api/saveArticle',{
-            "title":"abc",
-            "data":"def",
-            "categoryId":3
-        })
+		const data={
+            "title":this.shadowRoot.querySelector('#title').value,
+            "data":this.shadowRoot.querySelector('lrn-markdown-editor').content,
+            "categoryId":this.shadowRoot.querySelector('#sub-category').value
+        }
+        console.log(data)
+        sendAuthenticated('/api/saveArticle',data)
     }
 }
 
