@@ -17,7 +17,7 @@ export class appArtikel extends LitElement {
 	render() {
 		//language=HTML
 		return html`
-		<a href="/creator/${this.src}">✏️</a>
+		<a href="/creator/${this.src}" title="Edit article">✏️</a>
 		<h1>${this._title}</h1>
 		<markdown-element markdown="${this._content}"></markdown-element>`
 	}
