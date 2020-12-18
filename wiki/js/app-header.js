@@ -20,7 +20,7 @@ class AppHeader extends LitElement {
 			<div class="search-container">
 				${window.localStorage.getItem('user')?
 					html`<span id="greet">Welkom ${JSON.parse(window.localStorage.getItem('user')).fullName.split(' ')[0]}!</span><button class="button" id="logout" @click="${()=>{window.localStorage.clear(); window.location.reload()}}">logout</button>`:
-					html`<a router-link href="/register" class="button">Register</a><a router-link href="/login" class="button">Inloggen</a>`}
+					html`<a router-link href="/register" class="button">Registreren</a><a router-link href="/login" class="button">Inloggen</a>`}
 				<app-search></app-search>
 			</div>`;
 	}
