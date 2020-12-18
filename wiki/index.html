@@ -69,6 +69,11 @@
             path: '/category/:categoryID',
             component: 'app-category-page',
             action: ()=>import('/js/app-category-page.js')
+        },
+        {
+            path: '/creator',
+            component: 'app-create-article',
+            action: ()=>import('/js/app-create-article.js')
         }
 	]);
 
