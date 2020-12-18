@@ -6,7 +6,8 @@ export class appCreateArticle extends LitElement {
         return {
             _categories: {type: Array},
             _title: {type: String},
-            _chosenCategory: {type: Object}
+            _chosenCategory: {type: Object},
+			location: {type: Object}
         }
     }
 
@@ -57,6 +58,9 @@ export class appCreateArticle extends LitElement {
         console.log(data)
         sendAuthenticated('/api/saveArticle',data).then(data=>window.location.pathname=`/article/${data.id}`)
     }
+    onBeforeEnter(location, commands, router){
+		if(!window.localStorage.getItem('JWT')) return commands.redirect('/login');
+	}
 }
 
 customElements.define('app-create-article', appCreateArticle)
