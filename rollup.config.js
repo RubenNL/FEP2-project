@@ -1,4 +1,5 @@
 import del from 'rollup-plugin-delete'
+import fg from 'fast-glob';
 import {terser} from 'rollup-plugin-terser';
 import copy from 'rollup-plugin-copy'
 import css from 'rollup-plugin-css-only';
@@ -12,6 +13,9 @@ export default {
 		dir: 'output',
 		format: 'es',
 		preserveModules: !production
+	},
+	watch: {
+		exclude: 'node_modules/**, server/**'
 	},
 	preserveEntrySignatures: "allow-extension",
 	plugins: [
@@ -27,6 +31,16 @@ export default {
 				{src:'wiki/js/sendAuthenticated.js',dest:'output'},
 			]
 		}),
-		...production?[terser()]:[]
+		...production?[terser()]:[
+			{
+				name: 'watch-external',
+				async buildStart(){
+					const files = await fg('wiki/**/*');
+					for(let file of files){
+						this.addWatchFile(file);
+					}
+				}
+			}
+		]
 	]
 };
