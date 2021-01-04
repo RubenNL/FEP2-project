@@ -36,8 +36,8 @@ h1 {
 	}
 	render() {
 		return html`
-			<h1>Zoeken:</h1>
-			<input @input="${this._onchange}">
+			<label for="search"><h1>Zoeken:</h1></label>
+			<input id="search" @input="${this._onchange}">
 			<div id="links">
 			${this._suggestions.length>0?this._suggestions.map(suggestion=>html`<a router-link href="/article/${suggestion.id}">${suggestion.title}</a><br>`):html`no results found`}
 			</div>
