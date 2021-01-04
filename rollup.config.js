@@ -1,3 +1,4 @@
+import modulepreload from 'rollup-plugin-modulepreload';
 import del from 'rollup-plugin-delete'
 import fg from 'fast-glob';
 import {terser} from 'rollup-plugin-terser';
@@ -6,6 +7,9 @@ import css from 'rollup-plugin-css-only';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 const production=process.env.NODE_ENV=="production"
 console.log("ENVIRONMENT:",production?'prod':'dev')
+function shouldPreload({ code }) {
+  return !!code && code.includes('markdown-element');
+}
 export default {
 	input: 'wiki/index.js',
 	treeshake:production,
@@ -34,6 +38,11 @@ export default {
 				...production?[{src:'node_modules/@lrnwebcomponents/simple-icon/lib/svgs',dest:'output'}]:[{src:'node_modules/@lrnwebcomponents/simple-icon/lib/svgs',dest:'output/node_modules/@lrnwebcomponents/simple-icon/lib'}]
 			]
 		}),
+		modulepreload({
+			prefix: '',
+			index: 'output/index.html',
+			shouldPreload
+		}),
 		...production?[terser()]:[
 			{
 				name: 'watch-external',
@@ -44,6 +53,6 @@ export default {
 					}
 				}
 			}
-		]
+		],
 	]
 };
