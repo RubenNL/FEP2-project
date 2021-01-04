@@ -1,3 +1,4 @@
+const removeMd = require('remove-markdown');
 const {Op}=require('sequelize');
 let Article;
 getArticle=id=>Article.findByPk(id)
@@ -24,7 +25,14 @@ getArticlesByCategory=categoryId=>Article.findAll({
 	where: {
 		categoryId: categoryId
 	},
-	attributes: ['id','title']
+	attributes: ['id','title','data']
+}).then(articles=>{
+	articles=JSON.parse(JSON.stringify(articles))
+	return articles.map(article=>{
+		article.preview=removeMd(article.data.split('\n',1)[0])
+		delete article.data
+		return article
+	})
 })
 module.exports=sequelize=>{
 	Article=sequelize.models.articles;
