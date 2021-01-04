@@ -30,6 +30,7 @@ export default {
 				{src:'wiki/service-worker.js',dest:'output'},
 				{src:'wiki/index.html',dest:'output'},
 				{src:'wiki/js/sendAuthenticated.js',dest:'output'},
+				...production?[{src:'node_modules/@lrnwebcomponents/simple-icon/lib/svgs',dest:'output'}]:[{src:'node_modules/@lrnwebcomponents/simple-icon/lib/svgs',dest:'output/node_modules/@lrnwebcomponents/simple-icon/lib'}]
 			]
 		}),
 		...production?[terser()]:[
