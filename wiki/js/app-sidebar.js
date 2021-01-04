@@ -96,7 +96,7 @@ export class appSidebar extends LitElement {
 
     render() {
         return html`
-            <link rel="stylesheet" href="/css/style.css">
+            <link rel="stylesheet" href="/bundle.css">
             <h2>Menu</h2>
             <a router-link href="/creator" class="button" id="newArticleButton">Nieuw artikel</a>            
             <ul id="side-nav">

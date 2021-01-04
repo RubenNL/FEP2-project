@@ -8,7 +8,6 @@
 	<meta name="theme-color" content="#317EFB"/>
 	<link rel="icon" type="image/png" href="/images/logo_512px_textless.png">
 	<link rel="apple-touch-icon" href="/images/logo_512px_textless.png">
-	<link rel="preload" href="/node_modules/@intcreator/markdown-element/markdown-element.js" as="script" crossorigin>
 	<link rel="manifest" href="/manifest.json">
 	<meta name="Description" content="OpenICT Wiki">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,55 +35,9 @@
     </div>
 </div>
 </div>
-
-<script type="module">
-	import {Router} from '@vaadin/router';
-
-	const outlet = document.querySelector('main');
-	const router = new Router(outlet);
-	window.router=router;
-	router.setRoutes([
-		{
-			path: '/register',
-			component: 'app-register',
-			action: ()=>import('/js/app-register.js')
-		},
-		{
-			path: '/login',
-			component: 'app-inlog',
-			action: ()=>import('/js/app-inlog.js')
-		},
-        {
-            path: '/register',
-            component: 'app-register',
-            action: ()=>import('/js/app-register.js')
-        },
-		{
-			path: '/article/:article',
-			component: 'app-artikel',
-			action: ()=>import('/js/app-artikel.js')
-		},
-		{path: '/', redirect: '/article/1'},
-        {
-            path: '/category/:categoryID',
-            component: 'app-category-page',
-            action: ()=>import('/js/app-category-page.js')
-        },
-        {
-            path: '/creator',
-            component: 'app-create-article',
-            action: ()=>import('/js/app-create-article.js')
-        }
-	]);
-
-</script>
-<script type="module" src="/js/app-header.js"></script>
-<script type="module" src="/js/app-sidebar.js"></script>
-<script type="module" src="/js/app-search.js"></script>
-<script type="module" src="/js/app-footer.js"></script>
-<script src="/js/sendAuthenticated.js"></script>
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/bundle.css">
+<script type="module" src="/index.js"></script>
+<script src="/sendAuthenticated.js"></script>
 <script>
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register('/service-worker.js', { scope: '/' });
