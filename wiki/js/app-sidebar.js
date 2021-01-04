@@ -10,6 +10,7 @@ export class appSidebar extends LitElement {
     constructor() {
         super();
         this._categories = [];
+
         fetch(`/api/getCategories`).then(response => response.json()).then(response => {
             this._categories = response
             console.log(response)
@@ -60,24 +61,25 @@ export class appSidebar extends LitElement {
                 height: 20px;
             }
 
-            .button {
-                display: flex;
-                color: inherit; /* blue colors for links too */
-                text-decoration: inherit; /* no underline */
-                display: inline-block;
-                padding: 1px 5px 2px;
-                background: ButtonFace;
-                color: ButtonText;
-                border-style: solid;
-                border-width: 2px;
-                border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
-                border-radius: 5px;
-            }
+            /*.button {*/
+            /*    display: flex;*/
+            /*    color: inherit; !* blue colors for links too *!*/
+            /*    text-decoration: inherit; !* no underline *!*/
+            /*    display: inline-block;*/
+            /*    padding: 1px 5px 2px;*/
+            /*    background: ButtonFace;*/
+            /*    color: ButtonText;*/
+            /*    border-style: solid;*/
+            /*    border-width: 2px;*/
+            /*    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;*/
+            /*    border-radius: 5px;*/
+            /*}*/
 
             .sub-item :hover {
                 color: whitesmoke;
                 background-color: darkgray;
             }
+            
             .button{
                 display: block;
                 background: #0066c4;
@@ -90,6 +92,11 @@ export class appSidebar extends LitElement {
                 grid-column: 1;
                 text-align: center;
                 padding: 5px 20px;
+                margin-bottom: 3px;
+            }
+            
+            .dontdisplay{
+                display: none;
             }
         `;
     }
@@ -98,15 +105,20 @@ export class appSidebar extends LitElement {
         return html`
             <link rel="stylesheet" href="/bundle.css">
             <h2>Menu</h2>
-            <a router-link href="/creator" class="button" id="newArticleButton">Nieuw artikel</a>            
+            <nav>
+            <a router-link href="/creator" id="menuButton">Nieuw artikel</a>
+            <a router-link href="/404" class="button">Categoriën bewerken</a>
+            <a router-link href="/404" class="button">Users bewerken</a>
             <ul id="side-nav">
                 ${this._categories.map((hoofdcat) => html`
-                    <li class="head-item">${hoofdcat.headcatagory}</li>
+                    <li><span class="head-item">${hoofdcat.headcatagory}</span>
                     <ul class="side-nav-sub">${hoofdcat.subcatagories.map(sub => html`
                        <li class="sub-item"><a router-link href="/category/${sub.id}">${sub.title}</a></li>`)}
                     </ul>
+                    </li>
                 `)}
             </ul>
+            </nav>
         `;
     }
 }
