@@ -21,7 +21,7 @@ export class appSidebar extends LitElement {
         // language=css
         return css`
             :host {
-                min-height: 300px;
+                min-height: 100%;
                 color: #383838;
             }
 
