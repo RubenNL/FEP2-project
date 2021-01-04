@@ -33,6 +33,11 @@ router.setRoutes([
 		path: '/creator',
 		component: 'app-create-article',
 		action: ()=>import('js/app-create-article.js')
+	},
+	{
+		path: '(.*)',
+		component: 'app-404',
+		action: ()=>import('js/app-404.js')
 	}
 ]);
 import "js/app-header.js"
