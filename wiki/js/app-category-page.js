@@ -23,7 +23,10 @@ export class appCategoryPage extends LitElement {
         <h3>${this._subcategoryName}</h3>
         <div class="articlecontainer">
             ${this._articles.map((artikel) => html`<a class="article" router-link href="/article/${artikel.id}">
-                <h4>${artikel.title}</h4></a>`)}
+                <h4>${artikel.title}</h4>
+                <p>${artikel.preview}</p>
+                </a>`
+            )}
         </div>`
     }
 
@@ -40,12 +43,26 @@ export class appCategoryPage extends LitElement {
                 width: auto;
                 height: auto;
                 box-sizing: border-box;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
                 margin: 0 36px 36px 0;
                 align-items: center;
+                text-decoration:none;
+                padding:15px;
+                border-radius:3px;
             }
+            .article > h4{
+                margin-top:0px;
+                margin-bottom:10px;
+            }
+
+            .article > p{
+                margin:0;
+                font-size:13px;
+            }
+            
             .article > *{
-                text-align: center;
+                text-align: left;
+                color:#000;
             }
         `}
 
