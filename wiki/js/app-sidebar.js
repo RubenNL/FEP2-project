@@ -104,7 +104,7 @@ export class appSidebar extends LitElement {
             <link rel="stylesheet" href="/bundle.css">
             <h2>Menu</h2>
             <nav>
-            ${this._ingelogd ? html`<a router-link href="/creator" id="menuButton">Nieuw artikel</a>
+            ${this._ingelogd ? html`<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
             <a router-link href="/404" class="button">Categoriën bewerken</a>
             <a router-link href="/404" class="button">Users bewerken</a>
             `: html``}
