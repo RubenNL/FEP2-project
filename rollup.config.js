@@ -12,14 +12,15 @@ export default {
 	output: {
 		dir: 'output',
 		format: 'es',
-		preserveModules: !production
+		preserveModules: !production,
+		preserveModulesRoot: 'wiki'
 	},
 	watch: {
 		exclude: 'node_modules/**, server/**'
 	},
 	preserveEntrySignatures: "allow-extension",
 	plugins: [
-		del({targets: 'output/*'}),
+		del({targets: 'output/*',runOnce:true}),
 		nodeResolve({moduleDirectories:['node_modules','wiki']}),
 		css({output: 'bundle.css'}),
 		copy({
