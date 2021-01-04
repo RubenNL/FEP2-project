@@ -3,14 +3,14 @@ import {LitElement, html, css} from 'lit-element';
 export class appSidebar extends LitElement {
     static get properties() {
         return {
-            _categories: {type: Array}
+            _categories: {type: Array},
+            _ingelogd: {type: Boolean}
         }
     }
 
     constructor() {
         super();
         this._categories = [];
-
         fetch(`/api/getCategories`).then(response => response.json()).then(response => {
             this._categories = response
             console.log(response)
@@ -61,19 +61,19 @@ export class appSidebar extends LitElement {
                 height: 20px;
             }
 
-            /*.button {*/
-            /*    display: flex;*/
-            /*    color: inherit; !* blue colors for links too *!*/
-            /*    text-decoration: inherit; !* no underline *!*/
-            /*    display: inline-block;*/
-            /*    padding: 1px 5px 2px;*/
-            /*    background: ButtonFace;*/
-            /*    color: ButtonText;*/
-            /*    border-style: solid;*/
-            /*    border-width: 2px;*/
-            /*    border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;*/
-            /*    border-radius: 5px;*/
-            /*}*/
+            .button {
+                display: flex;
+                color: inherit; /* blue colors for links too */
+                text-decoration: inherit; /* no underline */
+                display: inline-block;
+                padding: 1px 5px 2px;
+                background: ButtonFace;
+                color: ButtonText;
+                border-style: solid;
+                border-width: 2px;
+                border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+                border-radius: 5px;
+            }
 
             .sub-item :hover {
                 color: whitesmoke;
@@ -94,21 +94,20 @@ export class appSidebar extends LitElement {
                 padding: 5px 20px;
                 margin-bottom: 3px;
             }
-            
-            .dontdisplay{
-                display: none;
-            }
         `;
     }
 
     render() {
+        this._ingelogd = localStorage.getItem("JWT") !== null;
+
         return html`
             <link rel="stylesheet" href="/bundle.css">
             <h2>Menu</h2>
             <nav>
-            <a router-link href="/creator" id="menuButton">Nieuw artikel</a>
+            ${this._ingelogd ? html`<a router-link href="/creator" id="menuButton">Nieuw artikel</a>
             <a router-link href="/404" class="button">Categoriën bewerken</a>
             <a router-link href="/404" class="button">Users bewerken</a>
+            `: html``}
             <ul id="side-nav">
                 ${this._categories.map((hoofdcat) => html`
                     <li><span class="head-item">${hoofdcat.headcatagory}</span>
