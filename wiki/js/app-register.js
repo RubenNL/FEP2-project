@@ -21,7 +21,7 @@ export class appRegister extends LitElement {
 				align-items: left;
             }
 
-            #registerform > input {
+            #registerform > label > input {
                 text-align: left;
                 margin-top: 10px;
 				margin-bottom: 10px;
@@ -40,7 +40,10 @@ export class appRegister extends LitElement {
 				border-radius: 4px;
 				padding: 20px;
 				border: 1px solid #ccc;
-			}`
+			}
+            label > *:invalid{
+                box-shadow: 0px 0px 0px 3px red;
+            }`
     }
 
     constructor() {
@@ -51,16 +54,21 @@ export class appRegister extends LitElement {
     render() {
         return html`
 			<div id="registerform">
-				<label>E-mail: </label>
-				<input aria-labelledby="email" type="email" name="email" placeholder="Voer uw email in." @input="${this._change}"/>
-				<label>Wachtwoord: </label>
-				<input aria-labelledby="password" type="password" name="password" placeholder="Voer uw wachtwoord in." @input="${this._change}"/>
-				<label>Naam: </label>
-				<input aria-labelledby="naam" type="text" name="fullName" placeholder="Voer uw naam in." @input="${this._change}"/>
-				<label>Functie: </label>
-				<input aria-labelledby="functie" type="text" name="functie" placeholder="Voer uw functie in." @input="${this._change}"/>
-				<label>Organisatie: </label>
-				<input aria-labelledby="organisatie" type="text" name="orgName" placeholder="Voer uw organisatie in." @input="${this._change}"/>
+				<label for="email">E-mail: 
+				<input type="email" name="email" id="email" placeholder="Voer uw email in." @input="${this._change}" required/>
+				</label>
+				<label for="password">Wachtwoord: 
+				<input type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
+				</label>
+				<label for="name">Naam:
+		        <input type="text" name="fullName" id="name" placeholder="Voer uw naam in." @input="${this._change}" required/>
+				</label>
+				<label for="functie">Functie: 
+				<input type="text" name="functie" id="functie" placeholder="Voer uw functie in." @input="${this._change}" required/>
+				</label>
+				<label for="organisation">Organisatie:
+				<input type="text" name="orgName" id="organisation" placeholder="Voer uw organisatie in." @input="${this._change}" required/>
+				</label>
 				<button @click="${this._onclick}">registreren</button>
 			</div>`
     }
@@ -69,9 +77,13 @@ export class appRegister extends LitElement {
     _change(e) {
         this._data[e.target.name]=e.target.value;
     }
-    _onclick() {
+    _onclick(){
         if(Object.values(this._data).filter(item=>item.length>0).length<5) {
             alert('niet alles ingevuld!')
+            return;
+        }
+        if(this.shadowRoot.querySelector('#email:invalid')){
+            alert('Het email adres is ongeldig!')
             return;
         }
         fetch('/api/register',{
@@ -87,6 +99,7 @@ export class appRegister extends LitElement {
             }
             alert('Account aangemaakt, log nu in.')
             window.location.pathname="/login"
+
         });
     }
 }

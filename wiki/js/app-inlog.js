@@ -15,8 +15,14 @@ export class appInlog extends LitElement {
         //language=HTML
         return html`
             <div id="inlogform">
-                <input aria-labelledby="name" type="text" name="email" id="name" placeholder="Voer uw email in." @input="${this._change}"/>
-                <input aria-labelledby="password" type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}"/>
+                <label for="name">
+                Email
+                <input type="email" name="email" id="name" placeholder="Voer uw email in." @input="${this._change}" required/>
+                </label>
+                <label for="password">
+                Wachtwoord
+                <input type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
+                </label>
                 <button @click="${this._onclick}">Inloggen</button>
             </div>
             `
@@ -54,7 +60,7 @@ export class appInlog extends LitElement {
 				align-items: left;
             }
 
-            #inlogform > input {
+            #inlogform > label > input {
                 text-align: left;
                 margin-top: 10px;
 				margin-bottom: 10px;
@@ -73,7 +79,10 @@ export class appInlog extends LitElement {
 				border-radius: 4px;
 				padding: 20px;
 				border: 1px solid #ccc;
-			}`
+			}
+             label > *:invalid{
+                box-shadow: 0px 0px 0px 3px red;
+            }`
     }
 
 }
