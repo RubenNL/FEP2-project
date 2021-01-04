@@ -17,9 +17,11 @@ export class appArtikel extends LitElement {
 	}
 	render() {
 		//language=HTML
+		this._ingelogd = localStorage.getItem("JWT") !== null;
 		return html`
-		<a href="/delete/${this.src}" title="Delete article">🗑️️</a>
-		<a href="/creator/${this.src}" title="Edit article">✏️</a>
+			${this._ingelogd ? html`<a href="/delete/${this.src}" title="Delete article">🗑️️</a>
+		<a href="/creator/${this.src}" title="Edit article">✏️</a>` : html``}
+
 		<h1>${this._title}</h1>
 		<markdown-element markdown="${this._content}"></markdown-element>`
 	}

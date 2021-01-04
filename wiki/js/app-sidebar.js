@@ -3,7 +3,8 @@ import {LitElement, html, css} from 'lit-element';
 export class appSidebar extends LitElement {
     static get properties() {
         return {
-            _categories: {type: Array}
+            _categories: {type: Array},
+            _ingelogd: {type: Boolean}
         }
     }
 
@@ -78,6 +79,7 @@ export class appSidebar extends LitElement {
                 color: whitesmoke;
                 background-color: darkgray;
             }
+            
             .button{
                 display: block;
                 background: #0066c4;
@@ -90,23 +92,33 @@ export class appSidebar extends LitElement {
                 grid-column: 1;
                 text-align: center;
                 padding: 5px 20px;
+                margin-bottom: 3px;
             }
         `;
     }
 
     render() {
+        this._ingelogd = localStorage.getItem("JWT") !== null;
+
         return html`
             <link rel="stylesheet" href="/bundle.css">
             <h2>Menu</h2>
-            <a router-link href="/creator" class="button" id="newArticleButton">Nieuw artikel</a>            
+            <nav>
+            ${this._ingelogd ? html`<a router-link href="/creator" class="button">Uitloggen</a>
+            <a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
+            <a router-link href="/404" class="button">Categoriën bewerken</a>
+            <a router-link href="/404" class="button">Users bewerken</a>
+            `: html`<a router-link href="/login" class="button">Inloggen</a><a router-link href="/register" class="button">Registreren</a>`}
             <ul id="side-nav">
                 ${this._categories.map((hoofdcat) => html`
-                    <li class="head-item">${hoofdcat.headcatagory}</li>
+                    <li><span class="head-item">${hoofdcat.headcatagory}</span>
                     <ul class="side-nav-sub">${hoofdcat.subcatagories.map(sub => html`
                        <li class="sub-item"><a router-link href="/category/${sub.id}">${sub.title}</a></li>`)}
                     </ul>
+                    </li>
                 `)}
             </ul>
+            </nav>
         `;
     }
 }

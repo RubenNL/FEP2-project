@@ -23,7 +23,7 @@ export class appInlog extends LitElement {
                 Wachtwoord
                 <input type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
                 </label>
-                <button @click="${this._onclick}">login</button>
+                <button @click="${this._onclick}">Inloggen</button>
             </div>
             `
     }
