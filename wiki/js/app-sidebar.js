@@ -104,10 +104,11 @@ export class appSidebar extends LitElement {
             <link rel="stylesheet" href="/bundle.css">
             <h2>Menu</h2>
             <nav>
-            ${this._ingelogd ? html`<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
+            ${this._ingelogd ? html`<a router-link href="/creator" class="button">Uitloggen</a>
+            <a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
             <a router-link href="/404" class="button">Categoriën bewerken</a>
             <a router-link href="/404" class="button">Users bewerken</a>
-            `: html``}
+            `: html`<a router-link href="/login" class="button">Inloggen</a><a router-link href="/register" class="button">Registreren</a>`}
             <ul id="side-nav">
                 ${this._categories.map((hoofdcat) => html`
                     <li><span class="head-item">${hoofdcat.headcatagory}</span>

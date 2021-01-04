@@ -26,7 +26,7 @@ class AppHeader extends LitElement {
                         <button class="button" id="logout" @click="${() => {
                             window.localStorage.clear();
                             window.location.reload()
-                        }}">logout
+                        }}">Uitloggen
                         </button>` :
                         html`<a router-link href="/register" class="button">Registreren</a><a router-link href="/login"
                                                                                               class="button">Inloggen</a>`}
@@ -90,6 +90,7 @@ class AppHeader extends LitElement {
             #greet {
                 grid-row: 1;
                 grid-column: 1;
+                font-size: 19px;
             }
 
             #logout {

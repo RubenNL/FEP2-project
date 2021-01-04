@@ -17,7 +17,7 @@ export class appInlog extends LitElement {
             <div id="inlogform">
                 <input aria-labelledby="name" type="text" name="email" id="name" placeholder="Voer uw email in." @input="${this._change}"/>
                 <input aria-labelledby="password" type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}"/>
-                <button @click="${this._onclick}">login</button>
+                <button @click="${this._onclick}">Inloggen</button>
             </div>
             `
     }
