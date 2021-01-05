@@ -89,8 +89,7 @@ export class appSidebar extends LitElement {
 			<link rel="stylesheet" href="/bundle.css">
 			<h2>Menu</h2>
 			<nav>
-				${window.localStorage.getItem('user')  ? html`
-					<a router-link href="/creator" class="button">Uitloggen</a>
+				${window.localStorage.getItem('user')  ? html`						
 					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
 					<a router-link href="/404" class="button">Categoriën bewerken</a>
 					<a router-link href="/404" class="button">Users bewerken</a>
