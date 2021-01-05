@@ -27,18 +27,13 @@ export class appRegister extends LitElement {
                 text-align: left;
                 margin-top: 10px;
                 margin-bottom: 10px;
-                width: 100%;
+                width: 400px;
                 display: block;
                 border-radius: 4px;
                  padding: 15px;
                 border: 1px solid #ccc;
+                 box-sizing: border-box;
             }
-             
-             label {
-                 width: 100%;
-                 display: block;
-                 float: left;
-             }
 
             #registerformContainer > button {
                 text-align: center;
@@ -76,7 +71,7 @@ export class appRegister extends LitElement {
 				<label for="confirmpassword">Confirm wachtwoord: 
 				    <input type="password" name="password" id="confirmpassword" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
 				</label>
-				<input type="submit" value="registreren">
+				<input type="submit" value="Registreren">
 			</div>
 			<div id="information" class="informationBlock">
 				<h3>Personal information</h3>
