@@ -83,8 +83,6 @@ export class appSidebar extends LitElement {
 	}
 
 	render() {
-
-
 		return html`
 			<link rel="stylesheet" href="/bundle.css">
 			<h2>Menu</h2>
