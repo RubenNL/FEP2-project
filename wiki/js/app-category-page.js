@@ -1,5 +1,5 @@
 import {css, LitElement, html} from 'lit-element';
-
+import './app-404.js';
 export class appCategoryPage extends LitElement {
 	static get properties() {
 		return {
@@ -8,17 +8,20 @@ export class appCategoryPage extends LitElement {
 			location: Object,
 			src: {type: Number},
 			_subcategoryName: {type: String},
-			_headcategoryName: {type: String}
+			_headcategoryName: {type: String},
+			_404: {type:Boolean}
 		};
 	}
 
 	constructor() {
 		super();
 		this._articles = [];
+		this._404=false;
 	}
 
 	render() {
 		//language=HTML;
+		if(this._404) return html`<app-404></app-404>`
 		return html`<h2>${this._headcategoryName}</h2>
 		<h3>${this._subcategoryName}</h3>
 		<div class="articlecontainer">
@@ -76,6 +79,7 @@ export class appCategoryPage extends LitElement {
 	onBeforeEnter(location, commands, router) {
 		this.src = location.params.categoryID
 		fetch(`/api/getCategory/${location.params.categoryID}`).then(response => response.json()).then(response => {
+			this._404=!response;
 			this._subcategoryName = response.name;
 			this._headcategoryName = response.headcatagory;
 			console.log(this._headcategoryName);
