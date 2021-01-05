@@ -1,5 +1,5 @@
 import {css, LitElement, html} from 'lit-element';
-
+import './app-404.js';
 export class appCategoryPage extends LitElement {
 	static get properties() {
 		return {
@@ -8,21 +8,25 @@ export class appCategoryPage extends LitElement {
 			location: Object,
 			src: {type: Number},
 			_subcategoryName: {type: String},
-			_headcategoryName: {type: String}
+			_headcategoryName: {type: String},
+			_404: {type:Boolean}
 		};
 	}
 
 	constructor() {
 		super();
 		this._articles = [];
+		this._404=false;
 	}
 
 	render() {
 		//language=HTML;
+		if(this._404) return html`<app-404></app-404>`
 		return html`<h2>${this._headcategoryName}</h2>
 		<h3>${this._subcategoryName}</h3>
 		<div class="articlecontainer">
-			${this._articles.map((artikel) => html`<a class="article" router-link href="/article/${artikel.id}">
+			${this._articles.map((artikel) => html`
+					<a class="article" router-link href="/article/${artikel.id}">
 						<h4>${artikel.title}</h4>
 						<p>${artikel.preview}</p>
 					</a>`
@@ -49,7 +53,13 @@ export class appCategoryPage extends LitElement {
                 text-decoration:none;
                 padding:15px;
                 border-radius:3px;
+				transition: all 0.1s ease-in-out;
             }
+            .article:hover{
+                -webkit-font-smoothing: subpixel-antialiased;
+                transform: translate3d(0%, 0%, 0) scale(1.02, 1.02);
+                box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+			}
             .article > h4{
                 margin-top:0px;
                 margin-bottom:10px;
@@ -69,6 +79,7 @@ export class appCategoryPage extends LitElement {
 	onBeforeEnter(location, commands, router) {
 		this.src = location.params.categoryID
 		fetch(`/api/getCategory/${location.params.categoryID}`).then(response => response.json()).then(response => {
+			this._404=!response;
 			this._subcategoryName = response.name;
 			this._headcategoryName = response.headcatagory;
 			console.log(this._headcategoryName);

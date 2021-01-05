@@ -1,25 +1,25 @@
 import {LitElement, html, css} from 'lit-element';
 
 export class appSidebar extends LitElement {
-    static get properties() {
-        return {
-            _categories: {type: Array}
-        }
-    }
+	static get properties() {
+		return {
+			_categories: {type: Array}
+		}
+	}
 
-    constructor() {
-        super();
-        this._categories = [];
-        fetch(`/api/getCategories`).then(response => response.json()).then(response => {
-            this._categories = response
-            console.log(response)
-        })
-        this.classList.add('bg-container');
-    }
+	constructor() {
+		super();
+		this._categories = [];
+		fetch(`/api/getCategories`).then(response => response.json()).then(response => {
+			this._categories = response
+			console.log(response)
+		})
+		this.classList.add('bg-container');
+	}
 
-    static get styles() {
-        // language=css
-        return css`
+	static get styles() {
+		// language=css
+		return css`
             :host {
                 min-height: 100%;
                 color: #383838;
@@ -30,54 +30,40 @@ export class appSidebar extends LitElement {
                 padding-left: 0px;
                 color: #383838;
             }
-
             #side-nav-sub > a {
                 text-decoration: none;
                 color: #383838;
                 padding-bottom: 10px;
             }
-
-
-            #side-nav-sub {
-                padding-left: 40px;
+            .side-nav-sub {
+                padding-left: 0px;
+                list-style-position: inside;
+                list-style-type:none;
+                margin-bottom:15px;
             }
 
             .head-item {
-                margin: 10px 0px;
-                font-size: 20px;
+                font-size: 16px;
                 font-weight: bold;
+                margin-top:0px;
+                margin-bottom:5px;
             }
 
+            .sub-item > a {
+                display:block;
+                padding: 3px 5px;
+                border-radius: 3px;
+            }
             .sub-item > * {
                 text-decoration: none;
                 list-style-type: square;
-                font-size: 16px;
+                font-size: 13px;
                 color: #383838;
             }
-
-            .sub-item {
-                margin-bottom: 5px;
-                height: 20px;
+            .sub-item a:hover{
+                background-color: #f2f2f2;
             }
 
-            .button {
-                display: flex;
-                color: inherit; /* blue colors for links too */
-                text-decoration: inherit; /* no underline */
-                display: inline-block;
-                padding: 1px 5px 2px;
-                background: ButtonFace;
-                color: ButtonText;
-                border-style: solid;
-                border-width: 2px;
-                border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
-                border-radius: 5px;
-            }
-
-            .sub-item :hover {
-                color: whitesmoke;
-                background-color: darkgray;
-            }
             .button{
                 display: block;
                 background: #0066c4;
@@ -90,25 +76,37 @@ export class appSidebar extends LitElement {
                 grid-column: 1;
                 text-align: center;
                 padding: 5px 20px;
+                margin-bottom: 3px;
+                text-decoration: inherit; /* no underline */
             }
-        `;
-    }
+		`;
+	}
 
-    render() {
-        return html`
-            <link rel="stylesheet" href="/bundle.css">
-            <h2>Menu</h2>
-            <a router-link href="/creator" class="button" id="newArticleButton">Nieuw artikel</a>            
-            <ul id="side-nav">
-                ${this._categories.map((hoofdcat) => html`
-                    <li class="head-item">${hoofdcat.headcatagory}</li>
-                    <ul class="side-nav-sub">${hoofdcat.subcatagories.map(sub => html`
-                       <li class="sub-item"><a router-link href="/category/${sub.id}">${sub.title}</a></li>`)}
-                    </ul>
-                `)}
-            </ul>
-        `;
-    }
+	render() {
+
+
+		return html`
+			<link rel="stylesheet" href="/bundle.css">
+			<h2>Menu</h2>
+			<nav>
+				${window.localStorage.getItem('user')  ? html`						
+					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
+					<a router-link href="/404" class="button">Categoriën bewerken</a>
+					<a router-link href="/404" class="button">Users bewerken</a>
+				`: html``}
+				<ul id="side-nav">
+					${this._categories.map((hoofdcat) => html`
+						<li>
+							<h3 class="head-item">${hoofdcat.headcatagory}</h3>
+							<ul class="side-nav-sub">${hoofdcat.subcatagories.map(sub => html`
+								<li class="sub-item"><a router-link href="/category/${sub.id}">${sub.title}</a></li>`)}
+							</ul>
+						</li>
+					`)}
+				</ul>
+			</nav>
+		`;
+	}
 }
 
 customElements.define('app-sidebar', appSidebar);

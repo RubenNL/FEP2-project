@@ -1,5 +1,6 @@
 import { css,LitElement, html } from 'lit-element';
 import '@intcreator/markdown-element';
+import './app-404.js';
 export class appArtikel extends LitElement {
 	static get properties() {
 		return {
@@ -7,19 +8,23 @@ export class appArtikel extends LitElement {
 			_src: {type:String},
 			_title: {type:String},
 			_content: {type:String},
-			location: Object
+			location: Object,
+			_404: {type:Boolean}
 		};
 	}
 	constructor() {
 		super();
 		this._content='';
 		this._title='';
+		this._404=false;
 	}
 	render() {
 		//language=HTML
+		if(this._404) return html`<app-404></app-404>`
 		return html`
-		<a href="/delete/${this.src}" title="Delete article">🗑️️</a>
-		<a href="/creator/${this.src}" title="Edit article">✏️</a>
+			${window.localStorage.getItem('user') ? html`<a href="/delete/${this.src}" title="Delete article">🗑️️</a>
+		<a href="/creator/${this.src}" title="Edit article">✏️</a>` : html``}
+
 		<h1>${this._title}</h1>
 		<markdown-element markdown="${this._content}"></markdown-element>`
 	}
@@ -44,6 +49,7 @@ export class appArtikel extends LitElement {
 	set src(val) {
 		this._src=val;
 		fetch(`/api/getArticle/${val}`).then(response => response.json()).then(response => {
+			this._404=!response;
 			this._content = response.data;
 			this._title = response.title;
 		})
