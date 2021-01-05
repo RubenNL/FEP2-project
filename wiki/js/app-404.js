@@ -34,7 +34,7 @@ export class App404 extends LitElement {
         return html`
             <img src="${this._detectiveImage.src}" alt="Error 404, de pagina kon niet gevonden worden"/>
             <h1>Waarom probeer je het niet opnieuw?</h1>
-            <h2>Klik <a href="1">hier</a> om terug te gaan naar de homepagina</h2>
+            <h2>Klik <a href="/">hier</a> om terug te gaan naar de homepagina</h2>
             
         `;
     }
