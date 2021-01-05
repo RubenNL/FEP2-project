@@ -50,7 +50,13 @@ export class appCategoryPage extends LitElement {
                 text-decoration:none;
                 padding:15px;
                 border-radius:3px;
+				transition: all 0.1s ease-in-out;
             }
+            .article:hover{
+                -webkit-font-smoothing: subpixel-antialiased;
+                transform: translate3d(0%, 0%, 0) scale(1.02, 1.02);
+                box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+			}
             .article > h4{
                 margin-top:0px;
                 margin-bottom:10px;
