@@ -22,7 +22,7 @@ export class appArtikel extends LitElement {
 		//language=HTML
 		if(this._404) return html`<app-404></app-404>`
 		return html`
-			${localStorage.getItem("JWT") !== null ? html`<a href="/delete/${this.src}" title="Delete article">🗑️️</a>
+			${window.localStorage.getItem('user') ? html`<a href="/delete/${this.src}" title="Delete article">🗑️️</a>
 		<a href="/creator/${this.src}" title="Edit article">✏️</a>` : html``}
 
 		<h1>${this._title}</h1>
