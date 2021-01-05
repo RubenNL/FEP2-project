@@ -14,18 +14,21 @@ export class appInlog extends LitElement {
     render() {
         //language=HTML
         return html`
-            <div id="inlogform">
+            <h2>Inloggen</h2>
+            <form id=""inlogform @submit="${this._onclick}">
+            <div id="inlogformContainer">
                 <label for="name">
-                Email
+                Email:
                 <input type="email" name="email" id="name" placeholder="Voer uw email in." @input="${this._change}" required/>
                 </label>
                 <label for="password">
-                Wachtwoord
+                Wachtwoord:
                 <input type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
                 </label>
-                <button @click="${this._onclick}">login</button>
+                <input type="submit" value="Login">
             </div>
-            `
+            </form>`
+
     }
     _change(e) {
         this._data[e.target.name]=e.target.value;
@@ -51,16 +54,16 @@ export class appInlog extends LitElement {
         return css`
             :host {
                 margin: auto;
-                display: flex;
-                align-content: left;
+                
             }
 
-            #inlogform {
+            #inlogformContainer {
                 text-align: left;
-                align-items: left;
+                padding-left: 100px;
+                display: inline-block;
             }
 
-            #inlogform > label > input {
+            #inlogformContainer > label > input {
                 text-align: left;
                 margin-top: 10px;
                 margin-bottom: 10px;
@@ -71,7 +74,7 @@ export class appInlog extends LitElement {
                 border: 1px solid #ccc;
             }
 
-            #inlogform > button {
+            #inlogformContainer > button {
                 text-align: center;
                 margin-top: 10px;
                 margin-bottom: 10px;
@@ -80,10 +83,6 @@ export class appInlog extends LitElement {
                 border-radius: 4px;
                 padding: 20px;
                 border: 1px solid #ccc;
-            }
-
-            label > *:invalid {
-                box-shadow: 0px 0px 0px 3px red;
             }`
     }
 
