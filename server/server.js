@@ -49,7 +49,7 @@ require('./tables.js')(sequelize).then(()=>{
 			case 'getArticle':
 				return getArticle(queryParts.join('/'))
 			case 'saveArticle':
-				return saveArticle(json);
+				return saveArticle(queryParts.shift(),json);
 			case 'getCategory':
 				return getCategory(queryParts.shift());
 			case 'getCategories':

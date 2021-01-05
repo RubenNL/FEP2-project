@@ -16,6 +16,7 @@ export class appCreateArticle extends LitElement {
 
     constructor() {
         super();
+		this._src='';
         this._categories = [];
         this._chosenCategory = {subcatagories:[],headcatagory:''};
         this._categoryFetch=fetch(`/api/getCategories`).then(response => response.json()).then(response => {
@@ -28,12 +29,12 @@ export class appCreateArticle extends LitElement {
 		this._category='';
     }
 	onBeforeEnter(location, commands, router){
-		console.log('onbeforeenter!')
 		this.src=location.params.article
 		if(!window.localStorage.getItem('JWT')) return commands.redirect('/login');
 	}
 	set src(val) {
 		this._src=val;
+		if(!val) this._src='';
 		if(this._src) fetch(`/api/getArticle/${val}`).then(response=>response.json()).then(response => {
 			this._content = response.data;
 			this._title = response.title;
@@ -72,10 +73,9 @@ export class appCreateArticle extends LitElement {
 		const data={
             "title":this.shadowRoot.querySelector('#title').value,
             "data":this.shadowRoot.querySelector('lrn-markdown-editor').content,
-            "categoryId":this.shadowRoot.querySelector('#sub-category').value
+            "categoryId":this.shadowRoot.querySelector('#sub-category').value,
         }
-        console.log(data)
-        sendAuthenticated('/api/saveArticle',data).then(data=>window.location.pathname=`/article/${data.id}`)
+        sendAuthenticated('/api/saveArticle/'+this._src,data).then(data=>this._src?this._src:data.id).then(id=>window.location.pathname=`/article/${id}`)
     }
 }
 
