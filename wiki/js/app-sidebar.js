@@ -3,8 +3,7 @@ import {LitElement, html, css} from 'lit-element';
 export class appSidebar extends LitElement {
 	static get properties() {
 		return {
-			_categories: {type: Array},
-			_ingelogd: {type: Boolean}
+			_categories: {type: Array}
 		}
 	}
 
@@ -84,21 +83,18 @@ export class appSidebar extends LitElement {
 	}
 
 	render() {
-		this._ingelogd = localStorage.getItem("JWT") !== null;
+
 
 		return html`
 			<link rel="stylesheet" href="/bundle.css">
 			<h2>Menu</h2>
 			<nav>
-				${this._ingelogd ? html`
+				${window.localStorage.getItem('user')  ? html`
 					<a router-link href="/creator" class="button">Uitloggen</a>
 					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
 					<a router-link href="/404" class="button">Categoriën bewerken</a>
 					<a router-link href="/404" class="button">Users bewerken</a>
-				`: html`
-					<a router-link href="/login" class="button">Inloggen</a>
-					<a router-link href="/register" class="button">Registreren</a>
-				`}
+				`: html``}
 				<ul id="side-nav">
 					${this._categories.map((hoofdcat) => html`
 						<li>
