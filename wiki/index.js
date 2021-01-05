@@ -30,6 +30,11 @@ router.setRoutes([
 		action: ()=>import('js/app-category-page.js')
 	},
 	{
+		path: '/creator/:article',
+		component: 'app-create-article',
+		action: ()=>import('js/app-create-article.js')
+	},
+	{
 		path: '/creator',
 		component: 'app-create-article',
 		action: ()=>import('js/app-create-article.js')

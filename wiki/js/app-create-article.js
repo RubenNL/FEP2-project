@@ -7,36 +7,55 @@ export class appCreateArticle extends LitElement {
             _categories: {type: Array},
             _title: {type: String},
             _chosenCategory: {type: Object},
-			location: {type: Object}
+			location: Object,
+			src: {type: String},
+			_content: {type: String},
+			_category: {type:String}
         }
     }
 
     constructor() {
         super();
         this._categories = [];
-        this._chosenCategory = {subcatagories:[]};
-        fetch(`/api/getCategories`).then(response => response.json()).then(response => {
+        this._chosenCategory = {subcatagories:[],headcatagory:''};
+        this._categoryFetch=fetch(`/api/getCategories`).then(response => response.json()).then(response => {
             this._categories = response
             console.log(response)
+			return response;
         })
-        this._content = '';
         this._title = '';
+		this._content='';
+		this._category='';
     }
-
+	onBeforeEnter(location, commands, router){
+		console.log('onbeforeenter!')
+		this.src=location.params.article
+		if(!window.localStorage.getItem('JWT')) return commands.redirect('/login');
+	}
+	set src(val) {
+		this._src=val;
+		if(this._src) fetch(`/api/getArticle/${val}`).then(response=>response.json()).then(response => {
+			this._content = response.data;
+			this._title = response.title;
+			this._category=response.categoryId
+			return this._categoryFetch.then(categories=>categories.filter(category=>category.subcatagories.filter(sub=>sub.id==response.categoryId).length)[0])
+		}).then(topCategory=>this._chosenCategory=topCategory)
+	}
     render() {
         return html` <h2>Artikeltje maken</h2>
         <label for="head-category">Kies je hoofdcategorie:</label>
         <select name="head-category" id="head-category" @change="${this._onHeadCategoryChange}">
-            ${this._categories.map((hoofdcat) => html`<option value="${hoofdcat.headcatagory}">${hoofdcat.headcatagory}</option>`)}
+			<option disabled selected></option>
+            ${this._categories.map((hoofdcat) => html`<option value="${hoofdcat.headcatagory}" ?selected="${hoofdcat.headcatagory==this._chosenCategory.headcatagory}">${hoofdcat.headcatagory}</option>`)}
         </select>
         
         <label for="sub-category">Kies je subcategorie:</label>
         <select name="sub-category" id="sub-category">
-            ${this._chosenCategory.subcatagories.map((subcatagorie) => html`<option value="${subcatagorie.id}">${subcatagorie.title}</option>`)}
+            ${this._chosenCategory.subcatagories.map((subcatagorie) => html`<option value="${subcatagorie.id}" ?selected="${subcatagorie.id==parseInt(this._category)}">${subcatagorie.title}</option>`)}
         </select>
-        <input aria-labelledby="titel" type="text" id="title" placeholder="Titel.....">
-            <lrn-markdown-editor></lrn-markdown-editor>
-            <button @click="${this._sendArticle}">Bevestigen</button>`
+        <input aria-labelledby="titel" type="text" id="title" value="${this._title}" placeholder="Titel.....">
+		<lrn-markdown-editor content="${this._content}"></lrn-markdown-editor>
+		<button @click="${this._sendArticle}">Bevestigen</button>`
     }
 
     _onHeadCategoryChange(event) {
@@ -58,9 +77,6 @@ export class appCreateArticle extends LitElement {
         console.log(data)
         sendAuthenticated('/api/saveArticle',data).then(data=>window.location.pathname=`/article/${data.id}`)
     }
-    onBeforeEnter(location, commands, router){
-		if(!window.localStorage.getItem('JWT')) return commands.redirect('/login');
-	}
 }
 
 customElements.define('app-create-article', appCreateArticle)
