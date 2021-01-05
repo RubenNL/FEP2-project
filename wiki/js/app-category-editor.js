@@ -87,7 +87,7 @@ export class appCategoryEditor extends LitElement {
                             <li class="sub-item">
                                 ${sub.title}
                                 <span id="icon-holder">
-                                        <fa-icon class="fas fa-pencil-alt"></fa-icon>
+                                    <a href=https://www.youtube.com/watch?v=SkgTxQm9DWM&ab_channel=BufuSounds"><fa-icon class="fas fa-pencil-alt"></fa-icon></a>
                                         <fa-icon class="fas fa-trash-alt"></fa-icon>
                                     </span></li>`)}
                         </ul>
