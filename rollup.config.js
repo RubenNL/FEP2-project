@@ -35,6 +35,7 @@ export default {
 				{src:'wiki/index.html',dest:'output'},
 				{src:'wiki/js/sendAuthenticated.js',dest:'output'},
 				{src:'wiki/robots.txt',dest:'output'},
+				{src:'node_modules/prismjs/themes/prism.css',dest:'output/node_modules/prismjs/themes'},
 				...production?[{src:'node_modules/@lrnwebcomponents/simple-icon/lib/svgs',dest:'output'}]:[{src:'node_modules/@lrnwebcomponents/simple-icon/lib/svgs',dest:'output/node_modules/@lrnwebcomponents/simple-icon/lib'}]
 			]
 		}),
