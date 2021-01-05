@@ -12,37 +12,47 @@ export class appRegister extends LitElement {
         return css`
             :host {
                 margin: auto;
-                display: flex;
-				align-content: left;
             }
 
-            #registerform {
-                text-align: left;
-				align-items: left;
+            .informationBlock > h3 {
+                display: block;
+                
+            }
+            
+            .informationBlock {
+                padding-left: 100px;
             }
 
-            #registerform > label > input {
+             label > input, label > select {
                 text-align: left;
                 margin-top: 10px;
-				margin-bottom: 10px;
-                width: 400px;
+                margin-bottom: 10px;
+                width: 100%;
+                display: block;
+                border-radius: 4px;
+                 padding: 15px;
+                border: 1px solid #ccc;
+            }
+             
+             label {
+                 width: 100%;
+                 display: block;
+                 float: left;
+             }
+
+            #registerformContainer > button {
+                text-align: center;
+                margin-top: 5px;
+                margin-bottom: 5px;
+                width: 100px;
                 display: block;
                 border-radius: 4px;
                 padding: 20px;
                 border: 1px solid #ccc;
             }
-			#registerform > button {
-				text-align: center;
-				margin-top: 10px;
-				margin-bottom: 10px;
-				width: 440px;
-				display: block;
-				border-radius: 4px;
-				padding: 20px;
-				border: 1px solid #ccc;
-			}
-            label > *:invalid{
-                box-shadow: 0px 0px 0px 3px red;
+            
+            #registerform {
+                display: flex;
             }`
     }
 
@@ -53,39 +63,54 @@ export class appRegister extends LitElement {
 
     render() {
         return html`
-			<div id="registerform">
+            <h2>Registreren</h2>
+        <form id="registerform" @submit="${this._onclick}">
+			<div id="registerformContainer" class="informationBlock">
+			    <h3>Account information</h3>
 				<label for="email">E-mail: 
-				<input type="email" name="email" id="email" placeholder="Voer uw email in." @input="${this._change}" required/>
+				    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" name="email" id="email" placeholder="Voer uw email in." @input="${this._change}" required/>
 				</label>
 				<label for="password">Wachtwoord: 
-				<input type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
+				    <input type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
 				</label>
+				<label for="confirmpassword">Confirm wachtwoord: 
+				    <input type="password" name="password" id="confirmpassword" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
+				</label>
+				<input type="submit" value="registreren">
+			</div>
+			<div id="information" class="informationBlock">
+				<h3>Personal information</h3>
 				<label for="name">Naam:
-		        <input type="text" name="fullName" id="name" placeholder="Voer uw naam in." @input="${this._change}" required/>
+		            <input type="text" name="fullName" id="name" placeholder="Voer uw naam in." @input="${this._change}" required/>
 				</label>
 				<label for="functie">Functie: 
-				<input type="text" name="functie" id="functie" placeholder="Voer uw functie in." @input="${this._change}" required/>
+				<select name="functie" id="functie" @change="${this._change}" required/>
+				    <option disabled selected>Kies een optie</option>
+	   			    <option value="student">Student</option>
+                    <option value="auteur">Auteur</option>
+                </select>
 				</label>
 				<label for="organisation">Organisatie:
-				<input type="text" name="orgName" id="organisation" placeholder="Voer uw organisatie in." @input="${this._change}" required/>
+				    <input type="text" name="orgName" id="organisation" placeholder="Voer uw organisatie in." @input="${this._change}" required/>
 				</label>
-				<button @click="${this._onclick}">registreren</button>
-			</div>`
+			</div>
+        </form>`
     }
 
 
     _change(e) {
         this._data[e.target.name]=e.target.value;
     }
-    _onclick(){
-        if(Object.values(this._data).filter(item=>item.length>0).length<5) {
-            alert('niet alles ingevuld!')
+    _onclick(e){
+        e.preventDefault()
+
+        var password = this.shadowRoot.querySelector('#password').value
+        var confirmPassword = this.shadowRoot.querySelector('#confirmpassword').value
+        if(password !== confirmPassword){
+            alert('De gegevens kloppen niet!')
             return;
         }
-        if(this.shadowRoot.querySelector('#email:invalid')){
-            alert('Het email adres is ongeldig!')
-            return;
-        }
+
         fetch('/api/register',{
             method:'POST',
             headers: {

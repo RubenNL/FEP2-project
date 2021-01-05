@@ -52,35 +52,37 @@ export class appInlog extends LitElement {
             :host {
                 margin: auto;
                 display: flex;
-				align-content: left;
+                align-content: left;
             }
 
             #inlogform {
                 text-align: left;
-				align-items: left;
+                align-items: left;
             }
 
             #inlogform > label > input {
                 text-align: left;
                 margin-top: 10px;
-				margin-bottom: 10px;
+                margin-bottom: 10px;
                 width: 400px;
                 display: block;
                 border-radius: 4px;
                 padding: 20px;
                 border: 1px solid #ccc;
             }
-			#inlogform > button {
-				text-align: center;
-				margin-top: 10px;
-				margin-bottom: 10px;
-				width: 440px;
-				display: block;
-				border-radius: 4px;
-				padding: 20px;
-				border: 1px solid #ccc;
-			}
-             label > *:invalid{
+
+            #inlogform > button {
+                text-align: center;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                width: 440px;
+                display: block;
+                border-radius: 4px;
+                padding: 20px;
+                border: 1px solid #ccc;
+            }
+
+            label > *:invalid {
                 box-shadow: 0px 0px 0px 3px red;
             }`
     }
