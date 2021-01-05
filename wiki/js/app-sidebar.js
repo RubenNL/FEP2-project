@@ -89,7 +89,7 @@ export class appSidebar extends LitElement {
 			<nav>
 				${window.localStorage.getItem('user')  ? html`						
 					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
-					<a router-link href="/404" class="button">Categoriën bewerken</a>
+					<a router-link href="/categoryeditor" class="button">Categoriën bewerken</a>
 					<a router-link href="/404" class="button">Users bewerken</a>
 				`: html``}
 				<ul id="side-nav">
