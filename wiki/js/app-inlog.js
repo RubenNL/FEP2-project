@@ -15,7 +15,7 @@ export class appInlog extends LitElement {
         //language=HTML
         return html`
             <h2>Inloggen</h2>
-            <form id=""inlogform @submit="${this._onclick}">
+            <form id="inlogform" @submit="${this._onclick}">
             <div id="inlogformContainer">
                 <label for="name">
                 Email:
@@ -25,7 +25,7 @@ export class appInlog extends LitElement {
                 Wachtwoord:
                 <input type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
                 </label>
-                <input type="submit" value="Login">
+                <input type="submit" value="Login" id="submit">
             </div>
             </form>`
 
@@ -59,8 +59,7 @@ export class appInlog extends LitElement {
 
             #inlogformContainer {
                 text-align: left;
-                padding-left: 100px;
-                display: inline-block;
+                padding-left: 25%;
             }
 
             #inlogformContainer > label > input {
@@ -74,15 +73,20 @@ export class appInlog extends LitElement {
                 border: 1px solid #ccc;
             }
 
-            #inlogformContainer > button {
-                text-align: center;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                width: 440px;
-                display: block;
-                border-radius: 4px;
-                padding: 20px;
-                border: 1px solid #ccc;
+            #submit {
+                width: 200px;
+                height: 25px;
+            
+                display: flex;
+                color: inherit; /* blue colors for links too */
+                text-decoration: inherit; /* no underline */
+                display: inline-block; padding: 5px 15px;
+                background: #0066c4;
+                color: #ffffff;
+                border: 0;
+                border-style: solid; border-width: 2px;
+                border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+                border-radius: 5px;
             }`
     }
 

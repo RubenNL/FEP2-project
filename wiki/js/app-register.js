@@ -45,6 +45,19 @@ export class appRegister extends LitElement {
                 padding: 20px;
                 border: 1px solid #ccc;
             }
+
+            #button {
+                display: flex;
+                color: inherit; /* blue colors for links too */
+                text-decoration: inherit; /* no underline */
+                display: inline-block; padding: 5px 15px;
+                border-style: solid; border-width: 2px;
+                border: 0;
+                border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+                border-radius: 5px;
+                background: #0066c4;
+                color: #ffffff;
+            }
             
             #registerform {
                 display: flex;
@@ -71,7 +84,7 @@ export class appRegister extends LitElement {
 				<label for="confirmpassword">Confirm wachtwoord: 
 				    <input type="password" name="password" id="confirmpassword" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
 				</label>
-				<input type="submit" value="Registreren">
+				<input type="submit" value="Registreren" id="button">
 			</div>
 			<div id="information" class="informationBlock">
 				<h3>Personal information</h3>
