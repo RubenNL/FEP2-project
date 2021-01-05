@@ -44,19 +44,20 @@ export class appCreateArticle extends LitElement {
 	}
     render() {
         return html` <h2>Artikeltje maken</h2>
-        <label for="head-category">Kies je hoofdcategorie:</label>
-        <select name="head-category" id="head-category" @change="${this._onHeadCategoryChange}">
-			<option disabled selected></option>
-            ${this._categories.map((hoofdcat) => html`<option value="${hoofdcat.headcatagory}" ?selected="${hoofdcat.headcatagory==this._chosenCategory.headcatagory}">${hoofdcat.headcatagory}</option>`)}
-        </select>
-        
-        <label for="sub-category">Kies je subcategorie:</label>
-        <select name="sub-category" id="sub-category">
-            ${this._chosenCategory.subcatagories.map((subcatagorie) => html`<option value="${subcatagorie.id}" ?selected="${subcatagorie.id==parseInt(this._category)}">${subcatagorie.title}</option>`)}
-        </select>
-        <input aria-labelledby="titel" type="text" id="title" value="${this._title}" placeholder="Titel.....">
-		<lrn-markdown-editor content="${this._content}"></lrn-markdown-editor>
-		<button @click="${this._sendArticle}">Bevestigen</button>`
+        <form @submit="${this._sendArticle}">
+			<label for="head-category">Kies je hoofdcategorie:</label>
+			<select name="head-category" id="head-category" @change="${this._onHeadCategoryChange}" required>
+				<option disabled selected></option>
+				${this._categories.map((hoofdcat) => html`<option value="${hoofdcat.headcatagory}" ?selected="${hoofdcat.headcatagory==this._chosenCategory.headcatagory}">${hoofdcat.headcatagory}</option>`)}
+			</select>
+			
+			<label for="sub-category">Kies je subcategorie:</label>
+			<select name="sub-category" id="sub-category" required>
+				${this._chosenCategory.subcatagories.map((subcatagorie) => html`<option value="${subcatagorie.id}" ?selected="${subcatagorie.id==parseInt(this._category)}">${subcatagorie.title}</option>`)}
+			</select>
+			<input aria-labelledby="titel" type="text" id="title" value="${this._title}" placeholder="Titel....." required>
+			<lrn-markdown-editor content="${this._content}"></lrn-markdown-editor>
+			<input type="submit" value="Bevestigen">`
     }
 
     _onHeadCategoryChange(event) {
@@ -69,7 +70,12 @@ export class appCreateArticle extends LitElement {
         })
     }
 
-    _sendArticle(){
+    _sendArticle(e){
+		e.preventDefault();
+		if(!this.shadowRoot.querySelector('lrn-markdown-editor').content) {
+			alert('Geen content!')
+			return
+		}
 		const data={
             "title":this.shadowRoot.querySelector('#title').value,
             "data":this.shadowRoot.querySelector('lrn-markdown-editor').content,
