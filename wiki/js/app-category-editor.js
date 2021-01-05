@@ -80,8 +80,8 @@ export class appCategoryEditor extends LitElement {
                 <ul id="categoriecontainer">
                     ${this._categories.map((hoofdcat) => html`
                         <li><b>${hoofdcat.headcatagory}</b><span id="icon-holder">
-                                <a href="https://www.youtube.com/watch?v=RO75ZzqUOJw&ab_channel=SigurdBarrett-Topic"><fa-icon class="fas fa-pencil-alt"></fa-icon></a>
-                                <fa-icon class="fas fa-trash-alt"></fa-icon>
+                            <a href="https://www.youtube.com/watch?v=RO75ZzqUOJw&ab_channel=SigurdBarrett-Topic"><fa-icon class="fas fa-pencil-alt"></fa-icon></a>
+                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO"><fa-icon class="fas fa-trash-alt"></fa-icon></a>
                             </span></li>
                         <ul class="side-nav-sub">${hoofdcat.subcatagories.map(sub => html`
                             <li class="sub-item">
