@@ -60,6 +60,7 @@ export class appSidebar extends LitElement {
                 font-size: 13px;
                 color: #383838;
             }
+			
             .sub-item a:hover{
                 background-color: #f2f2f2;
             }
