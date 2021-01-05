@@ -20,9 +20,7 @@ class AppHeader extends LitElement {
             </a>
             <div class="search-container">
                 ${window.localStorage.getItem('user') ?
-                        html`<span
-                                id="greet">Welkom ${JSON.parse(window.localStorage.getItem('user')).fullName.split(' ')[0]}
-                            !</span>
+                        html`<span id="greet">Welkom ${JSON.parse(window.localStorage.getItem('user')).fullName.split(' ')[0]}!</span>
                         <button class="button" id="logout" @click="${() => {
                             window.localStorage.clear();
                             window.location.reload()
