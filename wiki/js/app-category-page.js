@@ -22,7 +22,8 @@ export class appCategoryPage extends LitElement {
 		return html`<h2>${this._headcategoryName}</h2>
 		<h3>${this._subcategoryName}</h3>
 		<div class="articlecontainer">
-			${this._articles.map((artikel) => html`<a class="article" router-link href="/article/${artikel.id}">
+			${this._articles.map((artikel) => html`
+					<a class="article" router-link href="/article/${artikel.id}">
 						<h4>${artikel.title}</h4>
 						<p>${artikel.preview}</p>
 					</a>`
