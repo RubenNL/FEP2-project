@@ -32,7 +32,8 @@ getUserFromJWT=key=>{
 		})
 	}).then(getUser).then(user=>user.toJSON())
 }
+getUsers=()=>User.findAll();
 module.exports=sequelize=>{
 	User=sequelize.models.users;
-	return {register,login,getUserFromJWT}
+	return {register,login,getUserFromJWT,getUsers}
 }
