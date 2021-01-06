@@ -53,7 +53,7 @@ export class appFooter extends LitElement {
         this._githubImage = { src: "/images/github.png"};
         this._githubLink = { src: "https://github.com/HU-SD-SV2PRFED-studenten-2021/prfed_2021-v2b-v"};
         this._huLink = { src: "https://hu/nl"};
-        this._copyrightText = "© 2020 - Team V2B";
+        this._copyrightText = "© 2020 - Team V2B-5";
     }
 
     render() {
