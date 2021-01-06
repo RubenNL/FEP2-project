@@ -87,17 +87,17 @@ export class appSidebar extends LitElement {
 		switch(role){
 			case "student":
 				return html`
-					<a router-link href="/bladwijzers" class="button" id="menuButton">Bladwijzers</a>`;
+					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>`;
 			case "auteur":
 				return html`
-					<a router-link href="/bladwijzers" class="button" id="menuButton">Bladwijzers</a>
+					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>
 					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>`;
 			case "admin":
 				return html`
-					<a router-link href="/bladwijzers" class="button" id="menuButton">Bladwijzers</a>
+					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>
 					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
 					<a router-link href="/404" class="button">Categoriën bewerken</a>
-					<a router-link href="/404" class="button">Users bewerken</a>`;
+					<a router-link href="/users" class="button">Users bewerken</a>`;
 		}
 	}
 
