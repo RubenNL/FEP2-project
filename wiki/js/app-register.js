@@ -76,7 +76,7 @@ export class appRegister extends LitElement {
 			<div id="registerformContainer" class="informationBlock">
 			    <h3>Account information</h3>
 				<label for="email">E-mail: 
-				    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$" name="email" id="email" placeholder="Voer uw email in." @input="${this._change}" required/>
+				    <input type="email" name="email" id="email" placeholder="Voer uw email in." @input="${this._change}" required/>
 				</label>
 				<label for="password">Wachtwoord: 
 				    <input type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
