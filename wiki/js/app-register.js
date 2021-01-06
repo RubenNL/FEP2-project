@@ -93,9 +93,10 @@ export class appRegister extends LitElement {
 				</label>
 				<label for="functie">Functie: 
 				<select name="functie" id="functie" @change="${this._change}" required/>
-				    <option disabled selected>Kies een optie</option>
-	   			    <option value="student">Student</option>
-                    <option value="auteur">Auteur</option>
+					<option disabled selected>Kies een optie</option>
+					<option value="admin">Admin</option>
+					<option value="student">Student</option>
+					<option value="auteur">Auteur</option>
                 </select>
 				</label>
 				<label for="organisation">Organisatie:

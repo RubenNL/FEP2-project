@@ -15,7 +15,7 @@ export class appManageUsers extends LitElement {
         this._students = [];
         this._autors = [];
         this._admins = [];
-        fetch(`/api/getUsers`).then(response => response.json()).then(response => {
+        sendAuthenticated(`/api/getUsers`).then(response => {
             response.map((user) => {
                 console.log("user.functie returnt " + user.functie)
                 switch (user.functie) {
