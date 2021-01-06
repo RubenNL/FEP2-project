@@ -5,3 +5,4 @@ npm-debug.log
 *.env
 *.iml
 output
+data.db
