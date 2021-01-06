@@ -43,7 +43,7 @@ export class appCreateArticle extends LitElement {
 		}).then(topCategory=>this._chosenCategory=topCategory)
 	}
     render() {
-        return html` <h2>Artikeltje maken</h2>
+        return html` <h2>Artikel maken</h2>
         <form @submit="${this._sendArticle}">
 			<label for="head-category">Kies je hoofdcategorie:</label>
 			<select name="head-category" id="head-category" @change="${this._onHeadCategoryChange}" required>
