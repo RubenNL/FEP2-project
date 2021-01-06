@@ -34,7 +34,8 @@ export class appInlog extends LitElement {
         this._data[e.target.name]=e.target.value;
     }
 
-    _onclick() {
+    _onclick(e) {
+		e.preventDefault();
         fetch('/api/login',{
             method:'POST',
             headers: {
