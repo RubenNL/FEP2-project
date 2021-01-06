@@ -82,18 +82,33 @@ export class appSidebar extends LitElement {
 		`;
 	}
 
-	render() {
+	determineAcces(user){
+		let role = JSON.parse(user).functie;
+		switch(role){
+			case "student":
+				return html`
+					<a router-link href="/bladwijzers" class="button" id="menuButton">Bladwijzers</a>`;
+			case "auteur":
+				return html`
+					<a router-link href="/bladwijzers" class="button" id="menuButton">Bladwijzers</a>
+					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>`;
+			case "admin":
+				return html`
+					<a router-link href="/bladwijzers" class="button" id="menuButton">Bladwijzers</a>
+					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
+					<a router-link href="/404" class="button">Categoriën bewerken</a>
+					<a router-link href="/404" class="button">Users bewerken</a>`;
+		}
+	}
 
+	render() {
+		let user = window.localStorage.getItem('user');
 
 		return html`
 			<link rel="stylesheet" href="/bundle.css">
 			<h2>Menu</h2>
 			<nav>
-				${window.localStorage.getItem('user')  ? html`						
-					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
-					<a router-link href="/404" class="button">Categoriën bewerken</a>
-					<a router-link href="/404" class="button">Users bewerken</a>
-				`: html``}
+				${user ? this.determineAcces(user) : html``}
 				<ul id="side-nav">
 					${this._categories.map((hoofdcat) => html`
 						<li>
