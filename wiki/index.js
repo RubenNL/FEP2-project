@@ -35,11 +35,6 @@ router.setRoutes([
 		action: ()=>import('js/app-create-article.js')
 	},
 	{
-		path: '/delete/:article',
-		component: 'app-delete-article',
-		action: ()=>import('js/app-delete-article.js')
-	},
-	{
 		path: '/creator',
 		component: 'app-create-article',
 		action: ()=>import('js/app-create-article.js')
