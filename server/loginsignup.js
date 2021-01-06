@@ -34,7 +34,8 @@ getUserFromJWT=key=>{
 }
 getUsers=()=>User.findAll();
 updateUser=(email,changes)=>User.update(changes,{where:{email:email}})
+deleteUser=email=>User.destroy({where:{email:email}})
 module.exports=sequelize=>{
 	User=sequelize.models.users;
-	return {register,login,getUserFromJWT,getUsers,updateUser}
+	return {register,login,getUserFromJWT,getUsers,updateUser,deleteUser}
 }

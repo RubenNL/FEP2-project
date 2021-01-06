@@ -33,7 +33,7 @@ const sequelize = new Sequelize(process.env.DATABASE_URL?process.env.DATABASE_UR
 let selector;
 require('./tables.js')(sequelize).then(()=>{
 	const {addCategory,getCategories,getCategory} = require('./category.js')(sequelize);
-	const {register,login,getUserFromJWT,getUsers,updateUser} = require('./loginsignup.js')(sequelize)
+	const {register,login,getUserFromJWT,getUsers,updateUser,deleteUser} = require('./loginsignup.js')(sequelize)
 	const {getArticle,saveArticle,search,getArticlesByCategory} = require('./article.js')(sequelize)
 
 	selector=(queryParts,json,req)=>{
@@ -48,6 +48,8 @@ require('./tables.js')(sequelize).then(()=>{
 				return getUserFromJWT(req.headers.authorization.split(' ')[1]);
 			case 'updateUser':
 				return updateUser(queryParts.shift(),json);
+			case 'deleteUser':
+				return deleteUser(queryParts.shift());
 			case 'getUsers':
 				return getUsers();
 			case 'getArticle':
