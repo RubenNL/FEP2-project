@@ -20,6 +20,9 @@ search=query=>new Promise((resolve,reject)=>{
 		where: {
 			title: {
 				[isSqlite?Op.substring:Op.iLike]: isSqlite?`${query}`:`%${query}%`
+			},
+			categoryId: {
+				[Op.not]: 1688148667
 			}
 		}
 	}));
