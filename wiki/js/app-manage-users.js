@@ -30,7 +30,52 @@ export class appManageUsers extends LitElement {
                         break
                 }
             })
-        }).then(()=>this.requestUpdate());
+        }).then(() => this.requestUpdate());
+    }
+
+    checkBlocked(user) {
+        if (user.blocked) {
+            return html`<fa-icon @click="${(e) => this.toggleBlocked(user, e.target)}" class="fas fa-ban blocked"></fa-icon>`
+        } else {
+            return html`<fa-icon @click="${(e) => this.toggleBlocked(user, e.target)}" class="fas fa-ban"></fa-icon>`
+        }
+    }
+
+    toggleBlocked(user, target) {
+        sendAuthenticated(`/api/updateUser/${user.email}`, {blocked: !user.blocked}).then(
+            () => {target.classList.toggle("blocked")})
+    }
+
+    render() {
+        return html`
+            <h2>Gebruikers beheren</h2>
+            <div id="flex-container">
+                <ul class="usercontainer">
+                    <h2>Studenten</h2>
+                    ${this._students.map((user) => html`
+                        <li>${user.fullName}<span id="icon-holder">
+                           <fa-icon class="fas fa-pencil-alt"></fa-icon>
+                            ${this.checkBlocked(user)}
+                            <fa-icon class="fas fa-trash-alt"></fa-icon>
+                            </span>
+                        </li>
+                    `)}
+                </ul>
+                <ul class="usercontainer">
+                    <h2>Auteurs</h2>
+                    ${this._autors.map((user) => html`
+                        <li>${user.fullName}
+                            <span id="icon-holder">
+                                <fa-icon class="fas fa-pencil-alt autor"></fa-icon>
+                                ${this.checkBlocked(user)}
+                                <fa-icon class="fas user-shield"></fa-icon>
+                                <fa-icon class="fas fa-trash-alt"></fa-icon>
+                            </span>
+                        </li>
+                    `)}
+                </ul>
+            </div>
+        `;
     }
 
     static get styles() {
@@ -73,13 +118,13 @@ export class appManageUsers extends LitElement {
             #icon-holder {
                 float: right;
             }
-            
-            .autor{
+
+            .autor {
                 color: green;
                 transform: scale(1.1);
             }
-            
-            .blocked{
+
+            .blocked {
                 color: red;
                 transform: scale(1.1);
             }
@@ -95,37 +140,6 @@ export class appManageUsers extends LitElement {
                 transform: scale(1.3);
                 color: red;
             }
-        `;
-    }
-
-    //todo HAAL FLOAT WEG KSSSS
-
-    render() {
-        return html`
-            <h2>Gebruikers beheren</h2>
-            <div id="flex-container">
-                <ul class="usercontainer">
-                    <h2>Studenten</h2>
-                    ${this._students.map((user) => html`
-                        <li>${user.fullName}<span id="icon-holder">
-                           <fa-icon class="fas fa-pencil-alt"></fa-icon>
-                           <fa-icon class="fas fa-ban"></fa-icon>
-                            <fa-icon class="fas fa-trash-alt"></fa-icon>
-                            </span></li>
-                    `)}
-                </ul>
-                <ul class="usercontainer">
-                    <h2>Auteurs</h2>
-                    ${this._autors.map((user) => html`
-                        <li>${user.fullName}<span id="icon-holder">
-                           <fa-icon class="fas fa-pencil-alt autor"></fa-icon>
-                            <fa-icon class="fas fa-ban"></fa-icon>
-                            <fa-icon class="fas user-shield"></fa-icon>
-                            <fa-icon class="fas fa-trash-alt"></fa-icon>
-                            </span></li>
-                    `)}
-                </ul>
-            </div>
         `;
     }
 }
