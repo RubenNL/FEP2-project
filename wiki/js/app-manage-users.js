@@ -102,10 +102,29 @@ export class appManageUsers extends LitElement {
         if (user.email === loggedIn.email) {
             alert("Letop, u kunt uzelf niet ontzien als administrator.")
         } else {
-            delete this._students[this._students.indexOf(user)]
+            if (user.functie === 'student') {
+                delete this._students[this._students.indexOf(user)]
+                this._autors.push(user)
+            }
             user.functie = 'auteur'
-            this._autors.push(user)
             return sendAuthenticated(`/api/updateUser/${user.email}`, {functie: "auteur"})
+        }
+    }
+
+    deleteUser(user) {
+        if (user.functie === "admin") {
+            alert("Het is niet mogelijk een administrator te verwijderen")
+        } else {
+            if (confirm("Weet u zeker dat u " + user.fullName + " wilt verwijderen? \n Dit kunt u niet ongedaan maken.")) {
+                if (user.functie === "auteur") {
+                    console.log("De click heeft plaatsgevonden")
+                    delete this._autors[this._autors.indexOf(user)]
+                } else {
+                    delete this._students[this._students.indexOf(user)]
+                }
+                sendAuthenticated(`/api/deleteUser/${user.email}`).then(() => this.requestUpdate());
+            } else {
+            }
         }
     }
 
@@ -119,7 +138,7 @@ export class appManageUsers extends LitElement {
                         <li>${user.fullName}<span id="icon-holder">
                             ${this.checkAutor(user)}
                             ${this.checkBlocked(user)}
-                            <fa-icon class="fas fa-trash-alt"></fa-icon>
+                            <fa-icon @click="${() => this.deleteUser(user)}" class="fas fa-trash-alt"></fa-icon>
                             </span>
                         </li>
                     `)}
@@ -132,7 +151,9 @@ export class appManageUsers extends LitElement {
                                 ${this.checkAutor(user)}
                                 ${this.checkBlocked(user)}
                                 ${this.checkAdmin(user)}
-                                <fa-icon class="fas fa-trash-alt"></fa-icon>
+                                <fa-icon @click="${() => {
+                                    this.deleteUser(user)
+                                }}" class="fas fa-trash-alt"></fa-icon>
                             </span>
                         </li>
                     `)}
@@ -202,6 +223,7 @@ export class appManageUsers extends LitElement {
                 width: 1em;
                 height: 1em;
                 padding: 0 3px;
+                cursor: pointer;
             }
 
             fa-icon:hover {

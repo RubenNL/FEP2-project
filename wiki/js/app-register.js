@@ -112,7 +112,6 @@ export class appRegister extends LitElement {
     }
     _onclick(e){
         e.preventDefault()
-
         var password = this.shadowRoot.querySelector('#password').value
         var confirmPassword = this.shadowRoot.querySelector('#confirmpassword').value
         if(password !== confirmPassword){
