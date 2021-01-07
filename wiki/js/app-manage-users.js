@@ -146,7 +146,7 @@ export class appManageUsers extends LitElement {
                     <h2>Auteurs</h2>
                     ${this._autors.map((user) => html`
                         <li>${user.fullName}
-                            ${(user.email === JSON.parse(window.localStorage.getItem('user')).email)? html`` : html` //Can't edit the logged in user.
+                            ${(user.email === JSON.parse(window.localStorage.getItem('user')).email)? html`` : html` <!--Students and authors can't see this page. -->
                             <span id="icon-holder">
                                 ${this.checkAutor(user)}
                                 ${this.checkBlocked(user)}

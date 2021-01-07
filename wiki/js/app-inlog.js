@@ -1,5 +1,4 @@
 import {css, LitElement, html} from 'lit-element';
-import '@intcreator/markdown-element';
 
 export class appInlog extends LitElement {
     static get properties() {
