@@ -12,7 +12,6 @@ export class appSidebar extends LitElement {
 		this._categories = [];
 		fetch(`/api/getCategories`).then(response => response.json()).then(response => {
 			this._categories = response
-			console.log(response)
 		})
 		this.classList.add('bg-container');
 	}

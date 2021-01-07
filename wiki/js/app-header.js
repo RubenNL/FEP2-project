@@ -24,10 +24,9 @@ class AppHeader extends LitElement {
                         <button class="button" id="logout" @click="${() => {
                             window.localStorage.clear();
                             window.location.reload()
-                        }}">Uitloggen
-                        </button>` :
-                        html`<a router-link href="/register" class="button">Registreren</a><a router-link href="/login"
-                                                                                              class="button">Inloggen</a>`}
+                        }}">Uitloggen</button>` 
+                        :
+                        html`<a router-link href="/register" class="button">Registreren</a><a router-link href="/login" class="button">Inloggen</a>`}
                 <app-search></app-search>
             </div>`;
     }
