@@ -49,21 +49,21 @@ export class appCreateArticle extends LitElement {
         return html` <h2>Artikel maken</h2>
         <form @submit="${this._sendArticle}">
         <div id="superdiv">
-        <div id="head-category">
+        <div class="inputdiv">
 			<h5 for="head-category" class="topcat"><b>Hoofdcategorie:</b></h5>
 			<select name="head-category" class="topcat" id="head-category" @change="${this._onHeadCategoryChange}" required>
 				<option disabled selected></option>
 				${this._categories.map((hoofdcat) => html`<option value="${hoofdcat.headcatagory}" ?selected="${hoofdcat.headcatagory == this._chosenCategory.headcatagory}">${hoofdcat.headcatagory}</option>`)}
 			</select>
         </div>
-        <div id="sub-category">
+        <div class="inputdiv">
 			<h5 for="sub-category" class="subcat"><b>Subcategorie:</b></h5>
 			<select name="sub-category" class="subcat" id="sub-category" required>
 			    <option disabled selected></option>
 				${this._chosenCategory.subcatagories.map((subcatagorie) => html`<option value="${subcatagorie.id}" ?selected="${subcatagorie.id == parseInt(this._category)}">${subcatagorie.title}</option>`)}
 			</select>
 	    </div>
-	    <div id="title">
+	    <div class="inputdiv">
 			<h5 for="Titel" class="titel"><b>Titel:</b></h5>
 			<input aria-labelledby="titel" type="text" class="titel" id="title" value="${this._title}" required>
 		</div>
@@ -102,7 +102,7 @@ export class appCreateArticle extends LitElement {
                 width: 100%;
                 justify-content: flex-end;
             }
-            #head-category, #sub-category, #title{
+            .inputdiv {
                 padding-right: 10px;
             }
 
