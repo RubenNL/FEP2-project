@@ -87,7 +87,9 @@ export class appCreateArticle extends LitElement {
                 box-sizing: border-box;
                 float: contour;
             }
-
+            #title {
+                width: 400px;
+            }
             #superdiv {
                 display: flex;                
             }
