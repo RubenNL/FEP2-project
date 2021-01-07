@@ -109,19 +109,19 @@ export class appCreateArticle extends LitElement {
             .button {
                 display: inline-block;
                 width: 100px;
-                background: #0066c4;
-                color: #ffffff;
-                cursor: pointer;
-                border: 0;
-                transition: all 0.5s;
-                border-radius: 3px;
-                align-self: flex-end;
-                grid-column: 1;
-                text-align: center;
-                padding: 5px 20px;
-                margin-bottom: 3px;
-                text-decoration: inherit; /* no underline */
-                float: right;
+            background: #0066c4;
+            color: #ffffff;
+            cursor: pointer;
+            border: 0;
+            transition: all 0.5s;
+            border-radius: 3px;
+            align-self: flex-end;
+            grid-column: 1;
+            text-align: center;
+            padding: 5px 20px;
+            margin-bottom: 3px;
+            text-decoration: inherit; /* no underline */
+            float: right;
             }
             lrn-markdown-editor{
                 margin-top: 10px;
