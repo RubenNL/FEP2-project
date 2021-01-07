@@ -1,6 +1,7 @@
 import { css,LitElement, html } from 'lit-element';
 import '@intcreator/markdown-element';
 import './app-404.js';
+import 'fa-icons';
 export class appArtikel extends LitElement {
 	static get properties() {
 		return {
@@ -9,7 +10,8 @@ export class appArtikel extends LitElement {
 			_title: {type:String},
 			_content: {type:String},
 			location: Object,
-			_404: {type:Boolean}
+			_404: {type:Boolean},
+			_bookmarked: {type:Boolean}
 		};
 	}
 	constructor() {
@@ -17,16 +19,32 @@ export class appArtikel extends LitElement {
 		this._content='';
 		this._title='';
 		this._404=false;
+		this._bookmarked=false;
 	}
 	render() {
 		//language=HTML
 		if(this._404) return html`<app-404></app-404>`
 		return html`
-			${window.localStorage.getItem('user') ? html`<a href="#" @click="${this.delete}" title="Delete article">🗑️️</a>
-		<a href="/creator/${this.src}" title="Edit article">✏️</a>` : html``}
-
+			${window.localStorage.getItem('user') ? html`
+				<a tabindex="0" @click="${this.delete}" title="Delete article">🗑️️</a>
+				<a href="/creator/${this.src}" title="Edit article">✏️</a>
+				<a tabindex="0" title="toggle bookmark" @click="${this.bookmark}">
+					${this._bookmarked
+						?html`<fa-icon title="test" class="fas fa-bookmark" path-prefix="/node_modules"/>`
+						:html`<fa-icon title="test" class="far fa-bookmark" path-prefix="/node_modules"/>`
+					}</a>
+			` : html``}
 		<h1>${this._title}</h1>
 		<markdown-element markdown="${this._content}"></markdown-element>`
+	}
+	bookmark() {
+		this._bookmarked=!this._bookmarked;
+		let bookmarks=JSON.parse(window.localStorage.getItem('bookmarks')||'[]')
+		if(this._bookmarked) bookmarks.push(this._src)
+		else bookmarks.splice(bookmarks.indexOf(this._src), 1)
+		window.localStorage.setItem('bookmarks',JSON.stringify(bookmarks))
+		sendAuthenticated('/api/setBookmarks',bookmarks)
+		this.requestUpdate();
 	}
 	delete() {
 		if(!confirm('Weet u zeker dat u dit artikel wilt verwijderen?')) return
@@ -37,6 +55,7 @@ export class appArtikel extends LitElement {
 	}
 	onBeforeEnter(location, commands, router){
 		this.src=location.params.article
+		this._bookmarked=JSON.parse(window.localStorage.getItem('bookmarks')||'[]').includes(this.src)
 	}
 
 	static get styles(){
