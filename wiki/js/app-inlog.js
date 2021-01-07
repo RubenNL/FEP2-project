@@ -33,6 +33,7 @@ export class appInlog extends LitElement {
             </form>`
 
     }
+
     _change(e) {
         this._data[e.target.name]=e.target.value;
     }
@@ -48,11 +49,18 @@ export class appInlog extends LitElement {
         }).then(response=>response.json()).then(response=>{
             if(response.err) alert(response.err)
             else {
-                window.localStorage.setItem('JWT',response.key);
-				sendAuthenticated('/api/getUser').then(user=>window.localStorage.setItem('user',JSON.stringify(user))).then(()=>window.location.pathname='/');
+                window.localStorage.setItem('JWT', response.key);
+                sendAuthenticated('/api/getUser').then(user=>{
+                    if(user.blocked) {
+                        alert('Uw account is geblokkeerd! Neem contact op als dit niet klopt');
+                        window.localStorage.clear()
+                    } else window.localStorage.setItem('user', JSON.stringify(user))
+                }).then(()=>window.location.pathname='/')
             }
+
         });
     }
+
     static get styles() {
         //language=CSS
         return css`
