@@ -25,7 +25,10 @@ export class appInlog extends LitElement {
                 Wachtwoord:
                 <input type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
                 </label>
+            </div>
+            <div id="button">    
                 <input type="submit" value="Login" id="submit">
+                <label id="registerlink">Nieuwe gebruiker? <a href="/register">Registreer nu!</a></label>
             </div>
             </form>`
 
@@ -58,36 +61,46 @@ export class appInlog extends LitElement {
                 
             }
 
-            #inlogformContainer {
+            #inlogformContainer, #button {
                 text-align: left;
                 padding-left: 25%;
             }
-
+            #button{
+                display: flex;
+                align-content: center;
+                font-size: 13px;
+            }
+            #registerlink{
+                align-self: flex-end;
+                padding-left: 125px;
+                margin-top: 1px;
+                margin-bottom: 8px;
+            }
             #inlogformContainer > label > input {
                 text-align: left;
                 margin-top: 10px;
                 margin-bottom: 10px;
-                width: 400px;
                 display: block;
+                width: 400px;
                 border-radius: 4px;
                 padding: 20px;
                 border: 1px solid #ccc;
             }
 
             #submit {
-                width: 200px;
-                height: 25px;
-            
-                display: flex;
-                color: inherit; /* blue colors for links too */
-                text-decoration: inherit; /* no underline */
-                display: inline-block; padding: 5px 15px;
                 background: #0066c4;
                 color: #ffffff;
+                cursor: pointer;
                 border: 0;
-                border-style: solid; border-width: 2px;
-                border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
-                border-radius: 5px;
+                transition: all 0.5s;
+                border-radius: 3px;
+                text-align: center;
+                padding: 5px 10px;
+                margin-bottom: 3px;
+                height: 30px;
+                width: 120px;
+                text-decoration: inherit; /* no underline */
+                float: left;
             }`
     }
 
