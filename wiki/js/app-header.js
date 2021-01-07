@@ -32,7 +32,6 @@ class AppHeader extends LitElement {
             html`<span id="greet" style="opacity:0">Welkom!</span>
                 <a router-link href="/login" class="button">Inloggen</a>`}
                 <app-search id="appsearch"></app-search></div>`
-
     }
 
     static get styles() {
