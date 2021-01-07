@@ -40,6 +40,11 @@ router.setRoutes([
 		action: ()=>import('js/app-create-article.js')
 	},
 	{
+		path: '/users',
+		component: 'app-manage-users',
+		action: ()=>import('js/app-manage-users.js')
+	},
+	{
 		path: '(.*)',
 		component: 'app-404',
 		action: ()=>import('js/app-404.js')

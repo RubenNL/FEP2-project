@@ -46,7 +46,7 @@ export class appCreateArticle extends LitElement {
     }
 
     render() {
-        return html` <h2>Nieuw artikel maken </h2>
+        return html` <h2>Artikel maken</h2>
         <form @submit="${this._sendArticle}">
         <div id="superdiv">
         <div id="head-category">

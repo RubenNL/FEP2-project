@@ -92,11 +92,12 @@ export class appRegister extends LitElement {
 		            <input type="text" name="fullName" id="name" tabindex="4" placeholder="Voer uw naam in." @input="${this._change}" required/>
 				</label>
 				<label for="functie">Functie: 
-				<select name="functie" id="functie" tabindex="5" @change="${this._change}" required/>
-				    <option disabled selected>Kies een optie</option>
-	   			    <option value="student">Student</option>
-                    <option value="auteur">Auteur</option>
-                </select>
+				  <select name="functie" id="functie" @change="${this._change}" required tabindex="5"/>
+					  <option disabled selected>Kies een optie</option>
+					  <option value="admin">Admin</option>
+					  <option value="student">Student</option>
+					  <option value="auteur">Auteur</option>
+          </select>
 				</label>
 				<label for="organisation">Organisatie:
 				    <input type="text" name="orgName" id="organisation" tabindex="6" placeholder="Voer uw organisatie in." @input="${this._change}" required/>
@@ -111,7 +112,6 @@ export class appRegister extends LitElement {
     }
     _onclick(e){
         e.preventDefault()
-
         var password = this.shadowRoot.querySelector('#password').value
         var confirmPassword = this.shadowRoot.querySelector('#confirmpassword').value
         if(password !== confirmPassword){

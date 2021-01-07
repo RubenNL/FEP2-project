@@ -36,6 +36,7 @@ export default {
 				{src:'wiki/js/sendAuthenticated.js',dest:'output'},
 				{src:'wiki/robots.txt',dest:'output'},
 				{src:'node_modules/prismjs/themes/prism.css',dest:'output/node_modules/prismjs/themes'},
+				{src:'node_modules/@fortawesome/fontawesome-free/sprites',dest:'output/node_modules/@fortawesome/fontawesome-free'},
 				...production?[{src:'node_modules/@lrnwebcomponents/simple-icon/lib/svgs',dest:'output'}]:[{src:'node_modules/@lrnwebcomponents/simple-icon/lib/svgs',dest:'output/node_modules/@lrnwebcomponents/simple-icon/lib'}]
 			]
 		}),
