@@ -21,7 +21,11 @@ export class AppBookmarks extends LitElement {
 		//language=HTML;
 		return html`<h2>Bookmarks</h2>
 		<div class="articlecontainer">
-			${this._articles.map((id) => html`<app-article-card id="${id}"/>`)}
+			${
+				this._articles.length>0
+				?this._articles.map((id) => html`<app-article-card id="${id}"/>`)
+				:html`U heeft nog geen artikelen opgeslagen.`
+			}
 		</div>`
 	}
 
