@@ -1,3 +1,4 @@
+const {Op}=require('sequelize');
 let Category;
 addCategory=(head,sub,subid)=>{
 	Category.create({
@@ -7,7 +8,13 @@ addCategory=(head,sub,subid)=>{
 	})
 }
 getCategories=()=>{
-	return Category.findAll().then(data=>{
+	return Category.findAll({
+		where: {
+			id: {
+				[Op.not]: 1688148667
+			}
+		}
+	}).then(data=>{
 		categories={};
 		([...new Set(data.map(item=>item.headcatagory))]).forEach(category=>categories[category]={headcatagory:category,subcatagories:[]})
 		data.forEach(row=>categories[row.headcatagory].subcatagories.push({title:row.name,id:row.id}))
