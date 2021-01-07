@@ -18,12 +18,14 @@ export class AppSearch extends LitElement {
         //language=css
         return css`
             #links {
+                grid-column: 2;
                 display: none;
                 border-radius: 5px;
                 background-color: white;
                 position: relative;
                 z-index: 1;
                 padding: 5px;
+                margin-top: 5px;
                 padding-left: 10px;
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
                 transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
@@ -33,21 +35,50 @@ export class AppSearch extends LitElement {
                 display: block;
             }
 
-            h1 {
-                margin: 1px;
-                font-size: 19px;
-            }`
+            :host {
+                display: grid;
+                grid-template-columns: 10% 90%;
+                width: 250px;
+            }
 
+            input{
+                background: #ddd;
+                grid-column: 2;
+                height: 100%;
+                padding: 0 0 0 6px;
+                border-style: solid;
+                border-width: 1px;
+                border-radius: 0 4px 4px 0;
+                border-left: none;
+            }
+
+            fa-icon {
+                border-right: none;
+                text-align: center;
+                height: 100%;
+                grid-column: 1;
+                background: #ddd;
+                font-size: 17px;
+                border-radius: 4px 0 0 4px;
+                display: inline-grid;
+                justify-content: center;
+                align-items: center;
+                border-style: solid;
+                border-width: 1px;
+                border-color: gray;
+            }
+        `
     }
 
     render() {
         return html`
-			<label for="search"><label>Zoeken:</label></label>
-			<input id="search" @input="${this._onchange}">
-			<div id="links">
-			${this._suggestions.length > 0 ? this._suggestions.map(suggestion => html`<a router-link href="/article/${suggestion.id}">${suggestion.title}</a><br>`) : html`no results found`}
-			</div>
-		`;
+            <fa-icon class="fas fa-search" path-prefix="/node_modules"/></fa-icon>
+            <input autocomplete="off" type="text" id="search" @input="${this._onchange}">
+            <div id="links">
+                ${this._suggestions.length > 0 ? this._suggestions.map(suggestion => html`<a router-link href="/article/${suggestion.id}">${suggestion.title}</a>
+                <br>`) : html`Geen zoekresultaten`}
+            </div>
+        `;
     }
 
     _onchange(e) {

@@ -83,7 +83,7 @@ class AppHeader extends LitElement {
                 background: #0066c4;
                 color: #ffffff;
                 cursor: pointer;
-                width: 165px;
+                width: 225px;
                 border: 0;
                 transition: all 0.5s;
                 border-radius: 3px;
