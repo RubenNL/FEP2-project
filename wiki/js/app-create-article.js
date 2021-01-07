@@ -7,57 +7,126 @@ export class appCreateArticle extends LitElement {
             _categories: {type: Array},
             _title: {type: String},
             _chosenCategory: {type: Object},
-			location: Object,
-			src: {type: String},
-			_content: {type: String},
-			_category: {type:String}
+            location: Object,
+            src: {type: String},
+            _content: {type: String},
+            _category: {type: String}
         }
     }
 
     constructor() {
         super();
-		this._src='';
+        this._src = '';
         this._categories = [];
-        this._chosenCategory = {subcatagories:[],headcatagory:''};
-        this._categoryFetch=fetch(`/api/getCategories`).then(response => response.json()).then(response => {
+        this._chosenCategory = {subcatagories: [], headcatagory: ''};
+        this._categoryFetch = fetch(`/api/getCategories`).then(response => response.json()).then(response => {
             this._categories = response
             console.log(response)
-			return response;
+            return response;
         })
         this._title = '';
-		this._content='';
-		this._category='';
+        this._content = '';
+        this._category = '';
     }
-	onBeforeEnter(location, commands, router){
-		this.src=location.params.article
-		if(!window.localStorage.getItem('JWT')) return commands.redirect('/login');
-	}
-	set src(val) {
-		this._src=val;
-		if(!val) this._src='';
-		if(this._src) fetch(`/api/getArticle/${val}`).then(response=>response.json()).then(response => {
-			this._content = response.data;
-			this._title = response.title;
-			this._category=response.categoryId
-			return this._categoryFetch.then(categories=>categories.filter(category=>category.subcatagories.filter(sub=>sub.id==response.categoryId).length)[0])
-		}).then(topCategory=>this._chosenCategory=topCategory)
-	}
+
+    onBeforeEnter(location, commands, router) {
+        this.src = location.params.article
+        if (!window.localStorage.getItem('JWT')) return commands.redirect('/login');
+    }
+
+    set src(val) {
+        this._src = val;
+        if (!val) this._src = '';
+        if (this._src) fetch(`/api/getArticle/${val}`).then(response => response.json()).then(response => {
+            this._content = response.data;
+            this._title = response.title;
+            this._category = response.categoryId
+            return this._categoryFetch.then(categories => categories.filter(category => category.subcatagories.filter(sub => sub.id == response.categoryId).length)[0])
+        }).then(topCategory => this._chosenCategory = topCategory)
+    }
+
     render() {
-        return html` <h2>Artikeltje maken</h2>
+        return html` <h2>Nieuw artikel maken </h2>
         <form @submit="${this._sendArticle}">
-			<label for="head-category">Kies je hoofdcategorie:</label>
-			<select name="head-category" id="head-category" @change="${this._onHeadCategoryChange}" required>
+        <div id="superdiv">
+        <div id="head-category">
+			<h5 for="head-category" class="topcat"><b>Hoofdcategorie:</b></h5>
+			<select name="head-category" class="topcat" id="head-category" @change="${this._onHeadCategoryChange}" required>
 				<option disabled selected></option>
-				${this._categories.map((hoofdcat) => html`<option value="${hoofdcat.headcatagory}" ?selected="${hoofdcat.headcatagory==this._chosenCategory.headcatagory}">${hoofdcat.headcatagory}</option>`)}
+				${this._categories.map((hoofdcat) => html`<option value="${hoofdcat.headcatagory}" ?selected="${hoofdcat.headcatagory == this._chosenCategory.headcatagory}">${hoofdcat.headcatagory}</option>`)}
 			</select>
-			
-			<label for="sub-category">Kies je subcategorie:</label>
-			<select name="sub-category" id="sub-category" required>
-				${this._chosenCategory.subcatagories.map((subcatagorie) => html`<option value="${subcatagorie.id}" ?selected="${subcatagorie.id==parseInt(this._category)}">${subcatagorie.title}</option>`)}
+        </div>
+        <div id="sub-category">
+			<h5 for="sub-category" class="subcat"><b>Subcategorie:</b></h5>
+			<select name="sub-category" class="subcat" id="sub-category" required>
+			    <option disabled selected></option>
+				${this._chosenCategory.subcatagories.map((subcatagorie) => html`<option value="${subcatagorie.id}" ?selected="${subcatagorie.id == parseInt(this._category)}">${subcatagorie.title}</option>`)}
 			</select>
-			<input aria-labelledby="titel" type="text" id="title" value="${this._title}" placeholder="Titel....." required>
+	    </div>
+	    <div id="title">
+			<h5 for="Titel" class="titel"><b>Titel:</b></h5>
+			<input aria-labelledby="titel" type="text" class="titel" id="title" value="${this._title}" required>
+		</div>
+		<div id="knopdiv">
+			<input type="submit" value="Opslaan" class="button">
+		</div>
+		</div>
 			<lrn-markdown-editor content="${this._content}"></lrn-markdown-editor>
-			<input type="submit" value="Bevestigen">`
+			`
+    }
+
+    static get styles() {
+        //language=CSS
+        return css`
+            div > input, div > select {
+                text-align: left;
+                width: 200px;
+                border-radius: 4px;
+                padding: 5px;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+                float: contour;
+            }
+            #title {
+                width: 400px;
+            }
+            #superdiv {
+                display: flex;                
+            }
+            #superdiv h5{
+                margin-bottom: 0px;
+                margin-top: 10px;
+            }
+            #knopdiv {
+                display: flex;
+                width: 100%;
+                justify-content: flex-end;
+            }
+            #head-category, #sub-category, #title{
+                padding-right: 10px;
+            }
+
+            .button {
+                display: inline-block;
+                width: 100px;
+                background: #0066c4;
+                color: #ffffff;
+                cursor: pointer;
+                border: 0;
+                transition: all 0.5s;
+                border-radius: 3px;
+                align-self: flex-end;
+                grid-column: 1;
+                text-align: center;
+                padding: 5px 20px;
+                margin-bottom: 3px;
+                text-decoration: inherit; /* no underline */
+                float: right;
+            }
+            lrn-markdown-editor{
+                margin-top: 10px;
+            }
+        `
     }
 
     _onHeadCategoryChange(event) {
@@ -70,18 +139,18 @@ export class appCreateArticle extends LitElement {
         })
     }
 
-    _sendArticle(e){
-		e.preventDefault();
-		if(!this.shadowRoot.querySelector('lrn-markdown-editor').content) {
-			alert('Geen content!')
-			return
-		}
-		const data={
-            "title":this.shadowRoot.querySelector('#title').value,
-            "data":this.shadowRoot.querySelector('lrn-markdown-editor').content,
-            "categoryId":this.shadowRoot.querySelector('#sub-category').value,
+    _sendArticle(e) {
+        e.preventDefault();
+        if (!this.shadowRoot.querySelector('lrn-markdown-editor').content) {
+            alert('Geen content!')
+            return
         }
-        sendAuthenticated('/api/saveArticle/'+this._src,data).then(data=>this._src?this._src:data.id).then(id=>window.location.pathname=`/article/${id}`)
+        const data = {
+            "title": this.shadowRoot.querySelector('#title').value,
+            "data": this.shadowRoot.querySelector('lrn-markdown-editor').content,
+            "categoryId": this.shadowRoot.querySelector('#sub-category').value,
+        }
+        sendAuthenticated('/api/saveArticle/' + this._src, data).then(data => this._src ? this._src : data.id).then(id => window.location.pathname = `/article/${id}`)
     }
 }
 
