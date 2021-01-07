@@ -4,34 +4,34 @@ export class AppBookmarks extends LitElement {
 	static get properties() {
 		return {
 			_articles: {type: Array},
-			location: Object
+			location: {type:Object}
 		};
 	}
-
 	constructor() {
 		super();
 		this._articles = [];
-		sendAuthenticated(`/api/getBookmarks`).then(response => response.json()).then(response => {
-			this._articles=response.split(',')
-		})
 	}
-
+	onBeforeEnter(location, commands, router) {
+        if (!window.localStorage.getItem('JWT')) return commands.redirect('/login');
+		else sendAuthenticated(`/api/getBookmarks`).then(response => {
+			this._articles=response;
+		})
+    }
 	render() {
 		//language=HTML;
 		return html`<h2>Bookmarks</h2>
-		<h3>h3</h3>
 		<div class="articlecontainer">
-			${this._articles.map((artikel) => html`<app-article-card id="${artikel.id}"></app-article-card>`)}
+			${this._articles.map((id) => html`<app-article-card id="${id}"/>`)}
 		</div>`
 	}
 
 	static get styles() {
 		// language=css
 		return css`
-            .articlecontainer{
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-            }
+			.articlecontainer{
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+			}
 		`}
 }
 

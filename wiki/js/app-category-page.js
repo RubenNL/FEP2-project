@@ -33,10 +33,10 @@ export class appCategoryPage extends LitElement {
 	static get styles() {
 		// language=css
 		return css`
-            .articlecontainer{
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-            }
+			.articlecontainer{
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+			}
 		`}
 
 	onBeforeEnter(location, commands, router) {
@@ -45,7 +45,6 @@ export class appCategoryPage extends LitElement {
 			this._404=!response;
 			this._subcategoryName = response.name;
 			this._headcategoryName = response.headcatagory;
-			console.log(this._headcategoryName);
 		})
 
 	}
@@ -53,7 +52,6 @@ export class appCategoryPage extends LitElement {
 	set src(val) {
 		fetch(`/api/getArticlesByCategory/${val}`).then(response => response.json()).then(response => {
 			this._articles = response;
-			console.log(this._articles);
 		})
 	}
 }

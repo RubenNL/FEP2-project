@@ -12,7 +12,7 @@ module.exports=sequelize=>{
 		},
 		bookmarks: {
 			type: DataTypes.STRING,
-			defaultValue: ''
+			defaultValue: '[]'
 		}
 	});
 	const Article=sequelize.define("articles",{

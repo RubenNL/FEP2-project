@@ -42,6 +42,11 @@
 	if ('serviceWorker' in navigator) {
 		navigator.serviceWorker.register('/service-worker.js', { scope: '/' });
 	}
+	if(window.localStorage.getItem('user')) {
+		sendAuthenticated('/api/getBookmarks').then(bookmarks=>{
+			window.localStorage.setItem('bookmarks',JSON.stringify(bookmarks))
+		})
+	}
 </script>
 </body>
 </html>

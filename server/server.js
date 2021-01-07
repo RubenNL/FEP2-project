@@ -53,6 +53,10 @@ require('./tables.js')(sequelize).then(()=>{
 				return login(json)
 			case 'getUser':
 				return getUserFromJWT(req.headers.authorization.split(' ')[1]);
+			case 'getBookmarks':
+				return getBookmarks(req.headers.authorization.split(' ')[1]);
+			case 'setBookmarks':
+				return setBookmarks(req.headers.authorization.split(' ')[1],json);
 			case 'updateUser':
 				return adminOnly(req).then(()=>updateUser(queryParts.shift(),json),()=>{return {'err':'no access'}})
 			case 'deleteUser':
