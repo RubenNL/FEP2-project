@@ -76,31 +76,31 @@ export class appRegister extends LitElement {
 			<div id="registerformContainer" class="informationBlock">
 			    <h3>Account information</h3>
 				<label for="email">E-mail: 
-				    <input type="email" name="email" id="email" placeholder="Voer uw email in." @input="${this._change}" required/>
+				    <input type="email" name="email" id="email" tabindex="1" placeholder="Voer uw email in." @input="${this._change}" required/>
 				</label>
 				<label for="password">Wachtwoord: 
-				    <input type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
+				    <input type="password" name="password" id="password" tabindex="2" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
 				</label>
 				<label for="confirmpassword">Confirm wachtwoord: 
-				    <input type="password" name="password" id="confirmpassword" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
+				    <input type="password" name="password" id="confirmpassword" tabindex="3" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
 				</label>
-				<input type="submit" value="Registreren" id="button">
+				<input type="submit" value="Registreren" id="button" tabindex="0">
 			</div>
 			<div id="information" class="informationBlock">
 				<h3>Personal information</h3>
 				<label for="name">Naam:
-		            <input type="text" name="fullName" id="name" placeholder="Voer uw naam in." @input="${this._change}" required/>
+		            <input type="text" name="fullName" id="name" tabindex="4" placeholder="Voer uw naam in." @input="${this._change}" required/>
 				</label>
 				<label for="functie">Functie: 
-				<select name="functie" id="functie" @change="${this._change}" required/>
-					<option disabled selected>Kies een optie</option>
-					<option value="admin">Admin</option>
-					<option value="student">Student</option>
-					<option value="auteur">Auteur</option>
-                </select>
+				  <select name="functie" id="functie" @change="${this._change}" required tabindex="5"/>
+					  <option disabled selected>Kies een optie</option>
+					  <option value="admin">Admin</option>
+					  <option value="student">Student</option>
+					  <option value="auteur">Auteur</option>
+          </select>
 				</label>
 				<label for="organisation">Organisatie:
-				    <input type="text" name="orgName" id="organisation" placeholder="Voer uw organisatie in." @input="${this._change}" required/>
+				    <input type="text" name="orgName" id="organisation" tabindex="6" placeholder="Voer uw organisatie in." @input="${this._change}" required/>
 				</label>
 			</div>
         </form>`
