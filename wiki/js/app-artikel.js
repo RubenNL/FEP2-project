@@ -30,8 +30,8 @@ export class appArtikel extends LitElement {
 				<a href="/creator/${this.src}" title="Edit article">✏️</a>
 				<a tabindex="0" title="toggle bookmark" @click="${this.bookmark}">
 					${this._bookmarked
-						?html`<fa-icon title="test" class="fas fa-bookmark" path-prefix="/node_modules"/>`
-						:html`<fa-icon title="test" class="far fa-bookmark" path-prefix="/node_modules"/>`
+						?html`<fa-icon class="fas fa-bookmark" path-prefix="/node_modules"/>`
+						:html`<fa-icon class="far fa-bookmark" path-prefix="/node_modules"/>`
 					}</a>
 			` : html``}
 		<h1>${this._title}</h1>
