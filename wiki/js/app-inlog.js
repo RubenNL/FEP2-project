@@ -33,7 +33,6 @@ export class appInlog extends LitElement {
             </form>`
 
     }
-
     _change(e) {
         this._data[e.target.name]=e.target.value;
     }
