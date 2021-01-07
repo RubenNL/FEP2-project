@@ -26,8 +26,8 @@ export class appArtikel extends LitElement {
 		if(this._404) return html`<app-404></app-404>`
 		return html`
 			${window.localStorage.getItem('user') ? html`
-				<a tabindex="0" @click="${this.delete}" title="Delete article">🗑️️</a>
-				<a href="/creator/${this.src}" title="Edit article">✏️</a>
+				<a tabindex="0" @click="${this.delete}" title="Delete article"><fa-icon class="fas fa-trash-alt" path-prefix="/node_modules"/>️</a>
+				<a href="/creator/${this.src}" title="Edit article"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>
 				<a tabindex="0" title="toggle bookmark" @click="${this.bookmark}">
 					${this._bookmarked
 						?html`<fa-icon class="fas fa-bookmark" path-prefix="/node_modules"/>`
@@ -60,7 +60,8 @@ export class appArtikel extends LitElement {
 
 	static get styles(){
 		//language=CSS
-		return css`:host > a {
+		return css`
+			:host > a {
             margin: auto;
             display: flex;
             float: right;
@@ -68,6 +69,17 @@ export class appArtikel extends LitElement {
 			font-size: 30px;
             text-decoration: inherit;
         }
+			fa-icon {
+				color: #808080;
+				width: 1em;
+				height: 1em;
+				padding: 0 3px;
+				cursor: pointer;
+			}
+
+			fa-icon:hover {
+				transform: scale(1.3);
+			}
 `
 	}
 
