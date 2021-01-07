@@ -34,7 +34,7 @@ let selector;
 require('./tables.js')(sequelize).then(()=>{
 	const {addCategory,getCategories,getCategory} = require('./category.js')(sequelize);
 	const {register,login,getUserFromJWT,getUsers,updateUser,deleteUser} = require('./loginsignup.js')(sequelize)
-	const {getArticle,saveArticle,search,getArticlesByCategory} = require('./article.js')(sequelize)
+	const {getArticle,saveArticle,search,getArticlesByCategory,getArticlePreview} = require('./article.js')(sequelize)
 	const adminOnly=req=>getUserFromJWT(req.headers.authorization.split(' ')[1]).then(user=>{
 		if(user.blocked) throw Error();
 		if(user.functie!="admin") throw Error();
@@ -53,6 +53,10 @@ require('./tables.js')(sequelize).then(()=>{
 				return login(json)
 			case 'getUser':
 				return getUserFromJWT(req.headers.authorization.split(' ')[1]);
+			case 'getBookmarks':
+				return getBookmarks(req.headers.authorization.split(' ')[1]);
+			case 'setBookmarks':
+				return setBookmarks(req.headers.authorization.split(' ')[1],json);
 			case 'updateUser':
 				return adminOnly(req).then(()=>updateUser(queryParts.shift(),json),()=>{return {'err':'no access'}})
 			case 'deleteUser':
@@ -61,6 +65,8 @@ require('./tables.js')(sequelize).then(()=>{
 				return adminOnly(req).then(()=>getUsers(),()=>{return {'err':'no access'}});
 			case 'getArticle':
 				return getArticle(queryParts.join('/'))
+			case 'getArticlePreview':
+				return getArticlePreview(queryParts.join('/'))
 			case 'saveArticle':
 				return noStudents(req).then(()=>saveArticle(queryParts.shift(),json),()=>{return {'err':'no access'}});
 			case 'getCategory':

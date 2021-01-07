@@ -12,7 +12,6 @@ export class appSidebar extends LitElement {
 		this._categories = [];
 		fetch(`/api/getCategories`).then(response => response.json()).then(response => {
 			this._categories = response
-			console.log(response)
 		})
 		this.classList.add('bg-container');
 	}
@@ -96,7 +95,6 @@ export class appSidebar extends LitElement {
 				return html`
 					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>
 					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
-					<a router-link href="/404" class="button">Categoriën bewerken</a>
 					<a router-link href="/users" class="button">Users bewerken</a>`;
 		}
 	}
