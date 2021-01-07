@@ -22,13 +22,19 @@ export class appArtikel extends LitElement {
 		//language=HTML
 		if(this._404) return html`<app-404></app-404>`
 		return html`
-			${window.localStorage.getItem('user') ? html`<a href="/delete/${this.src}" title="Delete article">🗑️️</a>
+			${window.localStorage.getItem('user') ? html`<a href="#" @click="${this.delete}" title="Delete article">🗑️️</a>
 		<a href="/creator/${this.src}" title="Edit article">✏️</a>` : html``}
 
 		<h1>${this._title}</h1>
 		<markdown-element markdown="${this._content}"></markdown-element>`
 	}
-
+	delete() {
+		if(!confirm('Weet u zeker dat u dit artikel wilt verwijderen?')) return
+		const data={
+            "categoryId":1688148667
+        }
+        sendAuthenticated('/api/saveArticle/'+this._src,data).then(()=>window.location.pathname=`/`)
+	}
 	onBeforeEnter(location, commands, router){
 		this.src=location.params.article
 	}
