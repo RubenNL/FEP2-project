@@ -146,12 +146,13 @@ export class appManageUsers extends LitElement {
                     <h2>Auteurs</h2>
                     ${this._autors.map((user) => html`
                         <li>${user.fullName}
+                            ${(user.email === JSON.parse(window.localStorage.getItem('user')).email)? html`` : html` <!--Students and authors can't see this page. -->
                             <span id="icon-holder">
                                 ${this.checkAutor(user)}
                                 ${this.checkBlocked(user)}
                                 ${this.checkAdmin(user)}
                                 <fa-icon title="Verwijder gebruiker" @click="${() => {this.deleteUser(user)}}" class="fas fa-trash-alt"></fa-icon>
-                            </span>
+                            </span>`}
                         </li>
                     `)}
                 </ul>
@@ -232,6 +233,10 @@ export class appManageUsers extends LitElement {
             fa-icon:hover {
                 transform: scale(1.3);
             }
+            #test{
+             display: none;   
+            }
+            
         `;
     }
 }

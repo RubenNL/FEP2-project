@@ -2,6 +2,14 @@ const removeMd = require('remove-markdown');
 const {Op}=require('sequelize');
 let Article;
 getArticle=id=>Article.findByPk(id)
+getArticlePreview=id=>{
+	return getArticle(id).then(article=>JSON.parse(JSON.stringify(article))).then(article=>{
+		article.preview=removeMd(article.data.split('\n',1)[0])
+		delete article.data
+		debugger
+		return article
+	})
+}
 saveArticle=(id,json)=>{
 	if(id) return Article.update(json,{where:{id:id}})
 	else return Article.create(json)
@@ -31,17 +39,10 @@ getArticlesByCategory=categoryId=>Article.findAll({
 	where: {
 		categoryId: categoryId
 	},
-	attributes: ['id','title','data']
-}).then(articles=>{
-	articles=JSON.parse(JSON.stringify(articles))
-	return articles.map(article=>{
-		article.preview=removeMd(article.data.split('\n',1)[0])
-		delete article.data
-		return article
-	})
-})
+	attributes: ['id']
+}).then(articles=>articles.map(article=>article.id))
 module.exports=sequelize=>{
 	Article=sequelize.models.articles;
 	JSON.parse(require('fs').readFileSync('initialArticles.json','utf8')).forEach(article=>saveArticle(null,article))
-	return {getArticle,saveArticle,search,getArticlesByCategory}
+	return {getArticle,saveArticle,search,getArticlesByCategory,getArticlePreview}
 } 
