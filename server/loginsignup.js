@@ -35,6 +35,8 @@ getUserFromJWT=key=>{
 getUsers=()=>User.findAll();
 updateUser=(email,changes)=>User.update(changes,{where:{email:email}})
 deleteUser=email=>User.destroy({where:{email:email}})
+getBookmarks=key=>getUserFromJWT(key).then(user=>user.bookmarks)
+setBookmarks=(key,bookmarks)=>getUserFromJWT(key).then(user=>User.update({bookmarks:bookmarks},
 module.exports=sequelize=>{
 	User=sequelize.models.users;
 	JSON.parse(require('fs').readFileSync('initialUsers.json','utf8')).forEach(user=>User.create(user))

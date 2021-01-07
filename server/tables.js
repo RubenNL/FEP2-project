@@ -9,6 +9,10 @@ module.exports=sequelize=>{
 		blocked: {
 			type: DataTypes.BOOLEAN,
 			defaultValue: false
+		},
+		bookmarks: {
+			type: DataTypes.STRING,
+			defaultValue: ''
 		}
 	});
 	const Article=sequelize.define("articles",{
