@@ -33,10 +33,10 @@ export class appManageUsers extends LitElement {
     checkBlocked(user) {
         if (user.blocked) {
             return html`
-                <fa-icon @click="${(e) => this.toggleBlocked(user, e.target)}" class="fas fa-ban blocked"></fa-icon>`
+                <fa-icon title="Blokkeer gebruiker" @click="${(e) => this.toggleBlocked(user, e.target)}" class="fas fa-ban blocked"></fa-icon>`
         } else {
             return html`
-                <fa-icon @click="${(e) => this.toggleBlocked(user, e.target)}" class="fas fa-ban"></fa-icon>`
+                <fa-icon title="Blokkeer gebruiker" @click="${(e) => this.toggleBlocked(user, e.target)}" class="fas fa-ban"></fa-icon>`
         }
     }
 
@@ -50,10 +50,10 @@ export class appManageUsers extends LitElement {
     checkAdmin(user) {
         if (user.functie === "admin") {
             return html`
-                <fa-icon @click="${(e) => this.toggleAdmin(user, e.target)}" class="fas user-shield admin"></fa-icon>`
+                <fa-icon title="Maak gebruiker auteur" @click="${(e) => this.toggleAdmin(user, e.target)}" class="fas user-shield admin"></fa-icon>`
         } else {
             return html`
-                <fa-icon @click="${(e) => this.toggleAdmin(user, e.target)}" class="fas user-shield"></fa-icon>`
+                <fa-icon title="Maak gebruiker administrator" @click="${(e) => this.toggleAdmin(user, e.target)}" class="fas user-shield"></fa-icon>`
         }
     }
 
@@ -81,11 +81,11 @@ export class appManageUsers extends LitElement {
     checkAutor(user) {
         if (user.functie === "auteur") {
             return html`
-                <fa-icon @click="${() => this.toggleToStudent(user).then(() => this.requestUpdate())}"
+                <fa-icon title="Maak gebruiker student" @click="${() => this.toggleToStudent(user).then(() => this.requestUpdate())}"
                          class="fas fa-pencil-alt autor"></fa-icon>`
         } else {
             return html`
-                <fa-icon @click="${() => this.toggleToAutor(user).then(() => this.requestUpdate())}"
+                <fa-icon title="Maak gebruiker auteur" @click="${() => this.toggleToAutor(user).then(() => this.requestUpdate())}"
                          class="fas fa-pencil-alt"></fa-icon>`
         }
     }
@@ -117,7 +117,6 @@ export class appManageUsers extends LitElement {
         } else {
             if (confirm("Weet u zeker dat u " + user.fullName + " wilt verwijderen? \n Dit kunt u niet ongedaan maken.")) {
                 if (user.functie === "auteur") {
-                    console.log("De click heeft plaatsgevonden")
                     delete this._autors[this._autors.indexOf(user)]
                 } else {
                     delete this._students[this._students.indexOf(user)]
@@ -138,7 +137,7 @@ export class appManageUsers extends LitElement {
                         <li>${user.fullName}<span id="icon-holder">
                             ${this.checkAutor(user)}
                             ${this.checkBlocked(user)}
-                            <fa-icon @click="${() => this.deleteUser(user)}" class="fas fa-trash-alt"></fa-icon>
+                            <fa-icon title="Verwijder gebruiker" @click="${() => this.deleteUser(user)}" class="fas fa-trash-alt"></fa-icon>
                             </span>
                         </li>
                     `)}
@@ -151,9 +150,7 @@ export class appManageUsers extends LitElement {
                                 ${this.checkAutor(user)}
                                 ${this.checkBlocked(user)}
                                 ${this.checkAdmin(user)}
-                                <fa-icon @click="${() => {
-                                    this.deleteUser(user)
-                                }}" class="fas fa-trash-alt"></fa-icon>
+                                <fa-icon title="Verwijder gebruiker" @click="${() => {this.deleteUser(user)}}" class="fas fa-trash-alt"></fa-icon>
                             </span>
                         </li>
                     `)}
@@ -195,12 +192,18 @@ export class appManageUsers extends LitElement {
                 background-color: #f2f2f2;
             }
 
+            li:hover #icon-holder{
+                transition: 0.4s all ease-in-out;
+                opacity: 1;
+            }
+
             .sub-item {
                 padding-left: 10px;
             }
 
             #icon-holder {
                 float: right;
+                opacity: 0.2;
             }
 
             .autor {
