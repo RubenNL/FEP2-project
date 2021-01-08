@@ -73,7 +73,7 @@ export class AppSearch extends LitElement {
     render() {
         return html`
             <fa-icon class="fas fa-search" path-prefix="/node_modules"></fa-icon>
-            <input autocomplete="off" type="text" id="search" @input="${this._onchange}">
+            <input aria-label="Zoeken:" autocomplete="off" type="text" id="search" @input="${this._onchange}">
             <div id="links">
                 ${this._suggestions.length > 0 ? this._suggestions.map(suggestion => html`<a router-link href="/article/${suggestion.id}">${suggestion.title}</a>
                 <br>`) : html`Geen zoekresultaten`}

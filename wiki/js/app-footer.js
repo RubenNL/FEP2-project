@@ -50,7 +50,7 @@ export class appFooter extends LitElement {
         super();
         this._avansLink = { src: "https://www.avans.nl/"};
         this._hboiLink = { src: "https://www.hbo-i.nl/"};
-        this._githubImage = { src: "/images/github.png"};
+        this._githubImage = { src: "/images/github_50px.webp"};
         this._githubLink = { src: "https://github.com/HU-SD-SV2PRFED-studenten-2021/prfed_2021-v2b-v"};
         this._huLink = { src: "https://hu/nl"};
         this._copyrightText = "© 2020 - Team V2B-5";
