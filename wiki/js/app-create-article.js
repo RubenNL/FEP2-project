@@ -64,7 +64,7 @@ export class appCreateArticle extends LitElement {
 	    </div>
 	    <div class="inputdiv">
 			<h5 for="Titel" class="titel"><b>Titel:</b></h5>
-			<input aria-labelledby="titel" type="text" class="titel" id="title" value="${this._title}" required>
+			<input aria-labelledby="titel" type="text" class="titel" id="title" value="${this._title}" maxlength="30" required>
 		</div>
 		<div id="knopdiv">
 			<input type="submit" value="Opslaan" class="button">

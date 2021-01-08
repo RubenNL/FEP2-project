@@ -6,7 +6,7 @@ getArticlePreview=id=>{
 	return getArticle(id).then(article=>JSON.parse(JSON.stringify(article))).then(article=>{
 		article.preview=removeMd(article.data.split('\n',1)[0])
 		delete article.data
-		debugger
+		if(article.preview.length>40) article.preview=article.preview.substring(0,40)+'...'
 		return article
 	})
 }
