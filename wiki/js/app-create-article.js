@@ -21,7 +21,6 @@ export class appCreateArticle extends LitElement {
         this._chosenCategory = {subcatagories: [], headcatagory: ''};
         this._categoryFetch = fetch(`/api/getCategories`).then(response => response.json()).then(response => {
             this._categories = response
-            console.log(response)
             return response;
         })
         this._title = '';
@@ -131,12 +130,8 @@ export class appCreateArticle extends LitElement {
 
     _onHeadCategoryChange(event) {
         this._categories.forEach(cat => {
-            console.log(event.target.value)
-            if (cat.headcatagory === event.target.value) {
-                this._chosenCategory = cat;
-                console.log(this._chosenCategory)
-            }
-        })
+			if (cat.headcatagory === event.target.value) this._chosenCategory = cat
+		})
     }
 
     _sendArticle(e) {

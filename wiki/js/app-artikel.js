@@ -1,5 +1,5 @@
 import { css,LitElement, html } from 'lit-element';
-import '@intcreator/markdown-element';
+import '@lrnwebcomponents/md-block/md-block.js';
 import './app-404.js';
 import 'fa-icons';
 export class appArtikel extends LitElement {
@@ -35,7 +35,7 @@ export class appArtikel extends LitElement {
 					}</a>
 			` : html``}
 		<h1>${this._title}</h1>
-		<markdown-element markdown="${this._content}"></markdown-element>`
+		${this._content?html`<md-block markdown="${this._content}"></md-block>`:html``}`
 	}
 	bookmark() {
 		this._bookmarked=!this._bookmarked;
