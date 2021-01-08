@@ -21,7 +21,7 @@
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
-    "@intcreator/markdown-element": "^0.3.3",
+    "@lrnwebcomponents/md-block": "^3.0.0",
     "@lrnwebcomponents/lrn-markdown-editor": "^2.8.0",
     "@rollup/plugin-node-resolve": "^11.0.1",
     "@vaadin/router": "^1.7.2",
