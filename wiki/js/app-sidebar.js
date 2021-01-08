@@ -95,7 +95,7 @@ export class appSidebar extends LitElement {
 				return html`
 					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>
 					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
-					<a router-link href="/users" class="button">Users bewerken</a>`;
+					<a router-link href="/users" class="button">Gebruikers beheren</a>`;
 		}
 	}
 

@@ -24,7 +24,7 @@ class AppHeader extends LitElement {
             html`<span id="greet">Welkom ${JSON.parse(window.localStorage.getItem('user')).fullName.split(' ')[0]}!</span>
                     <a class="button" id="logout" @click="${() => {
                 window.localStorage.clear();
-                window.location.reload();
+                window.location.pathname="/";
             }}">Uitloggen</a>`
             
             : //Niet ingelogd

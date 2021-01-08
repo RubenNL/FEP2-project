@@ -26,8 +26,10 @@ export class appArtikel extends LitElement {
 		if(this._404) return html`<app-404></app-404>`
 		return html`
 			${window.localStorage.getItem('user') ? html`
-				<a tabindex="0" @click="${this.delete}" title="Delete article"><fa-icon class="fas fa-trash-alt" path-prefix="/node_modules"/>️</a>
-				<a href="/creator/${this.src}" title="Edit article"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>
+				${JSON.parse(window.localStorage.getItem('user')).functie!="student"?html`
+					<a tabindex="0" @click="${this.delete}" title="Delete article"><fa-icon class="fas fa-trash-alt" path-prefix="/node_modules"/></a>
+					<a href="/creator/${this.src}" title="Edit article"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>`
+				:html``}
 				<a tabindex="0" title="toggle bookmark" @click="${this.bookmark}">
 					${this._bookmarked
 						?html`<fa-icon class="fas fa-bookmark" path-prefix="/node_modules"/>`

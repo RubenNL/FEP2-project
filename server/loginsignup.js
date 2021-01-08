@@ -14,7 +14,7 @@ register=data=>{
 	delete data.password;
 	return User.create(data).then(jane=>{return {}}).catch(err=>{
 		console.log(err);
-		return {err:"failed to create user"}
+		return {err:"Account bestaat al!"}
 	})
 };
 login=data=>{

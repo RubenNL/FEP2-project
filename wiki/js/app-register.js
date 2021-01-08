@@ -94,7 +94,7 @@ export class appRegister extends LitElement {
 		            <input type="text" name="fullName" id="name" tabindex="4" placeholder="Voer uw naam in." @input="${this._change}" required/>
 				</label>
 				<label for="functie">Functie: 
-				  <select name="functie" id="functie" @change="${this._change}" required tabindex="5"/>
+				  <select name="functie" id="functie" @change="${this._change}" required tabindex="5">
 					  <option disabled selected>Kies een optie</option>
 					  <option value="admin">Admin</option>
 					  <option value="student">Student</option>
@@ -118,7 +118,7 @@ export class appRegister extends LitElement {
         var password = this.shadowRoot.querySelector('#password').value
         var confirmPassword = this.shadowRoot.querySelector('#confirmpassword').value
         if(password !== confirmPassword){
-            alert('De gegevens kloppen niet!')
+            alert('Wachtwoorden komen niet overeen!')
             return;
         }
 
