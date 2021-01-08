@@ -11,8 +11,8 @@ class AppHeader extends LitElement {
     render() {
         //language=HTML
         return html`
-            <a router-link href="/">
-                <img src="/images/logo_192px.png" alt="" width=100px height=100px>
+            <a router-link href="/" aria-label="Homepage">
+                <img src="/images/logo_100px.webp" alt="" width=100px height=100px>
                 <div class="logo-title">
                     <h1>Open ICT - Billy 2.0</h1>
                     <h2>De wiki voor en door HBO-ICT studenten.</h2>
