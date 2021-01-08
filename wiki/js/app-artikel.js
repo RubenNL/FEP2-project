@@ -22,7 +22,6 @@ export class appArtikel extends LitElement {
 		this._bookmarked=false;
 	}
 	render() {
-		console.log(this._content)
 		//language=HTML
 		if(this._404) return html`<app-404></app-404>`
 		return html`
