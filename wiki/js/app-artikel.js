@@ -22,6 +22,7 @@ export class appArtikel extends LitElement {
 		this._bookmarked=false;
 	}
 	render() {
+		console.log(this._content)
 		//language=HTML
 		if(this._404) return html`<app-404></app-404>`
 		return html`
@@ -35,7 +36,7 @@ export class appArtikel extends LitElement {
 					}</a>
 			` : html``}
 		<h1>${this._title}</h1>
-		<md-block markdown="${this._content}"></md-block>`
+		${this._content?html`<md-block markdown="${this._content}"></md-block>`:html``}`
 	}
 	bookmark() {
 		this._bookmarked=!this._bookmarked;
