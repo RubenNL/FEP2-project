@@ -91,6 +91,10 @@ export class appArtikel extends LitElement {
 			this._404=!response;
 			this._content = response.data;
 			this._title = response.title;
+		}).catch(()=>{
+			this._404=true;
+			this._content='';
+			this._title='';
 		})
 	}
 	get src() {
