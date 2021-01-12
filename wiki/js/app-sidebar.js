@@ -35,17 +35,25 @@ export class appSidebar extends LitElement {
                 padding-bottom: 10px;
             }
             .side-nav-sub {
+				display:none;
                 padding-left: 0px;
                 list-style-position: inside;
                 list-style-type:none;
                 margin-bottom:15px;
             }
+            .head-item:target+.side-nav-sub, .side-nav-sub:target,
+			.head-item:focus+.side-nav-sub, .side-nav-sub:focus,
+			.head-item:active+.side-nav-sub, .side-nav-sub:active,
+			.side-nav-sub.active {
+				display:unset
+			}
 
             .head-item {
                 font-size: 16px;
                 font-weight: bold;
-                margin-top:0px;
-                margin-bottom:5px;
+				padding-top: 0px;
+				padding-bottom: 5px;
+				margin: 0px;
             }
 
             .sub-item > a {
@@ -110,7 +118,7 @@ export class appSidebar extends LitElement {
 				<ul id="side-nav">
 					${this._categories.map((hoofdcat) => html`
 						<li>
-							<h3 class="head-item">${hoofdcat.headcatagory}</h3>
+							<h3 class="head-item" tabindex="0">${hoofdcat.headcatagory}</h3>
 							<ul class="side-nav-sub">${hoofdcat.subcatagories.map(sub => html`
 								<li class="sub-item"><a router-link href="/category/${sub.id}">${sub.title}</a></li>`)}
 							</ul>
