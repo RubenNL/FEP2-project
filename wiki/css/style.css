@@ -1,6 +1,15 @@
-html {
-    background-color: #F9F9F9;
+:root {
+    --button-blue: #0066C4;
+    --white: #ffffff;
+    --blackground: #23272a;
+    --blackground2: #2c2f33;
+    --background: #F9F9F9;
 }
+
+html {
+    background-color: var(--blackground);
+}
+
 
 html,
 body{
