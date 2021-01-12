@@ -21,17 +21,17 @@ export class appSidebar extends LitElement {
 		return css`
             :host {
                 min-height: 100%;
-                color: #383838;
+                color: var(--text-color);
             }
 
             #side-nav {
                 list-style-type: none;
                 padding-left: 0px;
-                color: #383838;
+                color: var(--text-color);
             }
             #side-nav-sub > a {
                 text-decoration: none;
-                color: #383838;
+                color: var(--text-color);
                 padding-bottom: 10px;
             }
             .side-nav-sub {
@@ -57,10 +57,10 @@ export class appSidebar extends LitElement {
                 text-decoration: none;
                 list-style-type: square;
                 font-size: 13px;
-                color: #383838;
+                color: var(--text-color);
             }
             .sub-item a:hover{
-                background-color: #f2f2f2;
+                background-color: var(--menu-hover);
             }
 
             .button{

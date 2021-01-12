@@ -27,7 +27,7 @@ export class appFooter extends LitElement {
         //language=CSS
         return css`:host {
             height: 150px;
-            background-color: #fff;
+            background-color: var(--bg-block);
             padding: 10px;
             display: block;
             border-radius: 5px; 

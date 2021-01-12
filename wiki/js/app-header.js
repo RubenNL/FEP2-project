@@ -20,8 +20,8 @@ class AppHeader extends LitElement {
             </a>
             <div class="search-container">
                 ${window.localStorage.getItem('user') ? 
-            //wel ingelogd.
-            html`<span id="greet">Welkom ${JSON.parse(window.localStorage.getItem('user')).fullName.split(' ')[0]}!</span>
+            //wel ingelogd
+            html`<span id="greet">Welkom ${JSON.parse(window.localStorage.getItem('user')).fullName.split(' ')[0]}! <fa-icon @click="${() => (document.querySelector("html").classList.toggle("darkMode"))}" class="fas fa-adjust" path-prefix="/node_modules"/></fa-icon></span>
                     <a class="button" id="logout" @click="${() => {
                 window.localStorage.clear();
                 window.location.pathname="/";
@@ -29,7 +29,7 @@ class AppHeader extends LitElement {
             
             : //Niet ingelogd
             
-            html`<span id="greet" style="opacity:0">Welkom!</span>
+            html`<span id="greet"><fa-icon class="fas fa-adjust"  @click="${() => (document.querySelector("html").classList.toggle("darkMode"))} path-prefix="/node_modules"/></fa-icon></span>
                 <a router-link href="/login" class="button">Inloggen</a>`}
                 <app-search id="appsearch"></app-search></div>`
     }
@@ -42,7 +42,8 @@ class AppHeader extends LitElement {
                 flex-direction: row;
                 justify-content: space-between;
                 height: 125px;
-                background-color: lightgrey;
+                background-color: var(--button-blue);
+                color: var(--text-color);
                 padding: 10px;
                 border-radius: 5px;
             }
@@ -81,7 +82,7 @@ class AppHeader extends LitElement {
 
             .search-container > .button {
                 background: #0066c4;
-                color: #ffffff;
+                color: var(--text-color);
                 cursor: pointer;
                 width: 225px;
                 border: 0;
