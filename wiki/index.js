@@ -59,6 +59,7 @@ import "js/app-header.js"
 import "js/app-sidebar.js"
 import "js/app-search.js"
 import "js/app-footer.js"
+import "js/app-button.js"
 
 import 'css/bootstrap.min.css'
 import 'css/style.css'
