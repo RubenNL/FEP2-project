@@ -70,7 +70,12 @@ export class appArtikel extends LitElement {
 			margin-right: 40px;
 			font-size: 30px;
             text-decoration: inherit;
-        }
+        	}
+			
+            fa-icon:focus,
+            a:focus{
+                outline:none;
+            }
 			fa-icon {
 				color: #808080;
 				width: 1em;
