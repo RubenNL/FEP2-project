@@ -10,6 +10,11 @@ Iedere rol binnen onze wiki heeft zijn eigen functionaliteiten en iedere rol kan
 **Auteur:** Een auteur kan artikelen schrijven.  
 **Admin:** Een admin kan rollen veranderen binnen de website.  
 
+### Testaccounts
+Email: auteur@tester.nl ; wachtwoord: tester
+Email: admin@tester.nl ; wachtwoord: tester
+
+
 ### Technieken
 Het doel van het project is een Wiki bouwen aan de hand van web-components, lit-element en state-management.  
 
