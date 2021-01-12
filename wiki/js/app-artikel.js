@@ -63,6 +63,10 @@ export class appArtikel extends LitElement {
 	static get styles(){
 		//language=CSS
 		return css`
+			:host{
+				color: var(--text-color);
+			}
+			
 			:host > a {
             margin: auto;
             display: flex;

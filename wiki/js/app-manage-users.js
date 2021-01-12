@@ -165,7 +165,7 @@ export class appManageUsers extends LitElement {
         return css`
             :host {
                 min-height: 100%;
-                color: #383838;
+                color: var(--text-color);
             }
 
             #flex-container {

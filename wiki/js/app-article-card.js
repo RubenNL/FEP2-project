@@ -29,7 +29,7 @@ export class AppArticleCard extends LitElement {
         //language=CSS
         return css`
 			:host{
-                background-color: #fff;
+                background-color: var(--bg-block);
                 width: auto;
                 height: auto;
                 box-sizing: border-box;
@@ -43,11 +43,13 @@ export class AppArticleCard extends LitElement {
             a {
 				text-decoration:none;
 			}
-            .article:hover{
+			
+            :host:hover{
                 -webkit-font-smoothing: subpixel-antialiased;
                 transform: translate3d(0%, 0%, 0) scale(1.02, 1.02);
                 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 			}
+			
             .article > h4{
                 margin-top:0px;
                 margin-bottom:10px;
@@ -60,7 +62,7 @@ export class AppArticleCard extends LitElement {
 
             .article > *{
                 text-align: left;
-                color:#000;
+                color:var(--text-color);
             }
             #toggleBookmark {
 				float:right;

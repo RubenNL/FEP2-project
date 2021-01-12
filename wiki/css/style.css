@@ -1,18 +1,27 @@
 :root {
+    --bg-back: #F9F9F9;
+    --bg-block: #FFF;
+    --text-color: #383838;
     --button-blue: #0066C4;
-    --white: #ffffff;
-    --blackground: #23272a;
-    --blackground2: #2c2f33;
-    --background: #F9F9F9;
+    --ct-background: lightgray;
+    --menu-hover: #f2f2f2;
+}
+
+.darkMode{
+    --text-color: #ffffff;
+    --bg-back: #23272a;
+    --bg-block: #2c2f33;
+    --ct-background: darkblue;
+    --menu-hover: #47494d;
 }
 
 html {
-    background-color: var(--blackground);
+    background-color: var(--bg-back);
 }
 
 .skip-to-content-link {
-    background: #0066C4;
-    color: #ffffff;
+    background: var(--button-blue);
+    color: var(--text-color);
     text-decoration: inherit; /* no underline */
     height: 30px;
     left: 50%;
@@ -55,7 +64,7 @@ body{
 
 .bg-container{
 	display:block;
-	background-color:#fff;
+	background-color: var(--bg-block);
 	border-radius:5px;
 	padding:10px;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -64,7 +73,7 @@ body{
 .sidebar,
 .content {
     /*height:500px;*/
-    background-color: lightgrey;
+    background-color: var(--ct-background);
     padding: 10px;
 }
 

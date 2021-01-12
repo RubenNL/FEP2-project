@@ -21,7 +21,7 @@ class AppHeader extends LitElement {
             <div class="search-container">
                 ${window.localStorage.getItem('user') ? 
             //wel ingelogd
-            html`<span id="greet">Welkom ${JSON.parse(window.localStorage.getItem('user')).fullName.split(' ')[0]}! <fa-icon class="fas fa-adjust" path-prefix="/node_modules"/></fa-icon></span>
+            html`<span id="greet">Welkom ${JSON.parse(window.localStorage.getItem('user')).fullName.split(' ')[0]}! <fa-icon @click="${() => (document.querySelector("html").classList.toggle("darkMode"))}" class="fas fa-adjust" path-prefix="/node_modules"/></fa-icon></span>
                     <a class="button" id="logout" @click="${() => {
                 window.localStorage.clear();
                 window.location.pathname="/";
@@ -43,6 +43,7 @@ class AppHeader extends LitElement {
                 justify-content: space-between;
                 height: 125px;
                 background-color: var(--button-blue);
+                color: var(--text-color);
                 padding: 10px;
                 border-radius: 5px;
             }
@@ -81,7 +82,7 @@ class AppHeader extends LitElement {
 
             .search-container > .button {
                 background: #0066c4;
-                color: #ffffff;
+                color: var(--text-color);
                 cursor: pointer;
                 width: 225px;
                 border: 0;
