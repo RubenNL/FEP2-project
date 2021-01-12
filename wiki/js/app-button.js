@@ -5,24 +5,47 @@ export class appButton extends LitElement {
 		return {
 			href : {type: String, reflect:true},
 			width: {type: String, reflect:true},
-			padding: {type: String, reflect:true}
+			padding: {type: String, reflect:true},
+			bgColor: {type:String, reflect:true},
+			color: {type:String, reflect:true},
+			fontSize: {type:String, reflect:true}
 		};
 	}
 
+	constructor() {
+		super();
+	}
+
 	render() {
-		let customWidth = this.width ? this.width : 'unset';
+		let width = this.width ? this.width : 'unset';
+		let padding = this.padding ? this.padding : '7px 25px';
+		let bg = this.bgColor ? this.bgColor : '#0066c4';
+		let color = this.color ? this.color : '#fff';
+		let fontSize = this.fontSize ? this.fontSize : '14px';
 
 		//language=html;
 		return html`
 			<style>
 				:host{
 					display:inline-block;
+					text-align: center;
+					width:${width};
 				}
 				a{
-					width:${customWidth};
+					display:block;
+					text-align: center;
+					text-decoration:none;
+					border:none;
+					border-radius:3px;
+					box-sizing:border-box;
+					width:${width};
+					padding:${padding};
+					background-color:${bg};
+					color:${color};
+					font-size:${fontSize};
 				}
 			</style>
-			<a>
+			<a href="${this.href}">
 				<slot></slot>
 			</a>
 		`;
