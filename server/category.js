@@ -16,8 +16,8 @@ getCategories=()=>{
 		}
 	}).then(data=>{
 		categories={};
-		([...new Set(data.map(item=>item.headcatagory))]).forEach(category=>categories[category]={headcatagory:category,subcatagories:[]})
-		data.forEach(row=>categories[row.headcatagory].subcatagories.push({title:row.name,id:row.id}))
+		([...new Set(data.map(item=>item.headcatagory))]).forEach(category=>categories[category]={headcatagory:category,subcatagories:[],count:Math.floor(Math.random()*5)})
+		data.forEach(row=>categories[row.headcatagory].subcatagories.push({title:row.name,id:row.id,count:Math.floor(Math.random()*5)}))
 		return Object.values(categories)
 	})
 }

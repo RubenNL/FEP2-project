@@ -110,9 +110,9 @@ export class appSidebar extends LitElement {
 				<ul id="side-nav">
 					${this._categories.map((hoofdcat) => html`
 						<li>
-							<h3 class="head-item">${hoofdcat.headcatagory}</h3>
+							<h3 class="head-item">${hoofdcat.headcatagory} (${hoofdcat.count})</h3>
 							<ul class="side-nav-sub">${hoofdcat.subcatagories.map(sub => html`
-								<li class="sub-item"><a router-link href="/category/${sub.id}">${sub.title}</a></li>`)}
+								<li class="sub-item"><a router-link href="/category/${sub.id}">${sub.title} (${sub.count})</a></li>`)}
 							</ul>
 						</li>
 					`)}
