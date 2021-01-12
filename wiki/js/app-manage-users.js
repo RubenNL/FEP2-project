@@ -190,7 +190,7 @@ export class appManageUsers extends LitElement {
             }
 
             li:hover {
-                background-color: #f2f2f2;
+                background-color: var(--menu-hover);
             }
 
             li:hover #icon-holder{

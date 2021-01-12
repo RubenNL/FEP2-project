@@ -29,7 +29,7 @@ class AppHeader extends LitElement {
             
             : //Niet ingelogd
             
-            html`<span id="greet" style="opacity:0"><fa-icon class="fas fa-adjust" path-prefix="/node_modules"/></fa-icon>Welkom!</span>
+            html`<span id="greet"><fa-icon class="fas fa-adjust"  @click="${() => (document.querySelector("html").classList.toggle("darkMode"))} path-prefix="/node_modules"/></fa-icon></span>
                 <a router-link href="/login" class="button">Inloggen</a>`}
                 <app-search id="appsearch"></app-search></div>`
     }

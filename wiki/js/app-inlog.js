@@ -64,7 +64,6 @@ export class appInlog extends LitElement {
         return css`
             :host {
                 margin: auto;
-                
             }
 
             #inlogformContainer, #button {

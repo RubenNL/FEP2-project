@@ -44,7 +44,7 @@ export class AppArticleCard extends LitElement {
 				text-decoration:none;
 			}
 			
-            :host:hover{
+            a:hover{
                 -webkit-font-smoothing: subpixel-antialiased;
                 transform: translate3d(0%, 0%, 0) scale(1.02, 1.02);
                 box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
