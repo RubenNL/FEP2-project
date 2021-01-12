@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 module.exports=app=>{
+	app.get('/sitemap.txt',requestHandler)
 	app.get('/api/*',requestHandler)
 	app.post('/api/*',requestHandler)
 }
@@ -23,7 +24,13 @@ requestHandler=(req,res)=>{
 		const queryParts=req.url.split('?')[0].split('/');
 		queryParts.shift();
 		if(queryParts[0]=="api") queryParts.shift();
-		selector(queryParts,json,req).then(res.endJson).catch(err=>{
+		selector(queryParts,json,req,res).then(response=>{
+			if(typeof response=="object") res.endJson(response)
+			else {
+				res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+				res.end(response)
+			}
+		}).catch(err=>{
 			console.log(err);
 			res.endJson(err);
 		})
@@ -43,7 +50,17 @@ require('./tables.js')(sequelize).then(()=>{
 		if(user.blocked) throw Error();
 		if(user.functie=="student") throw Error();
 	})
-	selector=(queryParts,json,req)=>{
+	sitemap=()=>{
+		return getCategories().then(categories=>Promise.all(categories.map(category=>category.subcatagories.map(sub=>sub.id)).flat())).then(subs=>{
+			subUrls=subs.map(category=>`https://fep2.herokuapp.com/category/${category}`)
+			return Promise.all(subs.map(sub=>getArticlesByCategory(sub)))
+				.then(articles=>articles.flat())
+				.then(articles=>articles.map(article=>`https://fep2.herokuapp.com/article/${article}`))
+				.then(articleUrls=>[subUrls,articleUrls].flat())
+				.then(urls=>urls.join('\n'))
+		})
+	}
+	selector=(queryParts,json,req,res)=>{
 		switch(queryParts.shift()) {
 			case 'search':
 				return search(req.url.split('?')[1])
@@ -75,6 +92,8 @@ require('./tables.js')(sequelize).then(()=>{
 				return getCategories();
 			case 'getArticlesByCategory':
 				return getArticlesByCategory(queryParts.shift());
+			case 'sitemap.txt':
+				return sitemap();
 			default:
 				return Promise.resolve('no action found!')
 		}
