@@ -46,7 +46,7 @@ export class appButton extends LitElement {
 				}
 			</style>
 			<a href="${this.href}">
-				<slot></slot>
+				<slot>${this.innerHTML === '' ? 'Button' : this.innerHTML}</slot>
 			</a>
 		`;
 	}
