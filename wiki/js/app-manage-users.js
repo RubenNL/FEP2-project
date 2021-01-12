@@ -165,7 +165,7 @@ export class appManageUsers extends LitElement {
         return css`
             :host {
                 min-height: 100%;
-                color: #383838;
+                color: var(--text-color);
             }
 
             #flex-container {
@@ -190,7 +190,7 @@ export class appManageUsers extends LitElement {
             }
 
             li:hover {
-                background-color: #f2f2f2;
+                background-color: var(--menu-hover);
             }
 
             li:hover #icon-holder{
