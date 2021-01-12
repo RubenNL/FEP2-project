@@ -67,7 +67,11 @@ export class AppArticleCard extends LitElement {
             }
             #toggleBookmark {
 				float:right;
-			}`
+			}
+			#toggleBookmark:focus{
+				outline: none;
+			}
+			`
     }
 
     render(){
