@@ -19,7 +19,7 @@ export class AppBookmarks extends LitElement {
     }
 	render() {
 		//language=HTML;
-		return html`<h2>Bookmarks</h2>
+		return html`<h2>Bladwijzers</h2>
 		<div class="articlecontainer">
 			${
 				this._articles.length>0
