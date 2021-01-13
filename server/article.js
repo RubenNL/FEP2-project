@@ -10,7 +10,8 @@ getArticlePreview=id=>{
 		return article
 	})
 }
-saveArticle=(id,json)=>{
+saveArticle=(id,json,user)=>{
+	if(user) json.lastEditedBy=user.fullName;
 	if(id) return Article.update(json,{where:{id:id}})
 	else return Article.create(json)
 }

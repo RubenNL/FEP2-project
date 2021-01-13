@@ -11,7 +11,8 @@ export class appArtikel extends LitElement {
 			_content: {type:String},
 			location: Object,
 			_404: {type:Boolean},
-			_bookmarked: {type:Boolean}
+			_bookmarked: {type:Boolean},
+			_lastEditedBy:{type:String},
 		};
 	}
 	constructor() {
@@ -20,22 +21,27 @@ export class appArtikel extends LitElement {
 		this._title='';
 		this._404=false;
 		this._bookmarked=false;
+		this._lastEditedBy='';
 	}
 	render() {
 		//language=HTML
 		if(this._404) return html`<app-404></app-404>`
 		return html`
+			<div id="meta">
 			${window.localStorage.getItem('user') ? html`
 				${JSON.parse(window.localStorage.getItem('user')).functie!="student"?html`
-					<a tabindex="0" @click="${this.delete}" title="Delete article"><fa-icon class="fas fa-trash-alt" path-prefix="/node_modules"/></a>
-					<a href="/creator/${this.src}" title="Edit article"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>`
+					<a tabindex="3" @click="${this.delete}" title="Delete article"><fa-icon class="fas fa-trash-alt" path-prefix="/node_modules"/></a>
+					<a tabindex="2" href="/creator/${this.src}" title="Edit article"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>`
 				:html``}
-				<a tabindex="0" title="toggle bookmark" @click="${this.bookmark}">
-					${this._bookmarked
-						?html`<fa-icon class="fas fa-bookmark" path-prefix="/node_modules"/>`
-						:html`<fa-icon class="far fa-bookmark" path-prefix="/node_modules"/>`
-					}</a>
+					<a tabindex="1" title="toggle bookmark" @click="${this.bookmark}">
+						${this._bookmarked
+							?html`<fa-icon class="fas fa-bookmark" path-prefix="/node_modules"/>`
+							:html`<fa-icon class="far fa-bookmark" path-prefix="/node_modules"/>`
+						}</a>
 			` : html``}
+			<br>
+			<span id="lastEditedBy">Laatst bewerkt door ${this._lastEditedBy}</span>
+		</div>
 		<h1>${this._title}</h1>
 		${this._content?html`<md-block markdown="${this._content}"></md-block>`:html``}`
 	}
@@ -66,14 +72,15 @@ export class appArtikel extends LitElement {
 			:host{
 				color: var(--text-color);
 			}
-			
-			:host > a {
-            margin: auto;
-            display: flex;
-            float: right;
-			margin-right: 40px;
-			font-size: 30px;
-            text-decoration: inherit;
+			#meta {
+				float: right;
+			}
+			a {
+				margin: auto;
+				margin-right: 40px;
+				font-size: 30px;
+				text-decoration: inherit;
+				float:right;
         	}
 			
             fa-icon:focus,
@@ -91,6 +98,10 @@ export class appArtikel extends LitElement {
 			fa-icon:hover {
 				transform: scale(1.3);
 			}
+			#lastEditedBy {
+				clear: both;
+				white-space: nowrap;
+			}
 `
 	}
 
@@ -100,10 +111,12 @@ export class appArtikel extends LitElement {
 			this._404=!response;
 			this._content = response.data;
 			this._title = response.title;
+			this._lastEditedBy=response.lastEditedBy;
 		}).catch(()=>{
 			this._404=true;
 			this._content='';
 			this._title='';
+			this._lastEditedBy='';
 		})
 	}
 	get src() {

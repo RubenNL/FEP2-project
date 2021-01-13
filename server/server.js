@@ -49,6 +49,7 @@ require('./tables.js')(sequelize).then(()=>{
 	const noStudents=req=>getUserFromJWT(req.headers.authorization.split(' ')[1]).then(user=>{
 		if(user.blocked) throw Error();
 		if(user.functie=="student") throw Error();
+		return user;
 	})
 	sitemap=()=>{
 		return getCategories().then(categories=>Promise.all(categories.map(category=>category.subcatagories.map(sub=>sub.id)).flat())).then(subs=>{
@@ -85,7 +86,7 @@ require('./tables.js')(sequelize).then(()=>{
 			case 'getArticlePreview':
 				return getArticlePreview(queryParts.join('/'))
 			case 'saveArticle':
-				return noStudents(req).then(()=>saveArticle(queryParts.shift(),json),()=>{return {'err':'no access'}});
+				return noStudents(req).then(user=>saveArticle(queryParts.shift(),json,user),()=>{return {'err':'no access'}});
 			case 'getCategory':
 				return getCategory(queryParts.shift());
 			case 'getCategories':

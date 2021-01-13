@@ -22,7 +22,11 @@ module.exports=sequelize=>{
 			autoIncrement:true
 		},
 		title: DataTypes.STRING,
-		data: DataTypes.STRING(32768)
+		data: DataTypes.STRING(32768),
+		lastEditedBy: {
+			type: DataTypes.STRING,
+			defaultValue: 'initial'
+		}
 	});
 	const Category=sequelize.define("categories",{
 		id: {
