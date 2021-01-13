@@ -30,10 +30,10 @@ export class appArtikel extends LitElement {
 			<div id="meta">
 			${window.localStorage.getItem('user') ? html`
 				${JSON.parse(window.localStorage.getItem('user')).functie!="student"?html`
-					<a tabindex="3" @click="${this.delete}" title="Delete article"><fa-icon class="fas fa-trash-alt" path-prefix="/node_modules"/></a>
-					<a tabindex="2" href="/creator/${this.src}" title="Edit article"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>`
+					<a tabindex="3" @click="${this.delete}" title="Artikel verwijderen"><fa-icon class="fas fa-trash-alt" path-prefix="/node_modules"/></a>
+					<a tabindex="2" href="/creator/${this.src}" title="Artikel bewerken"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>`
 				:html``}
-					<a tabindex="1" title="toggle bookmark" @click="${this.bookmark}">
+					<a tabindex="1" title="Voeg bladwijzer toe" @click="${this.bookmark}">
 						${this._bookmarked
 							?html`<fa-icon class="fas fa-bookmark" path-prefix="/node_modules"/>`
 							:html`<fa-icon class="far fa-bookmark" path-prefix="/node_modules"/>`
