@@ -13,6 +13,7 @@ export class appArtikel extends LitElement {
 			_404: {type:Boolean},
 			_bookmarked: {type:Boolean},
 			_lastEditedBy:{type:String},
+			_categoryID: {type:String}
 		};
 	}
 	constructor() {
@@ -29,10 +30,8 @@ export class appArtikel extends LitElement {
 		return html`
 			<div id="meta">
 			${window.localStorage.getItem('user') ? html`
-				${JSON.parse(window.localStorage.getItem('user')).functie!="student"?html`
-					<a tabindex="3" @click="${this.delete}" title="Artikel verwijderen"><fa-icon class="fas fa-trash-alt" path-prefix="/node_modules"/></a>
-					<a tabindex="2" href="/creator/${this.src}" title="Artikel bewerken"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>`
-				:html``}
+				${JSON.parse(window.localStorage.getItem('user')).functie==="student"?html``
+				:html`${this.checkDeleted(this._categoryID)}`}
 					<a tabindex="1" title="Voeg bladwijzer toe" @click="${this.bookmark}">
 						${this._bookmarked
 							?html`<fa-icon class="fas fa-bookmark" path-prefix="/node_modules"/>`
@@ -45,6 +44,21 @@ export class appArtikel extends LitElement {
 		<h1>${this._title}</h1>
 		${this._content?html`<md-block markdown="${this._content}"></md-block>`:html``}`
 	}
+
+	checkDeleted(id) {
+		console.log(id)
+		if(id !== 1688148667){
+			return html`
+				<a tabindex="3" id="trashcan" @click="${this.delete}" title="Artikel verwijderen"><fa-icon class="fas fa-trash-alt" path-prefix="/node_modules"/></a>
+				<a tabindex="2" href="/creator/${this.src}" title="Artikel bewerken"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>`
+		}else{
+			return html`
+				<a tabindex="2" href="/creator/${this.src}" title="Artikel bewerken"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>`
+		}
+
+	}
+
+
 	bookmark() {
 		this._bookmarked=!this._bookmarked;
 		let bookmarks=JSON.parse(window.localStorage.getItem('bookmarks')||'[]')
@@ -94,6 +108,10 @@ export class appArtikel extends LitElement {
 				padding: 0 3px;
 				cursor: pointer;
 			}
+			
+			.trashcanview{
+				display: none;
+			}
 
 			fa-icon:hover {
 				transform: scale(1.3);
@@ -111,7 +129,8 @@ export class appArtikel extends LitElement {
 			this._404=!response;
 			this._content = response.data;
 			this._title = response.title;
-			this._lastEditedBy=response.lastEditedBy;
+			this._lastEditedBy = response.lastEditedBy;
+			this._categoryID = response.categoryId;
 		}).catch(()=>{
 			this._404=true;
 			this._content='';
