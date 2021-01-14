@@ -1,7 +1,7 @@
 import './app-search.js'
 import {css, html, LitElement} from 'lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import store from '../store/index.js'
+import store from '../redux/index.js'
 
 class AppHeader extends connect(store)(LitElement) {
 	static get properties() {

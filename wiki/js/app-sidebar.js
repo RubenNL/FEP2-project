@@ -1,10 +1,17 @@
 import {LitElement, html, css} from 'lit-element';
+import store from '../redux/index.js'
+import { connect } from 'pwa-helpers/connect-mixin.js';
 
-export class appSidebar extends LitElement {
+export class appSidebar extends connect(store)(LitElement) {
 	static get properties() {
 		return {
-			_categories: {type: Array}
+			_categories: {type: Array},
+			_functie: {type: String}
 		}
+	}
+
+	stateChanged(state) {
+		this._functie = state.userStore.functie
 	}
 
 	constructor() {
@@ -81,9 +88,8 @@ export class appSidebar extends LitElement {
 		`;
 	}
 
-	determineAcces(user){
-		let role = JSON.parse(user).functie;
-		switch(role){
+	determineAcces(){
+		switch(this._functie){
 			case "student":
 				return html`
 					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>`;
@@ -100,13 +106,11 @@ export class appSidebar extends LitElement {
 	}
 
 	render() {
-		let user = window.localStorage.getItem('user');
-
 		return html`
 			<link rel="stylesheet" href="/bundle.css">
 			<h2>Menu</h2>
 			<nav>
-				${user ? this.determineAcces(user) : html``}
+				${this._functie ? this.determineAcces() : html``}
 				<ul id="side-nav">
 					${this._categories.map((hoofdcat) => html`
 						<li>

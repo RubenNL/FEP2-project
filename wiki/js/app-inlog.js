@@ -1,7 +1,7 @@
 import {css, LitElement, html} from 'lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import store from '../store/index.js'
-import { login, logout } from '../store/userStore.js'
+import store from '../redux/index.js'
+import { login, logout } from '../redux/userStore.js'
 
 export class appInlog extends connect(store)(LitElement) {
     static get properties() {
@@ -50,7 +50,7 @@ export class appInlog extends connect(store)(LitElement) {
         }).then(response=>response.json()).then(response=>{
             if(response.err) alert(response.err)
             else {
-                //window.localStorage.setItem('JWT', response.key);
+                // window.localStorage.setItem('JWT', response.key);
 				store.dispatch(login(response.key))
                 /*sendAuthenticated('/api/getUser').then(user=>{
                     if(user.blocked) {

@@ -14,7 +14,10 @@ function parseJwt (token) {
 };
 
 function loginReducer(state, action) {
-	return {jwt:action.payload,...parseJwt(action.payload)};
+	//{...} betekent dat het object uitelkaar getrokken word en in de array(object wordt gepropt.)
+	// Action = jwt="JWT-token" state = huidige  state.
+	//Return = {jwt: "token", uitgesplitste onderdelen d.m.v parseJWT}
+ 	return {jwt:action.payload,...parseJwt(action.payload)};
 }
 
 function logoutReducer(state, action) {
@@ -39,6 +42,7 @@ const functieSelector = createSelector(
 	state => state.userStore,
 	login => login.functie
 )
+
 //--------- Slice ---------//
 const userStore = createSlice({
 	name: 'userStore',
