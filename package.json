@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@lrnwebcomponents/md-block": "^3.0.0",
-    "@lrnwebcomponents/lrn-markdown-editor": "^3.0.0",
+    "@lrnwebcomponents/lrn-markdown-editor": "^3.0.5",
     "@rollup/plugin-node-resolve": "^11.0.1",
     "@vaadin/router": "^1.7.2",
     "fa-icons": "^0.2.0",
