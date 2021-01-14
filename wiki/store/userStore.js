@@ -24,22 +24,20 @@ function logoutReducer(state, action) {
 //--------- Selectors ---------//
 const jwtSelector = createSelector(
 	state => state.userStore,
-	login => {
-		return login.jwt
-	}
+	login => login.jwt
 )
 
 const emailSelector = createSelector(
 	state => state.userStore,
-	login => {
-		return login.email
-	}
+	login => login.email
 )
 const nameSelector = createSelector(
 	state => state.userStore,
-	login => {
-		return login.fullName
-	}
+	login => login.fullName
+)
+const functieSelector = createSelector(
+	state => state.userStore,
+	login => login.functie
 )
 //--------- Slice ---------//
 const userStore = createSlice({
@@ -55,6 +53,7 @@ const userStore = createSlice({
 export const getJwt = () => jwtSelector(store.getState())
 export const getEmail= () => emailSelector(store.getState())
 export const getName= () => nameSelector(store.getState())
+export const getFunctie= () => functieSelector(store.getState())
 
 //--------- Export slice actions ---------//
 export const {
