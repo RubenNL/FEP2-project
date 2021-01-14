@@ -6,7 +6,8 @@ import { login, logout } from '../redux/userStore.js'
 export class appInlog extends connect(store)(LitElement) {
     static get properties() {
         return {
-            _data: {type:Object}
+            _data: {type:Object},
+            location: Object
         }
     }
     constructor() {
@@ -52,6 +53,7 @@ export class appInlog extends connect(store)(LitElement) {
             else {
                 // window.localStorage.setItem('JWT', response.key);
 				store.dispatch(login(response.key))
+                window.dispatchEvent(new CustomEvent('vaadin-router-go', {detail: {pathname: '/'}}));
                 /*sendAuthenticated('/api/getUser').then(user=>{
                     if(user.blocked) {
                         alert('Uw account is geblokkeerd! Neem contact op als dit niet klopt');
