@@ -1,5 +1,5 @@
 import {css, LitElement, html} from 'lit-element';
-import { connect } from 'https://cdn.skypack.dev/pwa-helpers@0.9.1/connect-mixin.js';
+import { connect } from 'pwa-helpers/connect-mixin.js';
 import store from '../store/index.js'
 import { login, logout } from '../store/userStore.js'
 

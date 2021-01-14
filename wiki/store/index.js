@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from 'https://cdn.skypack.dev/@reduxjs/toolkit@1.2.3';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import userStore from './userStore.js'
 //import darkMode from './darkMode.js'

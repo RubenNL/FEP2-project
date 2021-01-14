@@ -1,4 +1,4 @@
-import { createSlice, createSelector } from 'https://cdn.skypack.dev/@reduxjs/toolkit@1.2.3';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 import store from './index.js'
 
 const savedState = JSON.parse(localStorage.getItem('userStore')) || {}

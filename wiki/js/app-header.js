@@ -1,6 +1,6 @@
 import './app-search.js'
 import {css, html, LitElement} from 'lit-element';
-import { connect } from 'https://cdn.skypack.dev/pwa-helpers@0.9.1/connect-mixin.js';
+import { connect } from 'pwa-helpers/connect-mixin.js';
 import store from '../store/index.js'
 
 class AppHeader extends connect(store)(LitElement) {
