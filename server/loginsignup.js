@@ -20,7 +20,7 @@ register=data=>{
 login=data=>{
 	return getUser(data.email).then(jane=>{
 		if(jane==null) return {err:'User does not exist!'};
-		else return checkPassword(jane.hash,data.password)?{key:jwt.sign({ email: jane.email }, secret)}:{err:'Wachtwoord incorrect!'}
+		else return checkPassword(jane.hash,data.password)?{key:jwt.sign({ email: jane.email,fullName:jane.fullName }, secret)}:{err:'Wachtwoord incorrect!'}
 	})
 };
 getUser=email=>User.findByPk(email)

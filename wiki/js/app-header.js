@@ -1,13 +1,23 @@
 import './app-search.js'
 import {css, html, LitElement} from 'lit-element';
+import { connect } from 'https://cdn.skypack.dev/pwa-helpers@0.9.1/connect-mixin.js';
+import store from '../store/index.js'
 
-class AppHeader extends LitElement {
+class AppHeader extends connect(store)(LitElement) {
+	static get properties() {
+		return {
+			_userName: {type:String}
+		}
+	}
+
     constructor() {
         super();
-        this._userName = "[studentnaam]";
+        this._userName = "";
         this.classList.add('bg-container');
     }
-
+	stateChanged(state) {
+		this._userName = state.userStore.fullName
+	}
     render() {
         //language=HTML
         return html`
@@ -19,9 +29,9 @@ class AppHeader extends LitElement {
                 </div>
             </a>
             <div class="search-container">
-                ${window.localStorage.getItem('user') ? 
+                ${this._userName ? 
             //wel ingelogd
-            html`<span id="greet">Welkom ${JSON.parse(window.localStorage.getItem('user')).fullName.split(' ')[0]}! <fa-icon @click="${() => {
+            html`<span id="greet">Welkom ${this._userName}! <fa-icon @click="${() => {
 				document.querySelector("html").classList.toggle("darkMode");
 				window.localStorage.setItem('darkMode',document.querySelector('html').classList.contains('darkMode'))
 			}}" class="fas fa-adjust" path-prefix="/node_modules"/></fa-icon></span>

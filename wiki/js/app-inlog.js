@@ -1,6 +1,9 @@
 import {css, LitElement, html} from 'lit-element';
+import { connect } from 'https://cdn.skypack.dev/pwa-helpers@0.9.1/connect-mixin.js';
+import store from '../store/index.js'
+import { login, logout } from '../store/userStore.js'
 
-export class appInlog extends LitElement {
+export class appInlog extends connect(store)(LitElement) {
     static get properties() {
         return {
             _data: {type:Object}
@@ -47,13 +50,14 @@ export class appInlog extends LitElement {
         }).then(response=>response.json()).then(response=>{
             if(response.err) alert(response.err)
             else {
-                window.localStorage.setItem('JWT', response.key);
-                sendAuthenticated('/api/getUser').then(user=>{
+                //window.localStorage.setItem('JWT', response.key);
+				store.dispatch(login(response.key))
+                /*sendAuthenticated('/api/getUser').then(user=>{
                     if(user.blocked) {
                         alert('Uw account is geblokkeerd! Neem contact op als dit niet klopt');
                         window.localStorage.clear()
                     } else window.localStorage.setItem('user', JSON.stringify(user))
-                }).then(()=>window.location.pathname='/')
+                }).then(()=>window.location.pathname='/')*/
             }
 
         });
