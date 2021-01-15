@@ -49,22 +49,25 @@ export class appCreateArticle extends LitElement {
         <form @submit="${this._sendArticle}">
         <div id="superdiv">
         <div class="inputdiv">
-			<h5 for="head-category" class="topcat"><b>Hoofdcategorie:</b></h5>
-			<select name="head-category" class="topcat" id="head-category" @change="${this._onHeadCategoryChange}" required>
-				<option disabled selected></option>
-				${this._categories.map((hoofdcat) => html`<option value="${hoofdcat.headcatagory}" ?selected="${hoofdcat.headcatagory == this._chosenCategory.headcatagory}">${hoofdcat.headcatagory}</option>`)}
-			</select>
+			<label class="topcat"><b>Hoofdcategorie:</b>
+				<select name="head-category" class="topcat" id="head-category" @change="${this._onHeadCategoryChange}" required>
+					<option disabled selected></option>
+					${this._categories.map((hoofdcat) => html`<option value="${hoofdcat.headcatagory}" ?selected="${hoofdcat.headcatagory == this._chosenCategory.headcatagory}">${hoofdcat.headcatagory}</option>`)}
+				</select>
+			</label>
         </div>
         <div class="inputdiv">
-			<h5 for="sub-category" class="subcat"><b>Subcategorie:</b></h5>
-			<select name="sub-category" class="subcat" id="sub-category" required>
-			    <option disabled selected></option>
-				${this._chosenCategory.subcatagories.map((subcatagorie) => html`<option value="${subcatagorie.id}" ?selected="${subcatagorie.id == parseInt(this._category)}">${subcatagorie.title}</option>`)}
-			</select>
+			<label class="subcat"><b>Subcategorie:</b>
+				<select name="sub-category" class="subcat" id="sub-category" required>
+					<option disabled selected></option>
+					${this._chosenCategory.subcatagories.map((subcatagorie) => html`<option value="${subcatagorie.id}" ?selected="${subcatagorie.id == parseInt(this._category)}">${subcatagorie.title}</option>`)}
+				</select>
+			</label>
 	    </div>
 	    <div class="inputdiv">
-			<h5 for="Titel" class="titel"><b>Titel:</b></h5>
-			<input aria-labelledby="titel" type="text" class="titel" id="title" value="${this._title}" maxlength="30" required>
+			<label class="titel"><b>Titel:</b>
+				<input aria-labelledby="titel" type="text" class="titel" id="title" value="${this._title}" maxlength="30" required>
+			</label>
 		</div>
 		<div id="knopdiv">
 			<input type="submit" value="Opslaan" class="button">
