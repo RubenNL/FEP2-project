@@ -86,16 +86,16 @@ export class appSidebar extends LitElement {
 		switch(role){
 			case "student":
 				return html`
-					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>`;
+					<a router-link href="/bookmarks#main" class="button" id="menuButton">Bladwijzers</a>`;
 			case "auteur":
 				return html`
-					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>
-					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>`;
+					<a router-link href="/bookmarks#main" class="button" id="menuButton">Bladwijzers</a>
+					<a router-link href="/creator#main" class="button" id="menuButton">Nieuw artikel</a>`;
 			case "admin":
 				return html`
-					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>
-					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
-					<a router-link href="/users" class="button">Gebruikers beheren</a>`;
+					<a router-link href="/bookmarks#main" class="button" id="menuButton">Bladwijzers</a>
+					<a router-link href="/creator#main" class="button" id="menuButton">Nieuw artikel</a>
+					<a router-link href="/users#main" class="button">Gebruikers beheren</a>`;
 		}
 	}
 
@@ -112,7 +112,7 @@ export class appSidebar extends LitElement {
 						<li>
 							<h3 class="head-item">${hoofdcat.headcatagory} (${hoofdcat.count})</h3>
 							<ul class="side-nav-sub">${hoofdcat.subcatagories.map(sub => html`
-								<li class="sub-item"><a router-link href="/category/${sub.id}">${sub.title} (${sub.count})</a></li>`)}
+								<li class="sub-item"><a router-link href="/category/${sub.id}#main">${sub.title} (${sub.count})</a></li>`)}
 							</ul>
 						</li>
 					`)}

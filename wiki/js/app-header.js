@@ -36,7 +36,7 @@ class AppHeader extends LitElement {
 				document.querySelector("html").classList.toggle("darkMode")
 				window.localStorage.setItem('darkMode',document.querySelector('html').classList.contains('darkMode'))
 			}}" path-prefix="/node_modules"/></fa-icon></span>
-			<a router-link href="/login" class="button">Inloggen</a>`}
+			<a router-link href="/login#main" class="button">Inloggen</a>`}
 			<app-search id="appsearch"></app-search></div>`
     }
 
