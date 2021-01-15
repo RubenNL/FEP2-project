@@ -80,7 +80,7 @@ export class appCreateArticle extends LitElement {
     static get styles() {
         //language=CSS
         return css`
-            div > input, div > select {
+            label > input, label > select {
                 text-align: left;
                 width: 200px;
                 border-radius: 4px;
