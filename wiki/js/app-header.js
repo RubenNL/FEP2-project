@@ -25,10 +25,10 @@ class AppHeader extends LitElement {
 				document.querySelector("html").classList.toggle("darkMode");
 				window.localStorage.setItem('darkMode',document.querySelector('html').classList.contains('darkMode'))
 			}}" class="fas fa-adjust" path-prefix="/node_modules"/></fa-icon></span>
-                    <a class="button" id="logout" @click="${() => {
+                    <app-button padding="7px 35px" @click="${() => {
                 window.localStorage.clear();
                 window.location.pathname="/";
-            }}">Uitloggen</a>`
+            }}">Uitloggen</app-button>`
             
             : //Niet ingelogd
             
@@ -36,7 +36,7 @@ class AppHeader extends LitElement {
 				document.querySelector("html").classList.toggle("darkMode")
 				window.localStorage.setItem('darkMode',document.querySelector('html').classList.contains('darkMode'))
 			}}" path-prefix="/node_modules"/></fa-icon></span>
-			<a router-link href="/login#main" class="button">Inloggen</a>`}
+			<app-button padding="7px 35px" router-link href="/login#main">Inloggen</app-button>`}
 			<app-search id="appsearch"></app-search></div>`
     }
 
@@ -84,23 +84,6 @@ class AppHeader extends LitElement {
                 display: flex;
                 align-items: flex-end;
                 flex-direction: column;
-            }
-
-            .search-container > .button {
-                background: #0066c4;
-                color: var(--text-color);
-                cursor: pointer;
-                width: 225px;
-                border: 0;
-                transition: all 0.5s;
-                border-radius: 3px;
-                text-align: center;
-                padding-bottom: 10px;
-                padding-top: 5px;
-                margin-top:15px;
-                text-decoration: inherit; /* no underline */
-                align-content: center;
-                display: block;
             }
             #appsearch{
                 padding-top: 10px;

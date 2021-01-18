@@ -70,7 +70,7 @@ export class appCreateArticle extends LitElement {
 			</label>
 		</div>
 		<div id="knopdiv">
-			<input type="submit" value="Opslaan" class="button">
+			<input type="submit" value="Opslaan">
 		</div>
 		</div>
 			<lrn-markdown-editor content="${this._content}"></lrn-markdown-editor>
@@ -103,27 +103,25 @@ export class appCreateArticle extends LitElement {
                 display: flex;
                 width: 100%;
                 justify-content: flex-end;
+                align-items: flex-end;
             }
             .inputdiv {
                 padding-right: 10px;
             }
 
-            .button {
-                display: inline-block;
-                width: 100px;
-            background: #0066c4;
-            color: #ffffff;
-            cursor: pointer;
-            border: 0;
-            transition: all 0.5s;
-            border-radius: 3px;
-            align-self: flex-end;
-            grid-column: 1;
-            text-align: center;
-            padding: 5px 20px;
-            margin-bottom: 3px;
-            text-decoration: inherit; /* no underline */
-            float: right;
+            input[type=submit] {
+                display: block;
+                text-align: center;
+                text-decoration: none;
+                border: none;
+                border-radius: 3px;
+                box-sizing: border-box;
+                width: unset;
+                padding: 7px 35px;
+                background-color: #0066c4;
+                color: #fff;
+                font-size: 14px;
+                cursor:pointer;
             }
             lrn-markdown-editor{
                 margin-top: 10px;

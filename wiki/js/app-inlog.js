@@ -26,7 +26,7 @@ export class appInlog extends LitElement {
                 </label>
             </div>
             <div id="button">    
-                <input type="submit" value="Login" id="submit">
+                <input type="submit" value="Login">
                 <label id="registerlink">Nieuwe gebruiker? <a href="/register">Registreer nu!</a></label>
             </div>
             </form>`
@@ -92,20 +92,19 @@ export class appInlog extends LitElement {
                 border: 1px solid #ccc;
             }
 
-            #submit {
-                background: #0066c4;
-                color: #ffffff;
-                cursor: pointer;
-                border: 0;
-                transition: all 0.5s;
-                border-radius: 3px;
+            input[type=submit] {
+                display: block;
                 text-align: center;
-                padding: 5px 10px;
-                margin-bottom: 3px;
-                height: 30px;
-                width: 120px;
-                text-decoration: inherit; /* no underline */
-                float: left;
+                text-decoration: none;
+                border: none;
+                border-radius: 3px;
+                box-sizing: border-box;
+                width: unset;
+                padding: 7px 35px;
+                background-color: #0066c4;
+                color: #fff;
+                font-size: 14px;
+                cursor:pointer;
             }`
     }
 
