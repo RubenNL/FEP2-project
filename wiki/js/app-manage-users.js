@@ -1,18 +1,27 @@
 import {LitElement, html, css} from 'lit-element';
 import 'fa-icons';
+import {connect} from "pwa-helpers/connect-mixin";
+import store from "../redux";
 
-export class appManageUsers extends LitElement {
+export class appManageUsers extends connect(store)(LitElement){
     static get properties() {
         return {
             _students: {type: Array},
-            _autors: {type: Array}
+            _autors: {type: Array},
+            _admins: {type: Array},
+            _functie: {type: String}
         }
+    }
+
+    stateChanged(state) {
+        this._functie = state.userStore.functie
     }
 
     constructor() {
         super();
         this._students = [];
         this._autors = [];
+        this._admins = [];
         sendAuthenticated(`/api/getUsers`).then(response => {
             response.map((user) => {
                 switch (user.functie) {
@@ -20,7 +29,7 @@ export class appManageUsers extends LitElement {
                         this._autors.push(user);
                         break
                     case 'admin':
-                        this._autors.push(user);
+                        this._admins.push(user);
                         break
                     case 'student':
                         this._students.push(user);
@@ -47,13 +56,15 @@ export class appManageUsers extends LitElement {
             })
     }
 
-    checkAdmin(user) {
+    checkAdmin(user){
         if (user.functie === "admin") {
             return html`
-                <fa-icon title="Maak gebruiker auteur" @click="${(e) => this.toggleAdmin(user, e.target)}" class="fas user-shield admin"></fa-icon>`
+                <fa-icon title="Maak gebruiker admin" @click="${() => this.toggleToAdmin(user).then(() => this.requestUpdate())}"
+                         class="fas user-shield admin"></fa-icon>`
         } else {
             return html`
-                <fa-icon title="Maak gebruiker administrator" @click="${(e) => this.toggleAdmin(user, e.target)}" class="fas user-shield"></fa-icon>`
+                <fa-icon title="Maak gebruiker auteur" @click="${() => this.toggleToAutor(user).then(() => this.requestUpdate())}"
+                         class="fas user-shield"></fa-icon>`
         }
     }
 
@@ -72,7 +83,7 @@ export class appManageUsers extends LitElement {
                 user.functie = "auteur"
                 sendAuthenticated(`/api/updateUser/${user.email}`, {functie: "auteur"}).then(
                     () => {
-                        target.classList.toggle("admin")
+                        target.classList.toggle("auteur")
                     })
             }
         }
@@ -105,9 +116,32 @@ export class appManageUsers extends LitElement {
             if (user.functie === 'student') {
                 delete this._students[this._students.indexOf(user)]
                 this._autors.push(user)
+            } else {
+                if(user.functie === 'admin'){
+                    delete this._admins[this._admins.indexOf(user)]
+                    this._autors.push(user)
+                }
             }
             user.functie = 'auteur'
             return sendAuthenticated(`/api/updateUser/${user.email}`, {functie: "auteur"})
+        }
+    }
+
+    toggleToAdmin(user){
+        const loggedIn = JSON.parse(window.localStorage.getItem('user'))
+        if (user.email === loggedIn.email){
+            alert("Letop, u kunt uzelf niet ontzien als administrator.")
+        } else {
+            if (user.functie === 'student'){
+                alert("Alleen auteurs kunnen administrator worden.")
+            } else {
+                if(user.functie ==='auteur'){
+                    delete this._autors[this._autors.indexOf(user)]
+                    this._admins.push(user)
+                }
+            }
+            user.functie = 'admin'
+            return sendAuthenticated(`/api/updateUser/${user.email}`, {functie: "admin"})
         }
     }
 
@@ -146,13 +180,23 @@ export class appManageUsers extends LitElement {
                     <h2>Auteurs</h2>
                     ${this._autors.map((user) => html`
                         <li>${user.fullName}
-                            ${((user.email === JSON.parse(window.localStorage.getItem('user')).email)|| user.email === 'admin@tester.nl' || user.email === 'auteur@tester.nl')? html`` : html` <!--Students and authors can't see this page. -->
+                            ${((user.email === JSON.parse(window.localStorage.getItem('user')).email) || user.email === 'admin@tester.nl' || user.email === 'auteur@tester.nl') ? html`` : html` <!--Students and authors can't see this page. -->
                             <span id="icon-holder">
                                 ${this.checkAutor(user)}
-                                ${this.checkBlocked(user)}
                                 ${this.checkAdmin(user)}
+                                ${this.checkBlocked(user)}
                                 <fa-icon title="Verwijder gebruiker" @click="${() => {this.deleteUser(user)}}" class="fas fa-trash-alt"></fa-icon>
                             </span>`}
+                        </li>
+                    `)}
+                </ul>
+                                <ul class="usercontainer">
+                    <h2>Admins</h2>
+                    ${this._admins.map((user) => html`
+                        <li>${user.fullName}<span id="icon-holder">
+                            ${this.checkAdmin(user)}
+                            ${this.checkBlocked(user)}
+                            </span>
                         </li>
                     `)}
                 </ul>
@@ -193,7 +237,7 @@ export class appManageUsers extends LitElement {
                 background-color: var(--menu-hover);
             }
 
-            li:hover #icon-holder{
+            li:hover #icon-holder {
                 transition: 0.4s all ease-in-out;
                 opacity: 1;
             }
@@ -233,10 +277,11 @@ export class appManageUsers extends LitElement {
             fa-icon:hover {
                 transform: scale(1.3);
             }
-            #test{
-             display: none;   
+
+            #test {
+                display: none;
             }
-            
+
         `;
     }
 }
