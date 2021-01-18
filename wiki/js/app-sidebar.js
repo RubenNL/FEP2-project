@@ -62,22 +62,6 @@ export class appSidebar extends LitElement {
             .sub-item a:hover{
                 background-color: var(--menu-hover);
             }
-
-            .button{
-                display: block;
-                background: #0066c4;
-                color: #ffffff;
-                cursor: pointer;
-                border: 0;
-                transition: all 0.5s;
-                border-radius: 3px;
-                align-self: end;
-                grid-column: 1;
-                text-align: center;
-                padding: 5px 20px;
-                margin-bottom: 3px;
-                text-decoration: inherit; /* no underline */
-            }
 		`;
 	}
 

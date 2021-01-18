@@ -13,24 +13,25 @@ export class appInlog extends LitElement {
     render() {
         //language=HTML
         return html`
+            <link rel="stylesheet" href="/bundle.css">
             <h2>Inloggen</h2>
             <form id="inlogform" @submit="${this._onclick}">
-            <div id="inlogformContainer">
-                <label for="name">
-                Email:
-                <input type="email" name="email" id="name" placeholder="Voer uw email in." @input="${this._change}" required/>
-                </label>
-                <label for="password">
-                Wachtwoord:
-                <input type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
-                </label>
-            </div>
-            <div id="button">    
-                <input type="submit" value="Login">
-                <label id="registerlink">Nieuwe gebruiker? <a href="/register">Registreer nu!</a></label>
-            </div>
-            </form>`
-
+                <div id="inlogformContainer">
+                    <label for="name">
+                        Email:
+                        <input type="email" name="email" id="name" placeholder="Voer uw email in." @input="${this._change}" required/>
+                    </label>
+                    <label for="password">
+                        Wachtwoord:
+                        <input type="password" name="password" id="password" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
+                    </label>
+                </div>
+                <div id="button">
+                    <input type="submit" value="Login">
+                    <label id="registerlink">Nieuwe gebruiker? <a href="/register">Registreer nu!</a></label>
+                </div>
+            </form>
+        `
     }
     _change(e) {
         this._data[e.target.name]=e.target.value;
@@ -81,7 +82,7 @@ export class appInlog extends LitElement {
                 margin-top: 1px;
                 margin-bottom: 8px;
             }
-            #inlogformContainer > label > input {
+            #inlogformContainer > label > input:not([type=submit]) {
                 text-align: left;
                 margin-top: 10px;
                 margin-bottom: 10px;
@@ -91,21 +92,7 @@ export class appInlog extends LitElement {
                 padding: 20px;
                 border: 1px solid #ccc;
             }
-
-            input[type=submit] {
-                display: block;
-                text-align: center;
-                text-decoration: none;
-                border: none;
-                border-radius: 3px;
-                box-sizing: border-box;
-                width: unset;
-                padding: 7px 35px;
-                background-color: #0066c4;
-                color: #fff;
-                font-size: 14px;
-                cursor:pointer;
-            }`
+        `
     }
 
 }
