@@ -1,6 +1,7 @@
 import './app-search.js'
 import {css, html, LitElement} from 'lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
+import {darkMode, login, logout} from '../redux/userStore.js'
 import store from '../redux/index.js'
 
 class AppHeader extends connect(store)(LitElement) {
@@ -33,7 +34,8 @@ class AppHeader extends connect(store)(LitElement) {
             //wel ingelogd
             html`<span id="greet">Welkom ${this._userName}! <fa-icon @click="${() => {
 				document.querySelector("html").classList.toggle("darkMode");
-				window.localStorage.setItem('darkMode',document.querySelector('html').classList.contains('darkMode'))
+				store.dispatch(darkMode(document.querySelector('html').classList.contains('darkMode')));
+				// logout met reducer 
 			}}" class="fas fa-adjust" path-prefix="/node_modules"/></fa-icon></span>
                     <a class="button" id="logout" @click="${() => {
                 window.localStorage.clear();
@@ -44,7 +46,7 @@ class AppHeader extends connect(store)(LitElement) {
             
             html`<span id="greet"><fa-icon class="fas fa-adjust"  @click="${() => {
 				document.querySelector("html").classList.toggle("darkMode")
-				window.localStorage.setItem('darkMode',document.querySelector('html').classList.contains('darkMode'))
+				store.dispatch(darkMode(document.querySelector('html').classList.contains('darkMode')));
 			}}" path-prefix="/node_modules"/></fa-icon></span>
 			<a router-link href="/login" class="button">Inloggen</a>`}
 			<app-search id="appsearch"></app-search></div>`

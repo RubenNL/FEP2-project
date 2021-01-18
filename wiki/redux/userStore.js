@@ -21,7 +21,11 @@ function loginReducer(state, action) {
 }
 
 function logoutReducer(state, action) {
-	return {}
+	return {};
+}
+
+function darkmodeReducer(state, action){
+	return {darkMode:action.payload,...state};
 }
 
 //--------- Selectors ---------//
@@ -42,6 +46,10 @@ const functieSelector = createSelector(
 	state => state.userStore,
 	login => login.functie
 )
+const darkModeSelector = createSelector(
+	state => state.userStore,
+	login => login.darkMode
+)
 
 //--------- Slice ---------//
 const userStore = createSlice({
@@ -49,7 +57,8 @@ const userStore = createSlice({
 	initialState: savedState,
 	reducers: {
 		login: loginReducer,
-		logout: logoutReducer
+		logout: logoutReducer,
+		darkMode: darkmodeReducer
 	}
 })
 
@@ -58,11 +67,13 @@ export const getJwt = () => jwtSelector(store.getState())
 export const getEmail= () => emailSelector(store.getState())
 export const getName= () => nameSelector(store.getState())
 export const getFunctie= () => functieSelector(store.getState())
+export const getDarkMode= () => darkModeSelector(store.getState())
 
 //--------- Export slice actions ---------//
 export const {
 	login,
-	logout
+	logout,
+	darkMode
 } = userStore.actions
 
 //--------- Export slice reducer ---------//
