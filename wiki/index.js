@@ -1,4 +1,8 @@
+import sendAuthenticated from "js/sendAuthenticated.js"
+window.sendAuthenticated=sendAuthenticated;
+
 import {Router} from '@vaadin/router';
+import store from 'redux/index.js'
 
 const outlet = document.querySelector('main');
 const router = new Router(outlet);

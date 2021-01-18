@@ -3,6 +3,7 @@ import {css, html, LitElement} from 'lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import {darkMode, login, logout} from '../redux/userStore.js'
 import store from '../redux/index.js'
+import {set} from 'redux/bookmarkStore.js'
 
 class AppHeader extends connect(store)(LitElement) {
 	static get properties() {
@@ -18,6 +19,10 @@ class AppHeader extends connect(store)(LitElement) {
     }
 	stateChanged(state) {
 		this._userName = state.userStore.fullName
+		if(this._oldJwt != state.userStore.jwt && state.userStore.jwt) window.sendAuthenticated('/api/getBookmarks').then(bookmarks=>{
+			store.dispatch(set(bookmarks))
+		})
+		this._oldJwt = state.userStore.jwt
 	}
     render() {
         //language=HTML
