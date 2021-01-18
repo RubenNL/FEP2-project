@@ -24,8 +24,8 @@ function logoutReducer(state, action) {
 	return {};
 }
 
-function darkmodeReducer(state, action){
-	return {darkMode:action.payload,...state};
+function toggleDarkModeReducer(state, action){
+	return {...state,darkMode:!state.darkMode};
 }
 
 //--------- Selectors ---------//
@@ -58,7 +58,7 @@ const userStore = createSlice({
 	reducers: {
 		login: loginReducer,
 		logout: logoutReducer,
-		darkMode: darkmodeReducer
+		toggleDarkMode: toggleDarkModeReducer
 	}
 })
 
@@ -73,7 +73,7 @@ export const getDarkMode= () => darkModeSelector(store.getState())
 export const {
 	login,
 	logout,
-	darkMode
+	toggleDarkMode
 } = userStore.actions
 
 //--------- Export slice reducer ---------//
