@@ -15,7 +15,7 @@ store.subscribe(() => {
 	localStorage.setItem('userStore', JSON.stringify(userStore));
 	const bookmarkStore = store.getState().bookmarkStore
 	localStorage.setItem('bookmarks', JSON.stringify(bookmarkStore))
-	sendAuthenticated('/api/setBookmarks',bookmarkStore)
+	if(userStore.jwt) sendAuthenticated('/api/setBookmarks',bookmarkStore)
 })
 
 export default store
