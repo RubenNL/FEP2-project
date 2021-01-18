@@ -62,22 +62,6 @@ export class appSidebar extends LitElement {
             .sub-item a:hover{
                 background-color: var(--menu-hover);
             }
-
-            .button{
-                display: block;
-                background: #0066c4;
-                color: #ffffff;
-                cursor: pointer;
-                border: 0;
-                transition: all 0.5s;
-                border-radius: 3px;
-                align-self: end;
-                grid-column: 1;
-                text-align: center;
-                padding: 5px 20px;
-                margin-bottom: 3px;
-                text-decoration: inherit; /* no underline */
-            }
 		`;
 	}
 
@@ -86,16 +70,16 @@ export class appSidebar extends LitElement {
 		switch(role){
 			case "student":
 				return html`
-					<a router-link href="/bookmarks#main" class="button" id="menuButton">Bladwijzers</a>`;
+					<app-button width="100%" margin="0 0 3px 0" router-link href="/bookmarks#main">Bladwijzers</app-button>`;
 			case "auteur":
 				return html`
-					<a router-link href="/bookmarks#main" class="button" id="menuButton">Bladwijzers</a>
-					<a router-link href="/creator#main" class="button" id="menuButton">Nieuw artikel</a>`;
+					<app-button width="100%" margin="0 0 3px 0" router-link href="/bookmarks#main">Bladwijzers</app-button>
+					<app-button width="100%" margin="0 0 3px 0" router-link href="/creator#main">Nieuw artikel</app-button>`;
 			case "admin":
 				return html`
-					<a router-link href="/bookmarks#main" class="button" id="menuButton">Bladwijzers</a>
-					<a router-link href="/creator#main" class="button" id="menuButton">Nieuw artikel</a>
-					<a router-link href="/users#main" class="button">Gebruikers beheren</a>`;
+					<app-button width="100%" margin="0 0 3px 0" router-link href="/bookmarks#main">Bladwijzers</app-button>
+					<app-button width="100%" margin="0 0 3px 0" router-link href="/creator#main">Nieuw artikel</app-button>
+					<app-button width="100%" margin="0 0 3px 0" router-link href="/users#main">Gebruikers beheren</app-button>`;
 		}
 	}
 

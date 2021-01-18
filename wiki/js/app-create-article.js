@@ -45,36 +45,38 @@ export class appCreateArticle extends LitElement {
     }
 
     render() {
-        return html` <h2>Artikel maken</h2>
-        <form @submit="${this._sendArticle}">
-        <div id="superdiv">
-        <div class="inputdiv">
-			<label class="topcat"><b>Hoofdcategorie:</b>
-				<select name="head-category" class="topcat" id="head-category" @change="${this._onHeadCategoryChange}" required>
-					<option disabled selected></option>
-					${this._categories.map((hoofdcat) => html`<option value="${hoofdcat.headcatagory}" ?selected="${hoofdcat.headcatagory == this._chosenCategory.headcatagory}">${hoofdcat.headcatagory}</option>`)}
-				</select>
-			</label>
-        </div>
-        <div class="inputdiv">
-			<label class="subcat"><b>Subcategorie:</b>
-				<select name="sub-category" class="subcat" id="sub-category" required>
-					<option disabled selected></option>
-					${this._chosenCategory.subcatagories.map((subcatagorie) => html`<option value="${subcatagorie.id}" ?selected="${subcatagorie.id == parseInt(this._category)}">${subcatagorie.title}</option>`)}
-				</select>
-			</label>
-	    </div>
-	    <div class="inputdiv">
-			<label class="titel"><b>Titel:</b>
-				<input aria-labelledby="titel" type="text" class="titel" id="title" value="${this._title}" maxlength="30" required>
-			</label>
-		</div>
-		<div id="knopdiv">
-			<input type="submit" value="Opslaan" class="button">
-		</div>
-		</div>
-			<lrn-markdown-editor content="${this._content}"></lrn-markdown-editor>
-			`
+        return html`
+            <link rel="stylesheet" href="/bundle.css">
+            <h2>Artikel maken</h2>
+            <form @submit="${this._sendArticle}">
+                <div id="superdiv">
+                    <div class="inputdiv">
+                        <label class="topcat"><b>Hoofdcategorie:</b>
+                            <select name="head-category" class="topcat" id="head-category" @change="${this._onHeadCategoryChange}" required>
+                                <option disabled selected></option>
+                                ${this._categories.map((hoofdcat) => html`<option value="${hoofdcat.headcatagory}" ?selected="${hoofdcat.headcatagory == this._chosenCategory.headcatagory}">${hoofdcat.headcatagory}</option>`)}
+                            </select>
+                        </label>
+                    </div>
+                    <div class="inputdiv">
+                        <label class="subcat"><b>Subcategorie:</b>
+                            <select name="sub-category" class="subcat" id="sub-category" required>
+                                <option disabled selected></option>
+                                ${this._chosenCategory.subcatagories.map((subcatagorie) => html`<option value="${subcatagorie.id}" ?selected="${subcatagorie.id == parseInt(this._category)}">${subcatagorie.title}</option>`)}
+                            </select>
+                        </label>
+                    </div>
+                    <div class="inputdiv">
+                        <label class="titel"><b>Titel:</b>
+                            <input aria-labelledby="titel" type="text" class="titel" id="title" value="${this._title}" maxlength="30" required>
+                        </label>
+                    </div>
+                    <div id="knopdiv">
+                        <input type="submit" value="Opslaan">
+                    </div>
+                </div>
+                <lrn-markdown-editor content="${this._content}"></lrn-markdown-editor>
+        `
     }
 
     static get styles() {
@@ -103,27 +105,10 @@ export class appCreateArticle extends LitElement {
                 display: flex;
                 width: 100%;
                 justify-content: flex-end;
+                align-items: flex-end;
             }
             .inputdiv {
                 padding-right: 10px;
-            }
-
-            .button {
-                display: inline-block;
-                width: 100px;
-            background: #0066c4;
-            color: #ffffff;
-            cursor: pointer;
-            border: 0;
-            transition: all 0.5s;
-            border-radius: 3px;
-            align-self: flex-end;
-            grid-column: 1;
-            text-align: center;
-            padding: 5px 20px;
-            margin-bottom: 3px;
-            text-decoration: inherit; /* no underline */
-            float: right;
             }
             lrn-markdown-editor{
                 margin-top: 10px;
