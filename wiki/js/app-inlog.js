@@ -51,15 +51,8 @@ export class appInlog extends connect(store)(LitElement) {
         }).then(response=>response.json()).then(response=>{
             if(response.err) alert(response.err)
             else {
-                // window.localStorage.setItem('JWT', response.key);
 				store.dispatch(login(response.key))
                 window.dispatchEvent(new CustomEvent('vaadin-router-go', {detail: {pathname: '/'}}));
-                /*sendAuthenticated('/api/getUser').then(user=>{
-                    if(user.blocked) {
-                        alert('Uw account is geblokkeerd! Neem contact op als dit niet klopt');
-                        window.localStorage.clear()
-                    } else window.localStorage.setItem('user', JSON.stringify(user))
-                }).then(()=>window.location.pathname='/')*/
             }
 
         });
