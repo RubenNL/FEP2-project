@@ -3,8 +3,8 @@
   "short_name": "Billy",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#0eb73f",
-  "theme_color": "#317EFB",
+  "background_color": "#f9f9f9",
+  "theme_color": "#0066c4",
   "description": "OpenICT Wiki, Billy 2.0",
   "icons": [{
 	"src": "images/logo_512px.png",
