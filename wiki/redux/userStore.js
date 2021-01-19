@@ -1,3 +1,5 @@
+/*Contributors: Ruben, Daniel, Marlon */
+
 import {createSlice, createSelector} from '@reduxjs/toolkit'
 import store from './index.js'
 

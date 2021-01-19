@@ -1,3 +1,5 @@
+/*Contributors: Ruben */
+
 import {css, LitElement, html} from 'lit-element'
 import {connect} from 'pwa-helpers/connect-mixin.js'
 import store from '../redux/index.js'

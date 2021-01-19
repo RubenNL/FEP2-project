@@ -1,3 +1,5 @@
+/*Contributors: Ruben, Gianni, Marlon, Nick, Daniel */
+
 import sendAuthenticated from 'js/sendAuthenticated.js'
 window.sendAuthenticated = sendAuthenticated
 

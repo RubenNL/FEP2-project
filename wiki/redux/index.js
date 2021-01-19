@@ -1,3 +1,5 @@
+/*Contributors: Ruben, Marlon */
+
 import {configureStore, combineReducers} from '@reduxjs/toolkit'
 
 import userStore from './userStore.js'

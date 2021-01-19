@@ -1,3 +1,5 @@
+/*Contributors: Ruben */
+
 import store from '../redux/index.js'
 
 function sendAuthenticated(url, data) {

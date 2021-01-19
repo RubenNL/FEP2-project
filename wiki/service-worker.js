@@ -1,3 +1,5 @@
+/*Contributors: Ruben */
+
 let timeout = setTimeout(() => {}, 0)
 self.addEventListener('fetch', function (event) {
 	clearTimeout(timeout)

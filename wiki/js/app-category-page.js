@@ -1,3 +1,5 @@
+/*Contributors: Daniel, Ruben*/
+
 import {css, LitElement, html} from 'lit-element'
 import './app-404.js'
 import './app-article-card.js'

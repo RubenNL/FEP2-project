@@ -1,3 +1,5 @@
+/*Contributors: Ruben, Gianni, Daniel*/
+
 import {css, LitElement, html} from 'lit-element'
 import '@lrnwebcomponents/md-block/md-block.js'
 import './app-404.js'
