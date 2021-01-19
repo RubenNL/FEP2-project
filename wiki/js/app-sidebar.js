@@ -69,22 +69,6 @@ export class appSidebar extends connect(store)(LitElement) {
             .sub-item a:hover{
                 background-color: var(--menu-hover);
             }
-
-            .button{
-                display: block;
-                background: #0066c4;
-                color: #ffffff;
-                cursor: pointer;
-                border: 0;
-                transition: all 0.5s;
-                border-radius: 3px;
-                align-self: end;
-                grid-column: 1;
-                text-align: center;
-                padding: 5px 20px;
-                margin-bottom: 3px;
-                text-decoration: inherit; /* no underline */
-            }
 		`;
 	}
 
@@ -92,16 +76,16 @@ export class appSidebar extends connect(store)(LitElement) {
 		switch(this._functie){
 			case "student":
 				return html`
-					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>`;
+					<app-button width="100%" margin="0 0 3px 0" router-link href="/bookmarks#main">Bladwijzers</app-button>`;
 			case "auteur":
 				return html`
-					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>
-					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>`;
+					<app-button width="100%" margin="0 0 3px 0" router-link href="/bookmarks#main">Bladwijzers</app-button>
+					<app-button width="100%" margin="0 0 3px 0" router-link href="/creator#main">Nieuw artikel</app-button>`;
 			case "admin":
 				return html`
-					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>
-					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
-					<a router-link href="/users" class="button">Gebruikers beheren</a>`;
+					<app-button width="100%" margin="0 0 3px 0" router-link href="/bookmarks#main">Bladwijzers</app-button>
+					<app-button width="100%" margin="0 0 3px 0" router-link href="/creator#main">Nieuw artikel</app-button>
+					<app-button width="100%" margin="0 0 3px 0" router-link href="/users#main">Gebruikers beheren</app-button>`;
 		}
 	}
 
@@ -116,7 +100,7 @@ export class appSidebar extends connect(store)(LitElement) {
 						<li>
 							<h3 class="head-item">${hoofdcat.headcatagory} (${hoofdcat.count})</h3>
 							<ul class="side-nav-sub">${hoofdcat.subcatagories.map(sub => html`
-								<li class="sub-item"><a router-link href="/category/${sub.id}">${sub.title} (${sub.count})</a></li>`)}
+								<li class="sub-item"><a router-link href="/category/${sub.id}#main">${sub.title} (${sub.count})</a></li>`)}
 							</ul>
 						</li>
 					`)}
