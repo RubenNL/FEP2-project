@@ -60,7 +60,7 @@ export class appCreateArticle extends connect(store)(LitElement) {
 	render() {
 		return html`
 			<link rel="stylesheet" href="/bundle.css" />
-			<h2>Artikel maken</h2>
+			<h2>Artikel ${this._src ? 'bewerken' : 'maken'}</h2>
 			<form @submit="${this._sendArticle}">
 				<div id="superdiv">
 					<div class="inputdiv">
