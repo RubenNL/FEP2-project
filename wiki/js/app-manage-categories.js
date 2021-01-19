@@ -23,25 +23,32 @@ export class appManageCategories extends connect(store)(LitElement) {
 
 	render() {
 		return html`
-            <h2>Gebruikers beheren</h2>
+            <h2>Categorieën beheren</h2>
             <div id="flex-container">
-                <ul class="categorycontainer">
-                    <h2>Studenten</h2>
+                <div class="categorycontainer">
+                    <h2>Categories</h2>
                     ${this._categories.map((hoofdcat) => html`
-					<ul>
-                        ${hoofdcat.headcatagory}<span id="icon-holder">
-                    </ul>
-                    	<li>
-                    		<ul class="side-nav-sub">${hoofdcat.subcatagories.map(sub => html`
+					<div id="headcat">
+                        ${hoofdcat.headcatagory}
+                        <li>
+							<ul class="side-nav-sub">${hoofdcat.subcatagories.map(sub => html`
 								<li class="sub-item">${sub.title})<span id="icon-holder">
-                    		
-                    		<fa-icon title="Pas naam aan" @click="${() => console.log('wip').then(() => this.requestUpdate())}"
-                         class="fas fa-pencil-alt autor"></fa-icon>
-                         
-                            <fa-icon title="Verwijder subcategory" @click="${() => console.log('wip')}" class="fas fa-trash-alt"></fa-icon></span></li>`)}
-                            </ul>
+									<span id="icon-holder">
+										<fa-icon title="Pas naam aan" @click="${() => alert('Category naam is aangepast')}"
+										class="fas fa-pencil-alt autor"></fa-icon>
+							 
+										<fa-icon title="Verwijder subcategory" @click="${() => alert('Category is verwijderd!')}" 
+										class="fas fa-trash-alt"></fa-icon>
+									</span>
+								</li>`)}
+							</ul>
                         </li>
-                    `)}`;
+                    `)}
+                    </div>
+                </div>
+            </div>
+            		
+		`;
 	}
 
 	static get styles() {
@@ -50,11 +57,16 @@ export class appManageCategories extends connect(store)(LitElement) {
             :host {
                 min-height: 100%;
                 color: var(--text-color);
+				
             }
+			
+			#headcat {
+                font-weight: bold;
+			}
 
             #flex-container {
                 display: flex;
-                grid-template-columns: 3fr 1fr;
+                
             }
 
             .categorycontainer {
@@ -66,6 +78,7 @@ export class appManageCategories extends connect(store)(LitElement) {
             ul {
                 list-style-type: none;
                 padding: 0;
+                
             }
 
             li {
@@ -91,21 +104,6 @@ export class appManageCategories extends connect(store)(LitElement) {
                 opacity: 0.2;
             }
 
-            .autor {
-                color: green;
-                transform: scale(1.1);
-            }
-
-            .blocked {
-                color: red;
-                transform: scale(1.1);
-            }
-
-            .admin {
-                color: blue;
-                transform: scale(1.1);
-            }
-
             fa-icon {
                 color: #808080;
                 width: 1em;
@@ -117,10 +115,6 @@ export class appManageCategories extends connect(store)(LitElement) {
             fa-icon:hover {
                 transform: scale(1.3);
             }
-            #test{
-             display: none;   
-            }
-            
         `;
 	}
 }
