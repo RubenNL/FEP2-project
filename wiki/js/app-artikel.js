@@ -82,7 +82,7 @@ export class appArtikel extends connect(store)(LitElement) {
             "categoryId":1688148667
         }
         sendAuthenticated('/api/saveArticle/'+this._src,data)
-			.then(()=>window.dispatchEvent(new CustomEvent('vaadin-router-go', {detail: {pathname: '/login'}})));
+			.then(()=>window.dispatchEvent(new CustomEvent('vaadin-router-go', {detail: {pathname: '/'}})));
 	}
 	onBeforeEnter(location, commands, router){
 		this.src=location.params.article

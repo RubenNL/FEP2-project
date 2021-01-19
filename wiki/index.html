@@ -3,7 +3,6 @@
 <head>
 	<script>
 		if(window.location.protocol=='http:' && !window.location.port) window.location.protocol='https:' //port om te testen of de heroku wordt geladen. bij heroku is de port leeg.
-		if(window.localStorage.getItem('darkMode')==='true') document.querySelector('html').classList.add('darkMode')
 		window.process = {
 			env: {
 				NODE_ENV: 'production'
@@ -11,7 +10,7 @@
 		};
 	</script>
 	<title>OpenICT Wiki</title>
-	<meta name="theme-color" content="#317EFB"/>
+	<meta name="theme-color" content="#0066c4"/>
 	<link rel="icon" type="image/png" href="/images/logo_32px_textless.png">
 	<link rel="apple-touch-icon" href="/images/logo_32px_textless.png">
 	<link rel="manifest" href="/manifest.json">
@@ -21,7 +20,7 @@
 </head>
 <body>
 <a class="skip-to-content-link" href="#main" tabindex="0">
-    Skip to content
+    Spring naar content
 </a>
 <noscript>JS is niet ingeschakeld.</noscript>
 <div class="container-fluid">

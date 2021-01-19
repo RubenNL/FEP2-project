@@ -34,34 +34,9 @@ export class appRegister extends LitElement {
                 border: 1px solid #ccc;
                  box-sizing: border-box;
             }
-
-            #registerformContainer > button {
-                text-align: center;
-                margin-top: 5px;
-                margin-bottom: 5px;
-                width: 100px;
-                display: block;
-                border-radius: 4px;
-                padding: 20px;
-                border: 1px solid #ccc;
+            input[type=submit]{
+                margin-top:40px;
             }
-
-            #button {
-                background: #0066c4;
-                color: #ffffff;
-                cursor: pointer;
-                border: 0;
-                transition: all 0.5s;
-                border-radius: 3px;
-                text-align: center;
-                padding: 5px 10px;
-                margin-bottom: 3px;
-                height: 30px;
-                width: 120px;
-                text-decoration: inherit; /* no underline */
-                float: right;
-            }
-            
             #registerform {
                 display: flex;
             }`
@@ -74,31 +49,33 @@ export class appRegister extends LitElement {
 
     render() {
         return html`
+            <link rel="stylesheet" href="/bundle.css">
             <h2>Registreren</h2>
-        <form id="registerform" @submit="${this._onclick}">
-			<div id="registerformContainer" class="informationBlock">
-			    <h3>Account informatie</h3>
-				<label for="email">E-mail: 
-				    <input type="email" name="email" id="email" tabindex="1" placeholder="Voer uw email in." @input="${this._change}" required/>
-				</label>
-				<label for="password">Wachtwoord: 
-				    <input type="password" name="password" id="password" tabindex="2" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
-				</label>
-				<label for="confirmpassword">Bevestig wachtwoord: 
-				    <input type="password" name="password" id="confirmpassword" tabindex="3" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
-				</label>
-			</div>
-			<div id="information" class="informationBlock">
-				<h3>Persoonlijke informatie</h3>
-				<label for="name">Naam:
-		            <input type="text" name="fullName" id="name" tabindex="4" placeholder="Voer uw naam in." @input="${this._change}" required/>
-				</label>
-				<label for="organisation">Organisatie:
-				    <input type="text" name="orgName" id="organisation" tabindex="6" placeholder="Voer uw organisatie in." @input="${this._change}" required/>
-				</label>
-				<input type="submit" value="Registreren" id="button" tabindex="0">
-			</div>
-        </form>`
+            <form id="registerform" @submit="${this._onclick}">
+                <div id="registerformContainer" class="informationBlock">
+                    <h3>Account informatie</h3>
+                    <label for="email">E-mail:
+                        <input type="email" name="email" id="email" tabindex="1" placeholder="Voer uw email in." @input="${this._change}" required/>
+                    </label>
+                    <label for="password">Wachtwoord:
+                        <input type="password" name="password" id="password" tabindex="2" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
+                    </label>
+                    <label for="confirmpassword">Bevestig wachtwoord:
+                        <input type="password" name="password" id="confirmpassword" tabindex="3" placeholder="Voer uw wachtwoord in." @input="${this._change}" required/>
+                    </label>
+                </div>
+                <div id="information" class="informationBlock">
+                    <h3>Persoonlijke informatie</h3>
+                    <label for="name">Naam:
+                        <input type="text" name="fullName" id="name" tabindex="4" placeholder="Voer uw naam in." @input="${this._change}" required/>
+                    </label>
+                    <label for="organisation">Organisatie:
+                        <input type="text" name="orgName" id="organisation" tabindex="6" placeholder="Voer uw organisatie in." @input="${this._change}" required/>
+                    </label>
+                    <input type="submit" value="Registreren" tabindex="0">
+                </div>
+            </form>
+        `
     }
 
 

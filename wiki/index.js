@@ -72,3 +72,4 @@ import "js/app-button.js"
 
 import 'css/bootstrap.min.css'
 import 'css/style.css'
+import 'css/button-styles.css'
