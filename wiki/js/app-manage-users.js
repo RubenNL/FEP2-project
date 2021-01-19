@@ -1,15 +1,21 @@
 import {LitElement, html, css} from 'lit-element';
 import 'fa-icons';
+import store from "../redux";
+import {connect} from "pwa-helpers/connect-mixin";
 
-
-export class appManageUsers extends LitElement {
+export class appManageUsers extends connect(store)(LitElement) {
     static get properties() {
         return {
             _students: {type: Array},
             _authors: {type: Array},
             _admins: {type: Array},
-            _functie: {type: String}
+            _functie: {type: String},
+            _emailLoggedInUser: {type: String}
         }
+    }
+
+    stateChanged(state) {
+        this._emailLoggedInUser = state.userStore.email
     }
 
     constructor() {
@@ -59,7 +65,7 @@ export class appManageUsers extends LitElement {
         this._students.push(user)
         return sendAuthenticated(`/api/updateUser/${user.email}`, {functie: "student"})
     }
-
+  
     toggleToAuthor(user) {
         delete this._students[this._students.indexOf(user)]
         delete this._admins[this._admins.indexOf(user)]
@@ -156,7 +162,7 @@ export class appManageUsers extends LitElement {
                     <h2>Admins</h2>
                     ${this._admins.map((user) => html`
                         <li>${user.fullName}
-                            ${(((user.email === JSON.parse(window.localStorage.getItem('user')).email) || user.email === 'admin@tester.nl' || user.email === 'auteur@tester.nl') ? html`` :
+                            ${(((user.email === this._emailLoggedInUser || user.email === 'admin@tester.nl' || user.email === 'auteur@tester.nl') ? html`` :
                                     html`${this.mapAdmin(user)}`)}
                         </li>
                     `)}

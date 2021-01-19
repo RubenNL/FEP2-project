@@ -2,7 +2,10 @@ import { css,LitElement, html } from 'lit-element';
 import '@lrnwebcomponents/md-block/md-block.js';
 import './app-404.js';
 import 'fa-icons';
-export class appArtikel extends LitElement {
+import {connect} from "pwa-helpers/connect-mixin";
+import store from "../redux";
+import {toggle, isBookmarked} from '../redux/bookmarkStore.js'
+export class appArtikel extends connect(store)(LitElement) {
 	static get properties() {
 		return {
 			src: {type:String},
@@ -13,6 +16,9 @@ export class appArtikel extends LitElement {
 			_404: {type:Boolean},
 			_bookmarked: {type:Boolean},
 			_lastEditedBy:{type:String},
+			_categoryID: {type:String},
+			_loggedIn: {type: Boolean},
+			_functie: {type: String}
 		};
 	}
 	constructor() {
@@ -22,17 +28,18 @@ export class appArtikel extends LitElement {
 		this._404=false;
 		this._bookmarked=false;
 		this._lastEditedBy='';
+		this._loggedIn=false;
+		this._functie='';
 	}
+
 	render() {
 		//language=HTML
 		if(this._404) return html`<app-404></app-404>`
 		return html`
 			<div id="meta">
-			${window.localStorage.getItem('user') ? html`
-				${JSON.parse(window.localStorage.getItem('user')).functie!="student"?html`
-					<a tabindex="3" @click="${this.delete}" title="Artikel verwijderen"><fa-icon class="fas fa-trash-alt" path-prefix="/node_modules"/></a>
-					<a tabindex="2" href="/creator/${this.src}" title="Artikel bewerken"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>`
-				:html``}
+			${this._loggedIn ? html`
+				${this._functie==="student"?html``
+				:html`${this.checkDeleted(this._categoryID)}`}
 					<a tabindex="1" title="Voeg bladwijzer toe" @click="${this.bookmark}">
 						${this._bookmarked
 							?html`<fa-icon class="fas fa-bookmark" path-prefix="/node_modules"/>`
@@ -45,25 +52,40 @@ export class appArtikel extends LitElement {
 		<h1>${this._title}</h1>
 		${this._content?html`<md-block markdown="${this._content}"></md-block>`:html``}`
 	}
+
+	checkDeleted(id) {
+		if(id !== 1688148667){
+			return html`
+				<a tabindex="3" id="trashcan" @click="${this.delete}" title="Artikel verwijderen"><fa-icon class="fas fa-trash-alt" path-prefix="/node_modules"/></a>
+				<a tabindex="2" href="/creator/${this.src}" title="Artikel bewerken"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>`
+		}else{
+			return html`
+				<a tabindex="2" href="/creator/${this.src}" title="Artikel bewerken"><fa-icon class="fas fa-pencil-alt" path-prefix="/node_modules"/></a>`
+		}
+
+	}
+
+	stateChanged(state) {
+		this._loggedIn=!!state.userStore.jwt
+		this._functie=state.userStore.functie
+		if (!state.bookmarkStore) return
+		this._bookmarked=isBookmarked(this._src)
+	}
+
+
 	bookmark() {
-		this._bookmarked=!this._bookmarked;
-		let bookmarks=JSON.parse(window.localStorage.getItem('bookmarks')||'[]')
-		if(this._bookmarked) bookmarks.push(this._src)
-		else bookmarks.splice(bookmarks.indexOf(this._src), 1)
-		window.localStorage.setItem('bookmarks',JSON.stringify(bookmarks))
-		sendAuthenticated('/api/setBookmarks',bookmarks)
-		this.requestUpdate();
+		store.dispatch(toggle(this._src))
 	}
 	delete() {
 		if(!confirm('Weet u zeker dat u dit artikel wilt verwijderen?')) return
 		const data={
             "categoryId":1688148667
         }
-        sendAuthenticated('/api/saveArticle/'+this._src,data).then(()=>window.location.pathname=`/`)
+        sendAuthenticated('/api/saveArticle/'+this._src,data)
+			.then(()=>window.dispatchEvent(new CustomEvent('vaadin-router-go', {detail: {pathname: '/'}})));
 	}
 	onBeforeEnter(location, commands, router){
 		this.src=location.params.article
-		this._bookmarked=JSON.parse(window.localStorage.getItem('bookmarks')||'[]').includes(this.src)
 	}
 
 	static get styles(){
@@ -94,6 +116,10 @@ export class appArtikel extends LitElement {
 				padding: 0 3px;
 				cursor: pointer;
 			}
+			
+			.trashcanview{
+				display: none;
+			}
 
 			fa-icon:hover {
 				transform: scale(1.3);
@@ -111,7 +137,8 @@ export class appArtikel extends LitElement {
 			this._404=!response;
 			this._content = response.data;
 			this._title = response.title;
-			this._lastEditedBy=response.lastEditedBy;
+			this._lastEditedBy = response.lastEditedBy;
+			this._categoryID = response.categoryId;
 		}).catch(()=>{
 			this._404=true;
 			this._content='';

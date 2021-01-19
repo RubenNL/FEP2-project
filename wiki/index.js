@@ -1,4 +1,8 @@
+import sendAuthenticated from "js/sendAuthenticated.js"
+window.sendAuthenticated=sendAuthenticated;
+
 import {Router} from '@vaadin/router';
+import store from 'redux/index.js'
 
 const outlet = document.querySelector('main');
 const router = new Router(outlet);
@@ -50,6 +54,11 @@ router.setRoutes([
 		action: ()=>import('js/app-bookmarks.js')
 	},
 	{
+		path: '/editCategory',
+		component: 'app-manage-categories',
+		action: ()=>import('js/app-manage-categories.js')
+	},
+	{
 		path: '(.*)',
 		component: 'app-404',
 		action: ()=>import('js/app-404.js')
@@ -63,3 +72,4 @@ import "js/app-button.js"
 
 import 'css/bootstrap.min.css'
 import 'css/style.css'
+import 'css/button-styles.css'

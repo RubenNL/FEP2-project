@@ -1,13 +1,31 @@
 import './app-search.js'
 import {css, html, LitElement} from 'lit-element';
+import { connect } from 'pwa-helpers/connect-mixin.js';
+import {toggleDarkMode, login, logout} from '../redux/userStore.js'
+import store from '../redux/index.js'
+import {set} from 'redux/bookmarkStore.js'
 
-class AppHeader extends LitElement {
+class AppHeader extends connect(store)(LitElement) {
+	static get properties() {
+		return {
+			_userName: {type:String}
+		}
+	}
+
     constructor() {
         super();
-        this._userName = "[studentnaam]";
+        this._userName = "";
         this.classList.add('bg-container');
     }
-
+	stateChanged(state) {
+		this._userName = state.userStore.fullName
+		if(this._oldJwt != state.userStore.jwt && state.userStore.jwt) window.sendAuthenticated('/api/getBookmarks').then(bookmarks=>{
+			store.dispatch(set(bookmarks))
+		})
+		this._oldJwt = state.userStore.jwt
+		document.querySelector("html").classList.remove("darkMode");
+		if(state.userStore.darkMode) document.querySelector("html").classList.add("darkMode");
+	}
     render() {
         //language=HTML
         return html`
@@ -19,19 +37,24 @@ class AppHeader extends LitElement {
                 </div>
             </a>
             <div class="search-container">
-                ${window.localStorage.getItem('user') ? 
+                ${this._userName ? 
             //wel ingelogd
-            html`<span id="greet">Welkom ${JSON.parse(window.localStorage.getItem('user')).fullName.split(' ')[0]}! <fa-icon @click="${() => (document.querySelector("html").classList.toggle("darkMode"))}" class="fas fa-adjust" path-prefix="/node_modules"/></fa-icon></span>
-                    <a class="button" id="logout" @click="${() => {
+            html`<span id="greet">Welkom ${this._userName}! <fa-icon @click="${() => {
+				store.dispatch(toggleDarkMode());
+				// logout met reducer 
+			}}" class="fas fa-adjust" path-prefix="/node_modules"/></fa-icon></span>
+                    <app-button padding="7px 35px" @click="${() => {
                 window.localStorage.clear();
                 window.location.pathname="/";
-            }}">Uitloggen</a>`
+            }}">Uitloggen</app-button>`
             
             : //Niet ingelogd
             
-            html`<span id="greet"><fa-icon class="fas fa-adjust"  @click="${() => (document.querySelector("html").classList.toggle("darkMode"))}" path-prefix="/node_modules"/></fa-icon></span>
-                <a router-link href="/login" class="button">Inloggen</a>`}
-                <app-search id="appsearch"></app-search></div>`
+            html`<span id="greet"><fa-icon class="fas fa-adjust"  @click="${() => {
+				store.dispatch(toggleDarkMode());
+			}}" path-prefix="/node_modules"/></fa-icon></span>
+			<app-button padding="7px 35px" router-link href="/login#main">Inloggen</app-button>`}
+			<app-search id="appsearch"></app-search></div>`
     }
 
     static get styles() {
@@ -78,23 +101,6 @@ class AppHeader extends LitElement {
                 display: flex;
                 align-items: flex-end;
                 flex-direction: column;
-            }
-
-            .search-container > .button {
-                background: #0066c4;
-                color: var(--text-color);
-                cursor: pointer;
-                width: 225px;
-                border: 0;
-                transition: all 0.5s;
-                border-radius: 3px;
-                text-align: center;
-                padding-bottom: 10px;
-                padding-top: 5px;
-                margin-top:15px;
-                text-decoration: inherit; /* no underline */
-                align-content: center;
-                display: block;
             }
             #appsearch{
                 padding-top: 10px;
