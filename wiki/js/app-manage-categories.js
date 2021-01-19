@@ -26,7 +26,7 @@ export class appManageCategories extends connect(store)(LitElement) {
             <h2>Categorieën beheren</h2>
             <div id="flex-container">
                 <ul class="categorycontainer">
-                    <h2>Categories</h2>
+                    <h2>Categorieën</h2>
                     ${this._categories.map((hoofdcat) => html`
 					<li id="headcat">
                         ${hoofdcat.headcatagory}

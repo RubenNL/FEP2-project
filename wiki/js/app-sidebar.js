@@ -101,7 +101,9 @@ export class appSidebar extends connect(store)(LitElement) {
 				return html`
 					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>
 					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
-					<a router-link href="/users" class="button">Gebruikers beheren</a>`;
+					<a router-link href="/users" class="button">Gebruikers beheren</a>
+					<a router-link href="/editCategory" class="button">Categorieën beheren</a>`;
+
 		}
 	}
 
