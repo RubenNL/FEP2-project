@@ -1,7 +1,7 @@
 import {css, LitElement, html} from 'lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import store from '../redux/index.js'
-import { login, logout } from '../redux/userStore.js'
+import { login } from '../redux/userStore.js'
 
 export class appInlog extends connect(store)(LitElement) {
     static get properties() {

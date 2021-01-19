@@ -8,26 +8,26 @@ jobs:
   aliveCheck:
     runs-on: ubuntu-latest
     steps:
-      - name:  Activity check
-        run:   |
-           :
-           curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/commits -H "authorization: token ${{ secrets.githubKey }}" | jq -r '[.[]][0]' > $HOME/commit.json
-           date="$(jq -r '.commit.author.date' $HOME/commit.json)"
-           timestamp=$(date --utc -d "$date" +%s)
-           author="$(jq -r '.commit.author.name' $HOME/commit.json)"
-           url="$(jq -r '.html_url' $HOME/commit.json)"
-           hours=$(( ( $(date --utc +%s) - $timestamp ) / 3600 ))
-           rm -f $HOME/commit.json
-           echo "Repository activity : $timestamp $author $url"
-           if [ $hours -lt 1 ]; then
-             echo "running, last activity last hour"
-             echo "GHA_REPO_ALIVE=true" >> $GITHUB_ENV
-           else
-             echo "not running, no updates last hour"
-             echo "GHA_REPO_ALIVE=false" >> $GITHUB_ENV
-           fi
+      - name: Activity check
+        run: |
+          :
+          curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/commits -H "authorization: token ${{ secrets.githubKey }}" | jq -r '[.[]][0]' > $HOME/commit.json
+          date="$(jq -r '.commit.author.date' $HOME/commit.json)"
+          timestamp=$(date --utc -d "$date" +%s)
+          author="$(jq -r '.commit.author.name' $HOME/commit.json)"
+          url="$(jq -r '.html_url' $HOME/commit.json)"
+          hours=$(( ( $(date --utc +%s) - $timestamp ) / 3600 ))
+          rm -f $HOME/commit.json
+          echo "Repository activity : $timestamp $author $url"
+          if [ $hours -lt 1 ]; then
+            echo "running, last activity last hour"
+            echo "GHA_REPO_ALIVE=true" >> $GITHUB_ENV
+          else
+            echo "not running, no updates last hour"
+            echo "GHA_REPO_ALIVE=false" >> $GITHUB_ENV
+          fi
         shell: bash
       - name: Dispatch activity_push event
         if: env.GHA_REPO_ALIVE == 'true'
         run: |
-            curl -X POST 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/actions/workflows/gource.yml/dispatches' -H 'Authorization: token ${{ secrets.githubKey }}' -d '{"ref":"master"}'
+          curl -X POST 'https://api.github.com/repos/'$GITHUB_REPOSITORY'/actions/workflows/gource.yml/dispatches' -H 'Authorization: token ${{ secrets.githubKey }}' -d '{"ref":"master"}'

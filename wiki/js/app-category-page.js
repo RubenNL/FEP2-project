@@ -39,7 +39,7 @@ export class appCategoryPage extends LitElement {
 			}
 		`}
 
-	onBeforeEnter(location, commands, router) {
+	onBeforeEnter(location) {
 		this.src = location.params.categoryID
 		fetch(`/api/getCategory/${location.params.categoryID}`).then(response => response.json()).then(response => {
 			this._404=!response;

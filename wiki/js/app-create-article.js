@@ -34,7 +34,7 @@ export class appCreateArticle extends connect(store)(LitElement) {
         if (!state.userStore.jwt) window.dispatchEvent(new CustomEvent('vaadin-router-go', {detail: {pathname: '/login'}}));
     }
 
-    onBeforeEnter(location, commands, router) {
+    onBeforeEnter(location) {
         this.src = location.params.article
 
     }

@@ -7,7 +7,12 @@
     "build": "rollup -c",
     "watch": "rollup -c --watch",
     "local": "run-p watch start",
-    "start": "node server.js"
+    "start": "node server.js",
+    "eslint": "eslint .",
+    "prettier_check": "prettier . -c",
+    "test": "run-s eslint prettier_check",
+    "prettier": "prettier . -w",
+    "fix": "run-s prettier"
   },
   "author": "",
   "license": "ISC",
@@ -21,14 +26,17 @@
     "sequelize": "^6.4.0"
   },
   "devDependencies": {
-    "@reduxjs/toolkit": "^1.5.0",
-    "@lrnwebcomponents/md-block": "^3.0.5",
     "@lrnwebcomponents/lrn-markdown-editor": "^3.0.5",
+    "@lrnwebcomponents/md-block": "^3.0.5",
+    "@reduxjs/toolkit": "^1.5.0",
     "@rollup/plugin-node-resolve": "^11.1.0",
     "@vaadin/router": "^1.7.2",
+    "eslint": "^7.18.0",
     "fa-icons": "^0.2.0",
     "lit-element": "^2.4.0",
     "npm-run-all": "^4.1.5",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.2.1",
     "pwa-helpers": "^0.9.1",
     "rollup": "^2.37.0",
     "rollup-plugin-copy": "^3.3.0",
