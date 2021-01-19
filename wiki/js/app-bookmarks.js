@@ -1,6 +1,8 @@
 import {css, LitElement, html} from 'lit-element';
+import { connect } from 'pwa-helpers/connect-mixin.js';
+import store from '../redux/index.js'
 import './app-article-card.js'
-export class AppBookmarks extends LitElement {
+export class AppBookmarks extends connect(store)(LitElement) {
 	static get properties() {
 		return {
 			_articles: {type: Array},
@@ -11,12 +13,11 @@ export class AppBookmarks extends LitElement {
 		super();
 		this._articles = [];
 	}
-	onBeforeEnter(location, commands, router) {
-        if (!window.localStorage.getItem('JWT')) return commands.redirect('/login');
-		else sendAuthenticated(`/api/getBookmarks`).then(response => {
-			this._articles=response;
-		})
-    }
+	stateChanged(state) {
+		if (!state.userStore.jwt) window.dispatchEvent(new CustomEvent('vaadin-router-go', {detail: {pathname: '/login'}}));
+		else this._articles = state.bookmarkStore
+	}
+
 	render() {
 		//language=HTML;
 		return html`<h2>Bladwijzers</h2>

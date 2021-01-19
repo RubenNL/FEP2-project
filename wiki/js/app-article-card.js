@@ -1,12 +1,16 @@
 import {css, LitElement, html} from 'lit-element';
+import { connect } from 'pwa-helpers/connect-mixin.js';
+import store from '../redux/index.js'
+import {toggle,isBookmarked} from '../redux/bookmarkStore.js'
 import 'fa-icons'
-export class AppArticleCard extends LitElement {
+export class AppArticleCard extends connect(store)(LitElement) {
     static get properties() {
         return {
             id: {type:String},
 			title:{type: String},
 			preview:{type: String},
-			_bookmarked: {type:Boolean}
+			_bookmarked: {type:Boolean},
+			_loggedIn:{type: Boolean}
         };
     }
 
@@ -15,10 +19,16 @@ export class AppArticleCard extends LitElement {
 		this.title='';
 		this.preview='';
 		this._bookmarked=false;
+		this._loggedIn=false;
     }
+	stateChanged(state) {
+		this._loggedIn=!!state.userStore.jwt
+		if (!state.bookmarkStore) return
+		this._bookmarked=isBookmarked(this.id)
+	}
+
     firstUpdated() {
 		this.id=''+this.id;
-		this._bookmarked=JSON.parse(window.localStorage.getItem('bookmarks')||'[]').includes(this.id)
 		fetch(`/api/getArticlePreview/${this.id}`).then(response=>response.json()).then(article=>{
 			this.title=article.title;
 			this.preview=article.preview;
@@ -78,7 +88,7 @@ export class AppArticleCard extends LitElement {
         //language=HTML
         return html`
             <a class="article" router-link href="/article/${this.id}">
-				${window.localStorage.getItem('user')?html`
+				${this._loggedIn?html`
 				<a id="toggleBookmark" tabindex="0" title="toggle bookmark" @click="${this.bookmark}">${
 					this._bookmarked
 					?html`<fa-icon class="fas fa-bookmark" path-prefix="/node_modules"/>`
@@ -91,13 +101,7 @@ export class AppArticleCard extends LitElement {
     }
     bookmark(e) {
 		e.preventDefault();
-		this._bookmarked=!this._bookmarked;
-		let bookmarks=JSON.parse(window.localStorage.getItem('bookmarks')||'[]')
-		if(this._bookmarked) bookmarks.push(this.id)
-		else bookmarks.splice(bookmarks.indexOf(this.id), 1)
-		window.localStorage.setItem('bookmarks',JSON.stringify(bookmarks))
-		sendAuthenticated('/api/setBookmarks',bookmarks)
-		this.requestUpdate();
+		store.dispatch(toggle(this.id))
 	}
 }
 customElements.define('app-article-card', AppArticleCard)

@@ -21,6 +21,7 @@
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
+    "@reduxjs/toolkit": "^1.5.0",
     "@lrnwebcomponents/md-block": "^3.0.5",
     "@lrnwebcomponents/lrn-markdown-editor": "^3.0.5",
     "@rollup/plugin-node-resolve": "^11.1.0",
@@ -28,6 +29,7 @@
     "fa-icons": "^0.2.0",
     "lit-element": "^2.4.0",
     "npm-run-all": "^4.1.5",
+    "pwa-helpers": "^0.9.1",
     "rollup": "^2.36.2",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-css-only": "^3.1.0",

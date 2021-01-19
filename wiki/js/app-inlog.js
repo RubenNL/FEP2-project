@@ -1,9 +1,13 @@
 import {css, LitElement, html} from 'lit-element';
+import { connect } from 'pwa-helpers/connect-mixin.js';
+import store from '../redux/index.js'
+import { login, logout } from '../redux/userStore.js'
 
-export class appInlog extends LitElement {
+export class appInlog extends connect(store)(LitElement) {
     static get properties() {
         return {
-            _data: {type:Object}
+            _data: {type:Object},
+            location: Object
         }
     }
     constructor() {
@@ -48,13 +52,8 @@ export class appInlog extends LitElement {
         }).then(response=>response.json()).then(response=>{
             if(response.err) alert(response.err)
             else {
-                window.localStorage.setItem('JWT', response.key);
-                sendAuthenticated('/api/getUser').then(user=>{
-                    if(user.blocked) {
-                        alert('Uw account is geblokkeerd! Neem contact op als dit niet klopt');
-                        window.localStorage.clear()
-                    } else window.localStorage.setItem('user', JSON.stringify(user))
-                }).then(()=>window.location.pathname='/')
+				store.dispatch(login(response.key))
+                window.dispatchEvent(new CustomEvent('vaadin-router-go', {detail: {pathname: '/'}}));
             }
 
         });

@@ -1,12 +1,19 @@
 import {LitElement, html, css} from 'lit-element';
 import 'fa-icons';
+import store from "../redux";
+import {connect} from "pwa-helpers/connect-mixin";
 
-export class appManageUsers extends LitElement {
+export class appManageUsers extends connect(store)(LitElement) {
     static get properties() {
         return {
             _students: {type: Array},
-            _autors: {type: Array}
+            _autors: {type: Array},
+            _emailLoggedInUser: {type: String}
         }
+    }
+
+    stateChanged(state) {
+        this._emailLoggedInUser = state.userStore.email
     }
 
     constructor() {
@@ -58,8 +65,7 @@ export class appManageUsers extends LitElement {
     }
 
     toggleAdmin(user, target) {
-        const loggedIn = JSON.parse(window.localStorage.getItem('user'))
-        if (user.email === loggedIn.email) {
+        if (user.email === this._emailLoggedInUser) {
             alert("Letop, u kunt uzelf niet ontzien als administrator.")
         } else {
             if (user.functie !== "admin") {
@@ -98,8 +104,7 @@ export class appManageUsers extends LitElement {
     }
 
     toggleToAutor(user) {
-        const loggedIn = JSON.parse(window.localStorage.getItem('user'))
-        if (user.email === loggedIn.email) {
+        if (user.email === this._emailLoggedInUser) {
             alert("Letop, u kunt uzelf niet ontzien als administrator.")
         } else {
             if (user.functie === 'student') {
@@ -146,7 +151,7 @@ export class appManageUsers extends LitElement {
                     <h2>Auteurs</h2>
                     ${this._autors.map((user) => html`
                         <li>${user.fullName}
-                            ${((user.email === JSON.parse(window.localStorage.getItem('user')).email)|| user.email === 'admin@tester.nl' || user.email === 'auteur@tester.nl')? html`` : html` <!--Students and authors can't see this page. -->
+                            ${(user.email === this._emailLoggedInUser|| user.email === 'admin@tester.nl' || user.email === 'auteur@tester.nl')? html`` : html` <!--Students and authors can't see this page. -->
                             <span id="icon-holder">
                                 ${this.checkAutor(user)}
                                 ${this.checkBlocked(user)}

@@ -1,7 +1,9 @@
 import {css, LitElement, html} from 'lit-element';
 import '@lrnwebcomponents/lrn-markdown-editor/lrn-markdown-editor.js';
+import {connect} from "pwa-helpers/connect-mixin";
+import store from "../redux";
 
-export class appCreateArticle extends LitElement {
+export class appCreateArticle extends connect(store)(LitElement) {
     static get properties() {
         return {
             _categories: {type: Array},
@@ -28,9 +30,13 @@ export class appCreateArticle extends LitElement {
         this._category = '';
     }
 
+    stateChanged(state) {
+        if (!state.userStore.jwt) window.dispatchEvent(new CustomEvent('vaadin-router-go', {detail: {pathname: '/login'}}));
+    }
+
     onBeforeEnter(location, commands, router) {
         this.src = location.params.article
-        if (!window.localStorage.getItem('JWT')) return commands.redirect('/login');
+
     }
 
     set src(val) {
@@ -40,7 +46,7 @@ export class appCreateArticle extends LitElement {
             this._content = response.data;
             this._title = response.title;
             this._category = response.categoryId
-            return this._categoryFetch.then(categories => categories.filter(category => category.subcatagories.filter(sub => sub.id == response.categoryId).length)[0])
+            return this._categoryFetch.then(categories => categories.filter(category => category.subcatagories.filter(sub => sub.id === response.categoryId).length)[0])
         }).then(topCategory => this._chosenCategory = topCategory)
     }
 

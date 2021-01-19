@@ -1,5 +1,7 @@
+import store from '../redux/index.js'
+
 function sendAuthenticated(url,data) {
-	const jwt=window.localStorage.getItem('JWT')
+	const jwt=store.getState().userStore.jwt
 	if(!jwt) alert('Niet ingelogd!');
 	else return fetch(url,{
 		headers:{
@@ -16,3 +18,5 @@ function sendAuthenticated(url,data) {
 		return response;
 	})
 }
+window.sendAuthenticated=sendAuthenticated;
+export default sendAuthenticated;
