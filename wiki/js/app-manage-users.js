@@ -162,7 +162,7 @@ export class appManageUsers extends connect(store)(LitElement) {
                     <h2>Admins</h2>
                     ${this._admins.map((user) => html`
                         <li>${user.fullName}
-                            ${(((user.email === this._emailLoggedInUser || user.email === 'admin@tester.nl' || user.email === 'auteur@tester.nl') ? html`` :
+                            ${((user.email === this._emailLoggedInUser || user.email === 'admin@tester.nl' || user.email === 'auteur@tester.nl') ? html`` :
                                     html`${this.mapAdmin(user)}`)}
                         </li>
                     `)}
