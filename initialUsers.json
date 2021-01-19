@@ -1,62 +1,62 @@
 [
-  {
-    "email": "1@example.com",
-    "hash": "banaan",
-    "fullName": "Example 1",
-    "functie": "auteur",
-    "orgName": "Lek en linge",
-    "blocked": false,
-    "createdAt": "2021-01-07T10:01:08.560Z",
-    "updatedAt": "2021-01-07T10:01:08.560Z"
-  },
-  {
-    "email": "2@example.com",
-    "hash": "banaan",
-    "fullName": "Gerard Joling",
-    "functie": "admin",
-    "orgName": "Lek en linge",
-    "blocked": true,
-    "createdAt": "2021-01-07T10:01:08.560Z",
-    "updatedAt": "2021-01-07T10:01:08.560Z"
-  },
-  {
-    "email": "3@example.com",
-    "hash": "banaan",
-    "fullName": "Bert Jan",
-    "functie": "auteur",
-    "orgName": "Lek en linge",
-    "blocked": true,
-    "createdAt": "2021-01-07T10:01:08.560Z",
-    "updatedAt": "2021-01-07T10:01:08.560Z"
-  },
-  {
-    "email": "admin@tester.nl",
-    "hash": "$2b$10$O5uayJl4LN6S2tosFQUuaOvggVCBhJOMa32z7rUpANHpWDrD1HgEm",
-    "fullName": "Admin tester",
-    "functie": "admin",
-    "orgName": "Admin",
-    "blocked": false,
-    "createdAt": "2021-01-07T10:01:08.560Z",
-    "updatedAt": "2021-01-07T10:01:08.560Z"
-  },
-  {
-    "email": "auteur@tester.nl",
-    "hash": "$2b$10$LUhUjeAl6t//iZMo0d0SBe9yzL/YcAxl5vnSe1ElIBFSFXlLpQoIO",
-    "fullName": "Auteur tester",
-    "functie": "auteur",
-    "orgName": "Tester",
-    "blocked": false,
-    "createdAt": "2021-01-07T10:01:08.560Z",
-    "updatedAt": "2021-01-07T10:01:08.560Z"
-  },
-  {
-    "email": "daniel.lankheet@hotmail.com",
-    "hash": "$2b$10$cjsLMNn7TwDJSgdWt2lW0Ozw1s0L9TQ9C56rBlLoTrQSoW11CJihK",
-    "fullName": "Daniel Lankheet",
-    "functie": "admin",
-    "orgName": "HBO-ICT",
-    "blocked": false,
-    "createdAt": "2021-01-07T10:01:08.560Z",
-    "updatedAt": "2021-01-07T10:01:08.560Z"
-  }
+	{
+		"email": "1@example.com",
+		"hash": "banaan",
+		"fullName": "Example 1",
+		"functie": "auteur",
+		"orgName": "Lek en linge",
+		"blocked": false,
+		"createdAt": "2021-01-07T10:01:08.560Z",
+		"updatedAt": "2021-01-07T10:01:08.560Z"
+	},
+	{
+		"email": "2@example.com",
+		"hash": "banaan",
+		"fullName": "Gerard Joling",
+		"functie": "admin",
+		"orgName": "Lek en linge",
+		"blocked": true,
+		"createdAt": "2021-01-07T10:01:08.560Z",
+		"updatedAt": "2021-01-07T10:01:08.560Z"
+	},
+	{
+		"email": "3@example.com",
+		"hash": "banaan",
+		"fullName": "Bert Jan",
+		"functie": "auteur",
+		"orgName": "Lek en linge",
+		"blocked": true,
+		"createdAt": "2021-01-07T10:01:08.560Z",
+		"updatedAt": "2021-01-07T10:01:08.560Z"
+	},
+	{
+		"email": "admin@tester.nl",
+		"hash": "$2b$10$O5uayJl4LN6S2tosFQUuaOvggVCBhJOMa32z7rUpANHpWDrD1HgEm",
+		"fullName": "Admin tester",
+		"functie": "admin",
+		"orgName": "Admin",
+		"blocked": false,
+		"createdAt": "2021-01-07T10:01:08.560Z",
+		"updatedAt": "2021-01-07T10:01:08.560Z"
+	},
+	{
+		"email": "auteur@tester.nl",
+		"hash": "$2b$10$LUhUjeAl6t//iZMo0d0SBe9yzL/YcAxl5vnSe1ElIBFSFXlLpQoIO",
+		"fullName": "Auteur tester",
+		"functie": "auteur",
+		"orgName": "Tester",
+		"blocked": false,
+		"createdAt": "2021-01-07T10:01:08.560Z",
+		"updatedAt": "2021-01-07T10:01:08.560Z"
+	},
+	{
+		"email": "daniel.lankheet@hotmail.com",
+		"hash": "$2b$10$cjsLMNn7TwDJSgdWt2lW0Ozw1s0L9TQ9C56rBlLoTrQSoW11CJihK",
+		"fullName": "Daniel Lankheet",
+		"functie": "admin",
+		"orgName": "HBO-ICT",
+		"blocked": false,
+		"createdAt": "2021-01-07T10:01:08.560Z",
+		"updatedAt": "2021-01-07T10:01:08.560Z"
+	}
 ]

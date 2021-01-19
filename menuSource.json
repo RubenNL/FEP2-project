@@ -1,138 +1,136 @@
 [
-  {
-    "headCatagory": "Deleted",
-    "subcatagories": [
-	  {
-	    "title": "Deleted",
-	    "id": 1688148667
-	  }
-	]
-  },
-  {
-    "headcatagory": "Gebruikersinteractie",
-    "subcatagories": [
-      {
-        "title": "Analyseren",
-        "id": 1
-      },
-      {
-        "title": "Adviseren",
-        "id": 2
-      },
-      {
-        "title": "Ontwerpen",
-        "id": 3
-      },
-      {
-        "title": "Realiseren",
-        "id": 4
-      },
-      {
-        "title": "Manage & Control",
-        "id": 5
-      }
-    ]
-  },
-  {
-    "headcatagory": "Organisatie processen",
-    "subcatagories": [
-      {
-        "title": "Analyseren",
-        "id": 6
-      },
-      {
-        "title": "Adviseren",
-        "id": 7
-      },
-      {
-        "title": "Ontwerpen",
-        "id": 8
-      },
-      {
-        "title": "Realiseren",
-        "id": 9
-      },
-      {
-        "title": "Manage & Control",
-        "id": 10
-      }
-    ]
-  }
- ,
-
-  {
-    "headcatagory": "Infrastructuur",
-    "subcatagories": [
-      {
-        "title": "Analyseren",
-        "id": 11
-      },
-      {
-        "title": "Adviseren",
-        "id": 12
-      },
-      {
-        "title": "Ontwerpen",
-        "id": 13
-      },
-      {
-        "title": "Realiseren",
-        "id": 14
-      },
-      {
-        "title": "Manage & Control",
-        "id": 15
-      }
-    ]
-  },
-  {
-    "headcatagory": "Software",
-    "subcatagories": [
-      {
-        "title": "Analyseren",
-        "id": 16
-      },
-      {
-        "title": "Adviseren",
-        "id": 17
-      },
-      {
-        "title": "Ontwerpen",
-        "id": 18
-      },
-      {
-        "title": "Realiseren",
-        "id": 19
-      },
-      {
-        "title": "Manage & Control",
-        "id": 20
-      }
-    ]
-  },
-  {
-    "headcatagory": "Hardware interfacing",
-    "subcatagories": [
-      {
-        "title": "Analyseren",
-        "id": 21
-      },
-      {
-        "title": "Adviseren",
-        "id": 22
-      },
-      {
-        "title": "Ontwerpen",
-        "id": 23
-      },
-      {
-        "title": "Realiseren",
-        "id": 24
-      },
-      {
-        "title": "Manage & Control",
-        "id": 25
-      }
-    ]
-  }
+	{
+		"headCatagory": "Deleted",
+		"subcatagories": [
+			{
+				"title": "Deleted",
+				"id": 1688148667
+			}
+		]
+	},
+	{
+		"headcatagory": "Gebruikersinteractie",
+		"subcatagories": [
+			{
+				"title": "Analyseren",
+				"id": 1
+			},
+			{
+				"title": "Adviseren",
+				"id": 2
+			},
+			{
+				"title": "Ontwerpen",
+				"id": 3
+			},
+			{
+				"title": "Realiseren",
+				"id": 4
+			},
+			{
+				"title": "Manage & Control",
+				"id": 5
+			}
+		]
+	},
+	{
+		"headcatagory": "Organisatie processen",
+		"subcatagories": [
+			{
+				"title": "Analyseren",
+				"id": 6
+			},
+			{
+				"title": "Adviseren",
+				"id": 7
+			},
+			{
+				"title": "Ontwerpen",
+				"id": 8
+			},
+			{
+				"title": "Realiseren",
+				"id": 9
+			},
+			{
+				"title": "Manage & Control",
+				"id": 10
+			}
+		]
+	},
+	{
+		"headcatagory": "Infrastructuur",
+		"subcatagories": [
+			{
+				"title": "Analyseren",
+				"id": 11
+			},
+			{
+				"title": "Adviseren",
+				"id": 12
+			},
+			{
+				"title": "Ontwerpen",
+				"id": 13
+			},
+			{
+				"title": "Realiseren",
+				"id": 14
+			},
+			{
+				"title": "Manage & Control",
+				"id": 15
+			}
+		]
+	},
+	{
+		"headcatagory": "Software",
+		"subcatagories": [
+			{
+				"title": "Analyseren",
+				"id": 16
+			},
+			{
+				"title": "Adviseren",
+				"id": 17
+			},
+			{
+				"title": "Ontwerpen",
+				"id": 18
+			},
+			{
+				"title": "Realiseren",
+				"id": 19
+			},
+			{
+				"title": "Manage & Control",
+				"id": 20
+			}
+		]
+	},
+	{
+		"headcatagory": "Hardware interfacing",
+		"subcatagories": [
+			{
+				"title": "Analyseren",
+				"id": 21
+			},
+			{
+				"title": "Adviseren",
+				"id": 22
+			},
+			{
+				"title": "Ontwerpen",
+				"id": 23
+			},
+			{
+				"title": "Realiseren",
+				"id": 24
+			},
+			{
+				"title": "Manage & Control",
+				"id": 25
+			}
+		]
+	}
 ]

@@ -1,12 +1,12 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit';
+import {createSlice, createSelector} from '@reduxjs/toolkit'
 import store from './index.js'
 
 const savedState = JSON.parse(localStorage.getItem('bookmarks')) || []
 
 //--------- Reducers ---------//
 function toggleReducer(state, action) {
-	if(state.find(bookmark=>bookmark==action.payload)) return state.filter(bookmark => bookmark != action.payload)
-	else return [...state,action.payload]
+	if (state.find(bookmark => bookmark == action.payload)) return state.filter(bookmark => bookmark != action.payload)
+	else return [...state, action.payload]
 }
 function setReducer(state, action) {
 	return action.payload
@@ -24,18 +24,15 @@ const bookmarkStore = createSlice({
 	initialState: savedState,
 	reducers: {
 		toggle: toggleReducer,
-		set: setReducer
-	}
+		set: setReducer,
+	},
 })
 
 //--------- Export slice values ---------//
-export const isBookmarked= (bookmark) => isBookmarkedSelector(store.getState(),bookmark)
+export const isBookmarked = bookmark => isBookmarkedSelector(store.getState(), bookmark)
 
 //--------- Export slice actions ---------//
-export const {
-	toggle,
-	set
-} = bookmarkStore.actions
+export const {toggle, set} = bookmarkStore.actions
 
 //--------- Export slice reducer ---------//
 export default bookmarkStore.reducer
