@@ -1,7 +1,7 @@
 import './app-search.js'
 import {css, html, LitElement} from 'lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import {toggleDarkMode, login, logout} from '../redux/userStore.js'
+import {toggleDarkMode} from '../redux/userStore.js'
 import store from '../redux/index.js'
 import {set} from 'redux/bookmarkStore.js'
 

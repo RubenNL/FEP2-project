@@ -11,20 +11,20 @@ function parseJwt (token) {
 		return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
 	}).join(''));
 	return JSON.parse(jsonPayload);
-};
+}
 
 function loginReducer(state, action) {
 	//{...} betekent dat het object uitelkaar getrokken word en in de array(object wordt gepropt.)
 	// Action = jwt="JWT-token" state = huidige  state.
 	//Return = {jwt: "token", uitgesplitste onderdelen d.m.v parseJWT}
- 	return {jwt:action.payload,...parseJwt(action.payload)};
+	return {jwt:action.payload,...parseJwt(action.payload)};
 }
 
-function logoutReducer(state, action) {
+function logoutReducer() {
 	return {};
 }
 
-function toggleDarkModeReducer(state, action){
+function toggleDarkModeReducer(state){
 	return {...state,darkMode:!state.darkMode};
 }
 

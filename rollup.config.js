@@ -7,7 +7,6 @@ import css from 'rollup-plugin-css-only';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
 const production=process.env.NODE_ENV=="production"
-console.log("ENVIRONMENT:",production?'prod':'dev')
 function shouldPreload({ code }) {
   return !!code && code.includes('markdown-element');
 }
