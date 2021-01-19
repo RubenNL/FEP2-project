@@ -83,9 +83,10 @@ export class appSidebar extends connect(store)(LitElement) {
 					<app-button width="100%" margin="0 0 3px 0" router-link href="/creator#main">Nieuw artikel</app-button>`;
 			case "admin":
 				return html`
-					<app-button width="100%" margin="0 0 3px 0" router-link href="/bookmarks#main">Bladwijzers</app-button>
-					<app-button width="100%" margin="0 0 3px 0" router-link href="/creator#main">Nieuw artikel</app-button>
-					<app-button width="100%" margin="0 0 3px 0" router-link href="/users#main">Gebruikers beheren</app-button>`;
+					<a router-link href="/bookmarks" class="button" id="menuButton">Bladwijzers</a>
+					<a router-link href="/creator" class="button" id="menuButton">Nieuw artikel</a>
+					<a router-link href="/users" class="button">Gebruikers beheren</a>
+					<a router-link href="/editCategory" class="button">Categorieën beheren</a>`;
 		}
 	}
 

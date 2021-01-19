@@ -54,6 +54,11 @@ router.setRoutes([
 		action: ()=>import('js/app-bookmarks.js')
 	},
 	{
+		path: '/editCategory',
+		component: 'app-manage-categories',
+		action: ()=>import('js/app-manage-categories.js')
+	},
+	{
 		path: '(.*)',
 		component: 'app-404',
 		action: ()=>import('js/app-404.js')
