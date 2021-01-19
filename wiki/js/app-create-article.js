@@ -1,3 +1,5 @@
+/*Contributors: Daniel, Marlon, Nick, Ruben, Gianni*/
+
 import {css, LitElement, html} from 'lit-element'
 import '@lrnwebcomponents/lrn-markdown-editor/lrn-markdown-editor.js'
 import {connect} from 'pwa-helpers/connect-mixin'

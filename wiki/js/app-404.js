@@ -1,3 +1,5 @@
+/*Contributors: Nick*/
+
 import {css, LitElement, html} from 'lit-element'
 
 export class App404 extends LitElement {

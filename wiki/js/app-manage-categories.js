@@ -1,3 +1,5 @@
+/*Contributors: Gianni, Daniel, Marlon*/
+
 import {LitElement, html, css} from 'lit-element'
 import 'fa-icons'
 import {connect} from 'pwa-helpers/connect-mixin'

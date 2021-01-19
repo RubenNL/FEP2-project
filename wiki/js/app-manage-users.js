@@ -1,3 +1,5 @@
+/*Contributors: Daniel, Nick */
+
 import {LitElement, html, css} from 'lit-element'
 import 'fa-icons'
 import store from '../redux'

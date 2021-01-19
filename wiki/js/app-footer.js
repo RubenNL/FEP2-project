@@ -1,3 +1,5 @@
+/*Contributors: Nick, Marlon*/
+
 import {css, LitElement, html} from 'lit-element'
 
 export class appFooter extends LitElement {

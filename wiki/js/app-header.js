@@ -1,3 +1,5 @@
+/*Contributors: Daniel, Marlon, Ruben, Nick, Gianni*/
+
 import './app-search.js'
 import {css, html, LitElement} from 'lit-element'
 import {connect} from 'pwa-helpers/connect-mixin.js'

@@ -1,3 +1,5 @@
+/*Contributors: Ruben */
+
 import modulepreload from 'rollup-plugin-modulepreload'
 import del from 'rollup-plugin-delete'
 import fg from 'fast-glob'
