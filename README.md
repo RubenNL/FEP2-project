@@ -22,6 +22,10 @@ Email: admin@tester.nl ; wachtwoord: tester
 
 Het doel van het project is een Wiki bouwen aan de hand van web-components, lit-element en state-management.
 
+### Code contributie markeringen
+
+In de bestanden staan bovenaan een lijst met Contributors. Deze lijst vermeld de teamleden die hebben gewerkt aan het document. Personen die eerder in de lijst staan hebben meer aan het document bewerkt dan de anderen.
+
 ### Links:
 
 - Lucidchart(wireframes): https://lucid.app/documents/view/c3a4c747-6bc7-4c77-8574-6f1c18cb0cd9
