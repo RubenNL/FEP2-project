@@ -14,7 +14,7 @@ Voor HBO-ICT kregen wij de opdracht een wiki te bouwen waar ICT-studenten en doc
 ### Gebruikshandleiding
 
 Voor het gebruik van onze website kunt u navigeren naar:  
-https://www.fep2.heroku.com Verdere bediening wijst voor zichzelf, de rollen worden verder hieronder uitgelegd.
+https://fep2-ruben.herokuapp.com Verdere bediening wijst voor zichzelf, de rollen worden verder hieronder uitgelegd.
 
 ### Rollen binnen onze wiki
 
@@ -39,7 +39,5 @@ In de bestanden staan bovenaan een lijst met Contributors. Deze lijst vermeld de
 
 ### Links:
 
-- Documenten in ons project: Functioneel Ontwerp, Visie/Scope etc: https://github.com/HU-SD-SV2PRFED-studenten-2021/prfed_2021-v2b-v/tree/master/documenten
 - Lucidchart(wireframes): https://lucid.app/documents/view/c3a4c747-6bc7-4c77-8574-6f1c18cb0cd9
-- Youtrack(scrum board): https://v2b-5-fep.myjetbrains.com/ (klik bovenin op "agile boards")
-- Heroku deploy: https://fep2.herokuapp.com
+- Heroku deploy: https://fep2-ruben.herokuapp.com
